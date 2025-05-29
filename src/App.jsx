@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, Suspense } from 'react'
 import './css/App.css'
+import './css/style.css'
 import { Route, Routes, Link } from 'react-router-dom'
 import {motion, useMotionValue, useTransform} from 'framer-motion';
 
@@ -18,6 +19,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
+import MainSec from './sections/MainSec'
+
 
 
 function App() {
@@ -28,14 +31,16 @@ function App() {
 
   return (
     <div id='App'>
-      <div className="Root_container">
-        {/* <Suspense fallback={<Fallback />}></Suspense> */}
-        <Header/>
-        <Routes>
-          {/* <Route path='/' element={}></Route> */}
-          {/* <Route path='/' element={}></Route> */}
-        </Routes>
-      </div>
+      {/* <Suspense fallback={<Fallback />}></Suspense> */}
+      {/* <Routes>
+        <Route path='/' element={<MainSec />} />
+      </Routes> */}
+
+      {/* 헤더 */}
+      <Header/>
+
+      {/* 메인 베너 */}
+      <MainSec />
     </div>
   )
 }
