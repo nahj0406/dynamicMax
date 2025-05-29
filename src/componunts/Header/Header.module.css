@@ -1,10 +1,11 @@
 #header {
+  position: fixed;
   width: 100%;
   padding: 0 30px;
   top: 0;
   left: 0;
   height: 60px;
-  background: rgba(51, 51, 51, 0.2392156863);
+  background: rgba(51, 51, 51, 0.4235294118);
 }
 #header .headerContainer {
   display: flex;
@@ -13,7 +14,6 @@
   width: 100%;
   height: 100%;
   margin: 0;
-  background: #aaa;
   max-width: 100%;
 }
 #header .headerContainer > nav > .outerMenu {

@@ -3,6 +3,7 @@ import './css/App.css'
 import './css/style.css'
 import { Route, Routes, Link } from 'react-router-dom'
 import {motion, useMotionValue, useTransform} from 'framer-motion';
+import Lenis from '@studio-freight/lenis';
 
 // 커스텀 컴포넌트
 import SplitMotion from './Flamer_Element/SplitMotion';
@@ -24,6 +25,26 @@ import MainSec from './sections/MainSec'
 
 
 function App() {
+
+  useEffect(() => {
+    // Lenis 초기화
+    const lenis = new Lenis({
+      smoothWheel: true,
+      smoothTouch: true,
+      wheelMultiplier: 1, // 휠로 이동되는 거리 감소
+      touchMultiplier: 0.5, // 터치로 이동되는 거리 감소
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   useEffect(() => {
      Splitting();
