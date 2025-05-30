@@ -8,11 +8,11 @@ import Lenis from '@studio-freight/lenis';
 // 커스텀 컴포넌트
 import SplitMotion from './Flamer_Element/SplitMotion';
 import InViewMotion from './Flamer_Element/InViewMotion';
-import Header from './componunts/Header/Header';
 
-// img
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// 페이지
+import Header from './componunts/Header/Header';
+import MainSec from './sections/MainSec/MainSec'
+import Section01 from './sections/Section01/Section01'
 
 // js 라이브러리
 import Splitting from 'splitting';
@@ -20,7 +20,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-import MainSec from './sections/MainSec'
+
 
 
 
@@ -62,6 +62,8 @@ function App() {
 
       {/* 메인 베너 */}
       <MainSec />
+
+      <Section01 />
     </div>
   )
 }

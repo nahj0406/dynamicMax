@@ -1,7 +1,14 @@
-@font-face {
+/* @font-face {
     font-family: 'PretendardVariable';
     src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/PretendardVariable.woff') format('woff');
     font-weight: 400;
+    font-style: normal;
+} */
+
+@font-face {
+    font-family: 'PretendardVariable';
+    src: url('../font/PretendardVariable.woff2') format('woff2');
+    /* font-weight: 400; */
     font-style: normal;
 }
 
@@ -18,6 +25,11 @@
 
   margin: 0;
   padding: 0;
+
+  --main-color: #F63333;
+  --main-color2: #49BDB6;
+  --main-color3: #FF6B00;
+  --main-color4: #B726E8;
 }
 
 * {
@@ -27,7 +39,7 @@
   line-height: 1.4;
   font-weight: normal;
   font-size: 14px;
-  font-family: 'PretendardVariable', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'PretendardVariable';
 }
 
 a {text-decoration: none; color: inherit;}
@@ -49,21 +61,25 @@ html {
   font-size: clamp(var(--min-font), 0.52vw, var(--max-font));
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1300px) {
   html {--min-font: 8px;}
 }
 
-@media (max-width: 1400px) {
-  html {--min-font: 6px;}
-}
-
-@media (max-width: 992px) {
-  html {--min-font: 5px;}
+@media (max-width: 769px) {
+  html {--min-font: 7px;}
 }
 
 @media (max-width: 680px) {
-  html {--min-font: 3px;}
+  html {--min-font: 5px;}
 }
+
+/* @media (max-width: 992px) {
+  html {--min-font: 5px;}
+} */
+
+/* @media (max-width: 680px) {
+  html {--min-font: 5px;}
+} */
 
 /* 전역 폰트사이즈 -------------------*/
 
