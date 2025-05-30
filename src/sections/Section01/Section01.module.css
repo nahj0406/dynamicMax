@@ -14,6 +14,7 @@
   font-size: min(15.625vw, 300px);
   color: #282828;
   line-height: 1;
+  opacity: 0.3;
 }
 
 .bg_img {
@@ -111,9 +112,6 @@
   position: relative;
   z-index: 2;
 }
-.Specs :global(.containerV1) {
-  max-width: 1400px;
-}
 .Specs h3 {
   color: #fff;
   font-size: max(25px, 3.5rem);
@@ -180,9 +178,6 @@
 }
 
 @media (max-width: 1430px) {
-  .Specs :global(.containerV1) {
-    padding: 0 15px;
-  }
   .Specs .itemBox .textBox p {
     font-size: max(20px, 3rem);
   }

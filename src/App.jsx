@@ -13,6 +13,7 @@ import InViewMotion from './Flamer_Element/InViewMotion';
 import Header from './componunts/Header/Header';
 import MainSec from './sections/MainSec/MainSec'
 import Section01 from './sections/Section01/Section01'
+import Section02 from './sections/Section02/Section02'
 
 // js 라이브러리
 import Splitting from 'splitting';
@@ -64,6 +65,7 @@ function App() {
       <MainSec />
 
       <Section01 />
+      <Section02 />
     </div>
   )
 }

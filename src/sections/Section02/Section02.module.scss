@@ -1,0 +1,29 @@
+#Section02 {
+  position: relative;
+  background: linear-gradient(#201E1F, #011722 50%);
+  padding: 19rem 0 20rem;
+  overflow: hidden;
+  background: url("../../img/Sec2/sec2_bg.jpg") no-repeat right center/cover;
+}
+
+.titleBox {
+  margin-bottom: 10rem;
+
+  p {
+    font-size: max(25px, 3.5rem); font-weight: 700; color: #fff;
+
+    span {font-size: inherit; font-weight: inherit; color: var(--main-color4);}
+  }
+  h2 {font-size: max(50px, 10rem); color: #fff; position: relative; left: -10px;}
+}
+
+.product {
+   width: fit-content; margin: 0 auto 9rem;
+
+   img {width: 80rem;}
+}
+
+.itemBox {
+   display: grid; gap: 3rem;
+   grid-template-columns: repeat(2, 1fr);
+}

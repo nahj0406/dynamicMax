@@ -11,6 +11,14 @@
 #App {width: 100%;background: #fff;}
 
 .containerV1 {
-   width: 100%; max-width: 1600px; height: 100%;
+   width: 100%; max-width: 1400px; height: 100%;
    margin: 0 auto;
+}
+
+@media (min-width: 2000px) {
+    .containerV1 {max-width: 1600px;}
+}
+
+@media (max-width: 1430px) {
+    .containerV1 {padding: 0 15px;}
 }

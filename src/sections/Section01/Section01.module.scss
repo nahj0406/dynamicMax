@@ -11,7 +11,7 @@
    position: absolute; z-index: 1;
    top: 70rem; left: 50%; transform: translate(-50%, -50%);
    font-size: min(calc(300 / 1920 * 100vw), 300px);
-   color: #282828; line-height: 1;
+   color: #282828; line-height: 1; opacity: 0.3;
 }
 
 .bg_img {
@@ -87,8 +87,6 @@
 .Specs {
    position: relative; z-index: 2;
 
-   :global(.containerV1) {max-width: 1400px;}
-
    h3 {color: #fff; font-size: max(25px, 3.5rem); font-weight: 700; margin-bottom: 2rem;}
 
    .itemBox {
@@ -134,10 +132,6 @@
 
 @media (max-width: 1430px) {
    .Specs {
-      :global(.containerV1) {
-         padding: 0 15px;
-      }
-
       .itemBox {
          .textBox {
             p {font-size: max(20px, 3rem);}
