@@ -28,6 +28,10 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  })
+
+  useEffect(() => {
     // Lenis 초기화
     const lenis = new Lenis({
       smoothWheel: true,

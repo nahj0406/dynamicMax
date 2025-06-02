@@ -8,12 +8,20 @@
 }
 .HemiHead {font-family: 'HemiHead' !important;}
 
-#App {width: 100%;background: #fff;}
+#App {width: 100%; background: #fff;}
 
 .containerV1 {
    width: 100%; max-width: 1400px; height: 100%;
    margin: 0 auto;
 }
+
+
+#canvas { // 3d 이미지
+    margin: 0 auto; display: block; width: 100%; 
+    height: min(calc(1047 / 1920 * 100vw), 1047px); display: block;
+    // background: #201E1F;
+}
+
 
 @media (min-width: 2000px) {
     .containerV1 {max-width: 1600px;}

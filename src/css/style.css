@@ -20,6 +20,14 @@
   margin: 0 auto;
 }
 
+#canvas {
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+  height: min(54.53125vw, 1047px);
+  display: block;
+}
+
 @media (min-width: 2000px) {
   .containerV1 {
     max-width: 1600px;

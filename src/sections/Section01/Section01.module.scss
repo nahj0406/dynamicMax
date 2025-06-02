@@ -1,9 +1,21 @@
 #Section01 {
    position: relative;
-   background: linear-gradient(#201E1F, #011722 50%);
+   // background: linear-gradient(#201E1F, #011722 50%);
+   background: #201E1F;
    padding: 30rem 0 20rem;
    overflow: hidden;
+
 }
+
+
+// .canvas_wrapper {
+//    position: relative;
+//    height: min(calc(1047 / 1920 * 100vw), 1047px);
+// }
+
+// .spacer {
+//   height: 2000px; /* ScrollTrigger의 end와 맞춰줌 */
+// }
 
 
 // 후방 배경 텍스트
