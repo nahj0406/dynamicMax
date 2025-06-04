@@ -66,10 +66,11 @@ function App() {
       <Header/>
 
       {/* 메인 베너 */}
-      <MainSec />
-
-      <Section01 />
-      <Section02 />
+      <div className='test_bg'>
+        <MainSec />
+        <Section01 />
+      </div>
+      {/* <Section02 /> */}
     </div>
   )
 }

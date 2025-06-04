@@ -92,13 +92,15 @@ function Section01() {
   const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     antialias: true,
+    alpha: true,
   });
   renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-  renderer.setClearColor(0x201E1F); // 캔버스 배경색 지정
+  // renderer.setClearColor(0x201E1F); // 캔버스 배경색 지정
+  renderer.setClearColor(0x000000, 0); // 캔버스 배경색 지정
   renderer.clear();
 
   const pmremGenerator = new THREE.PMREMGenerator(renderer);
@@ -108,7 +110,8 @@ function Section01() {
   const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
   camera.position.set(0, 0, 1);
 
-  scene.background = new THREE.Color('#201E1F');
+  // scene.background = new THREE.Color('#201E1F');
+  scene.background = null;
 
   const mainLight = new THREE.DirectionalLight(0xffffff, 1.5);
   mainLight.position.set(0, 2, 5);
@@ -173,8 +176,8 @@ function Section01() {
       y: Math.PI * 2 * 5,
       scrollTrigger: {
         trigger: canvas,
-        start: '-=500',
-        end: '+=500',
+        start: '-=150',
+        end: '+=3000',
         scrub: true,
         markers: true,
       },
@@ -244,17 +247,18 @@ function Section01() {
           </p>
         </div>
 
-        <canvas id='canvas' style={{backgroundColor: '#201E1F'}}></canvas>
+        <canvas id='canvas'></canvas>
+        {/* style={{backgroundColor: '#201E1F'}} */}
         {/* width={418} height={1047} */}
   
-        <figure className={styles.productBox}>
+        {/* <figure className={styles.productBox}>
           <ImgTag clsName={styles.item2} src={Product02} alt={'다이나믹 맥스 제품 이미지2'} />
           <ImgTag clsName={styles.item1} src={Product01} alt={'다이나믹 맥스 제품 이미지1'} />
           <ImgTag clsName={styles.item3} src={Product03} alt={'다이나믹 맥스 제품 이미지3'} />
-        </figure>
+        </figure> */}
       </section>
 
-      <section className={styles.slideContainer}>
+      {/* <section className={styles.slideContainer}>
         <Swiper
           slidesPerView={5}
           spaceBetween={30}
@@ -278,9 +282,9 @@ function Section01() {
             })
           }
         </Swiper>
-      </section>
+      </section> */}
 
-      <section className={styles.Specs}>
+      {/* <section className={styles.Specs}>
         <section className='containerV1'>
           <h3>제품 제원</h3>
   
@@ -333,7 +337,7 @@ function Section01() {
             </div>
           </div>
         </section>
-        </section>
+      </section> */}
     </section>
   )
 }

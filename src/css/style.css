@@ -28,6 +28,11 @@
   display: block;
 }
 
+.test_bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 @media (min-width: 2000px) {
   .containerV1 {
     max-width: 1600px;

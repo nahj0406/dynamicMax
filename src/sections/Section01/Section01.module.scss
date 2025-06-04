@@ -1,7 +1,8 @@
 #Section01 {
    position: relative;
    // background: linear-gradient(#201E1F, #011722 50%);
-   background: #201E1F;
+   // background: #201E1F;
+   background: url('../../img/Sec1/sec1_bg1.jpg') no-repeat center top / cover;
    padding: 30rem 0 20rem;
    overflow: hidden;
 
@@ -29,7 +30,7 @@
 .bg_img {
    position: absolute; bottom: 0; right: 0; z-index: 1; width: 100%;
    height: min(calc(1569 / 1920 * 100vw), 1569px);
-   background: url('../../img/Sec1/sec1_bg.jpg') no-repeat right center / cover;
+   // background: url('../../img/Sec1/sec1_bg.jpg') no-repeat right center / cover;
 }
 
 

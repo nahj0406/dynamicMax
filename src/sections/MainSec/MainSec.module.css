@@ -1,8 +1,9 @@
 #main_Section {
-  background: url("../../img/MainSec/main_sec_bg.png") no-repeat center center/cover;
+  background: url("../../img/MainSec/main_sec_bg3.jpg") no-repeat center top/cover;
   width: 100%;
   height: 100dvh;
   position: relative;
+  overflow: hidden;
 }
 
 .product {
@@ -26,6 +27,7 @@
   z-index: 9;
   width: -moz-fit-content;
   width: fit-content;
+  perspective: 600px;
 }
 .banner_txtBox > * {
   line-height: 1;
@@ -35,16 +37,35 @@
 .banner_txtBox .banner_title_txt1 {
   font-size: min(20.3125vw, 390px);
   width: min(88.5416666667vw, 1700px);
-  color: transparent;
+  color: #000;
   background-clip: text;
   -webkit-background-clip: text;
-  background-image: linear-gradient(90deg, var(--main-color2), var(--main-color3), var(--main-color4), var(--main-color));
+  background-image: url("../../img/MainSec/main_text_bg2.png");
+  background-position: center center;
+  background-size: 1700px;
   background-repeat: no-repeat;
+  transform-origin: bottom;
+  transform: rotateX(30deg) translateY(30%);
+  animation: txt_bg 1s 0.5s forwards ease;
+}
+@keyframes txt_bg {
+  to {
+    color: transparent;
+    transform: rotateX(0deg) translateY(0%);
+  }
 }
 .banner_txtBox .banner_title_txt2 {
   font-size: min(13.0208333333vw, 250px);
   text-align: right;
   transform: translate(-3.5%, -25%);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(90deg, #00CBE5, #49BDB6, #9029EE, #FF6B00, #FF01E1, #FF3F28);
+  background-repeat: no-repeat;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
 }
 
 .sub_txtBox {

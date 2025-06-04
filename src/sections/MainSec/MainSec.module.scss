@@ -1,6 +1,8 @@
 #main_Section {
-   background: url('../../img/MainSec/main_sec_bg.png') no-repeat center center / cover;
+   // background: url('../../img/MainSec/main_sec_bg2.jpg') no-repeat center center / cover;
+   background: url('../../img/MainSec/main_sec_bg3.jpg') no-repeat center top / cover;
    width: 100%; height: 100dvh; position: relative;
+   overflow: hidden;
 }
 
 .product {
@@ -15,23 +17,46 @@
 .banner_txtBox {
    position: absolute; top: 62%; left: 50%;
    transform: translate(-50%, -50%); z-index: 9;
-   width: fit-content;
+   width: fit-content; perspective: 600px;
 
    > * {line-height: 1; cursor: default; color: #fff;}
 
    .banner_title_txt1 {
       font-size: min(calc(390 / 1920 * 100vw), 390px);
       width: min(calc(1700 / 1920 * 100vw), 1700px);
-      color: transparent;
+      color: #000;
       background-clip: text;
       -webkit-background-clip: text;
-      background-image: linear-gradient(90deg, var(--main-color2), var(--main-color3), var(--main-color4), var(--main-color));
+      background-image: url('../../img/MainSec/main_text_bg2.png');
+      background-position: center center;
+      background-size: 1700px;
       background-repeat: no-repeat;
+      transform-origin: bottom;
+      transform: rotateX(30deg) translateY(30%);
+      // transition: transform 0.6s ease;
+      animation: txt_bg 1s 0.5s forwards ease;
+   }
+
+   @keyframes txt_bg {
+      to {color: transparent; transform: rotateX(0deg) translateY(0%);}
+      // 0% {background-position: 20px 100%;}
+      // 25% {background-position: 50px 80%;}
+      // 50% {background-position: 20px 50%;}
+      // 75% {background-position: 70px center;}
+      // 100% {background-position: 80px center;}
    }
 
    .banner_title_txt2 {
       font-size: min(calc(250 / 1920 * 100vw), 250px); text-align: right;
       transform: translate(-3.5%, -25%);
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      background-image: linear-gradient(90deg, #00CBE5, #49BDB6, #9029EE, #FF6B00, #FF01E1, #FF3F28);
+      background-repeat: no-repeat;
+      width: fit-content;
+      // min-width: min(calc(700 / 1920 * 100vw), 600px);
+      margin-left: auto;
    }
 }
 

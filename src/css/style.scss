@@ -22,6 +22,12 @@
     // background: #201E1F;
 }
 
+.test_bg {
+    // background: url('../img/MainSec/main_sec_bg3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 
 @media (min-width: 2000px) {
     .containerV1 {max-width: 1600px;}
