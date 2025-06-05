@@ -179,7 +179,7 @@ function Section01() {
         start: '-=150',
         end: '+=3000',
         scrub: true,
-        markers: true,
+        // markers: true,
       },
       // ease: 'none',
     });
@@ -248,96 +248,9 @@ function Section01() {
         </div>
 
         <canvas id='canvas'></canvas>
-        {/* style={{backgroundColor: '#201E1F'}} */}
-        {/* width={418} height={1047} */}
-  
-        {/* <figure className={styles.productBox}>
-          <ImgTag clsName={styles.item2} src={Product02} alt={'다이나믹 맥스 제품 이미지2'} />
-          <ImgTag clsName={styles.item1} src={Product01} alt={'다이나믹 맥스 제품 이미지1'} />
-          <ImgTag clsName={styles.item3} src={Product03} alt={'다이나믹 맥스 제품 이미지3'} />
-        </figure> */}
+        
       </section>
 
-      {/* <section className={styles.slideContainer}>
-        <Swiper
-          slidesPerView={5}
-          spaceBetween={30}
-          // centeredSlides={true}
-          className="sec01_swiper"
-        >
-          {
-            slideData.map((item, index) => {
-              return(
-                <SwiperSlide key={index}>
-                  <figure className={styles.img}>
-                    <ImgTag src={item.img} alt={item.alt} />
-                  </figure>
-
-                  <div className={styles.textBox}>
-                    <h4>{item.title}</h4>
-                    <p>{item.text}</p>
-                  </div>
-                </SwiperSlide>
-              )
-            })
-          }
-        </Swiper>
-      </section> */}
-
-      {/* <section className={styles.Specs}>
-        <section className='containerV1'>
-          <h3>제품 제원</h3>
-  
-          <div className={styles.itemBox}>
-            <article className={styles.size}>
-              <ImgTag src={Product04} alt={'다이나믹 맥스 사이즈'} />
-  
-              <div className={styles.textBox}>
-                <h5>사이즈</h5>
-                <p>48x15x113mm</p>
-              </div>
-            </article>
-  
-            <div className={styles.specs_unit}>
-              <article className={styles.Capacity}>
-                <ImgTag src={icon04} alt={'다이나믹 맥스 저장용량'} />
-    
-                <div className={styles.textBox}>
-                  <h5>액상 저장용량</h5>
-                  <p>10ml</p>
-                </div>
-              </article>
-    
-              <article className={styles.weight}>
-                <ImgTag src={icon03} alt={'다이나믹 맥스 무게'} />
-    
-                <div className={styles.textBox}>
-                  <h5>무게</h5>
-                  <p>60g</p>
-                </div>
-              </article>
-    
-              <article className={styles.Coil}>
-                <ImgTag src={icon02} alt={'다이나믹 맥스 코일사양'} />
-    
-                <div className={styles.textBox}>
-                  <h5>코일사양</h5>
-                  <p>Dual Mesh <br/> Coil</p>
-                </div>
-              </article>
-    
-              <article className={styles.battery}>
-                <ImgTag src={icon01} alt={'다이나믹 맥스 배터리'} />
-    
-                <div className={styles.textBox}>
-                  <h5>배터리</h5>
-                  <p>550mAh</p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-      </section> */}
     </section>
   )
 }

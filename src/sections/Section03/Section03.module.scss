@@ -1,3 +1,11 @@
+
+@mixin flexColum {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 #Section03 {
   position: relative;
   background: linear-gradient(#201E1F, #011722 50%);
@@ -25,4 +33,55 @@
   .img3 { z-index: 1; transform: translateX(30%);}
   .img1 { z-index: 2; transform: translateY(10%);}
   .img2 { z-index: 1; transform: translate(-30%, 20%);}
+}
+
+.triggerBox {
+  width: 100%;
+  position: absolute; z-index: 3;
+  top: 0; left: 0;
+  @include flexColum;
+  gap: 23.2rem;
+
+  > * {
+    width: fit-content; text-align: center;
+
+    p {font-size: max(16px, 3rem); font-weight: 500; color: #fff; line-height: 1.5;}
+  }
+
+  .content01 {
+    @include flexColum;
+    gap: 6.5rem;
+
+    .iconBox {
+      display: flex; gap: 2.5rem;
+      align-items: center;
+    }
+  }
+
+  .content02 {
+    @include flexColum;
+    gap: 3rem;
+  }
+
+  .content_Slide {
+    display: flex; gap: max(15px, 3rem);
+
+
+    .item {
+      @include flexColum;
+      gap: 20px;
+
+      .textBox {
+        text-align: center; color: #fff;
+        padding: 0 5px;
+
+        h5 {
+          font-size: max(18px, 2.5rem); font-weight: 600; line-height: 1.2; margin-bottom: 15px;
+          text-transform: uppercase;
+        }
+        figcaption {font-size: max(14px, 1.8rem);}
+      }
+
+    }
+  }
 }

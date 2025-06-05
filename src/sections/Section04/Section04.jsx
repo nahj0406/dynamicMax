@@ -162,6 +162,10 @@ function Section04() {
         slidesPerView: 4.8,
         spaceBetween: 20,
       },
+      1921: {
+        slidesPerView: 5.8,
+        spaceBetween: 20,
+      },
     },
   }
 
