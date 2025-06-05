@@ -1,0 +1,46 @@
+#Section03 {
+  position: relative;
+  background: linear-gradient(#201E1F, #011722 50%);
+  padding: 19rem 0;
+  overflow: hidden;
+}
+#Section03 :global(.containerV1) {
+  position: relative;
+  z-index: 2;
+}
+
+#bgVideo {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  min-width: clamp(2000px, 140vw, 3000px);
+}
+
+.titleBox p > span {
+  color: var(--main-color3);
+}
+
+.product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.product > img {
+  position: relative;
+  width: clamp(100px, 20rem, 320px);
+}
+.product .img3 {
+  z-index: 1;
+  transform: translateX(30%);
+}
+.product .img1 {
+  z-index: 2;
+  transform: translateY(10%);
+}
+.product .img2 {
+  z-index: 1;
+  transform: translate(-30%, 20%);
+}/*# sourceMappingURL=Section03.module.css.map */

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, Suspense } from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
 import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './Section01.module.css'
-import ImgTag from '../../componunts/ImgTag/ImgTag'
+import ImgTag from '../../components/ImgTag/ImgTag'
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 

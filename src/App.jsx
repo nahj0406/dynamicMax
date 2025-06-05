@@ -10,10 +10,13 @@ import SplitMotion from './Flamer_Element/SplitMotion';
 import InViewMotion from './Flamer_Element/InViewMotion';
 
 // 페이지
-import Header from './componunts/Header/Header';
+import Header from './components/Header/Header';
 import MainSec from './sections/MainSec/MainSec'
 import Section01 from './sections/Section01/Section01'
 import Section02 from './sections/Section02/Section02'
+import Section03 from './sections/Section03/Section03'
+import Section04 from './sections/Section04/Section04'
+import Footer from './components/Footer/Footer';
 
 // js 라이브러리
 import Splitting from 'splitting';
@@ -70,7 +73,11 @@ function App() {
         <MainSec />
         <Section01 />
       </div>
-      {/* <Section02 /> */}
+      <Section02 />
+      <Section03 />
+      <Section04 />
+
+      <Footer/>
     </div>
   )
 }

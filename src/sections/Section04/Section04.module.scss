@@ -1,0 +1,147 @@
+#Section04 {
+  position: relative;
+  background: #201E1F;
+  padding: 12.7rem 0 12.9rem;
+  overflow: hidden;
+
+  :global(.containerV1) {position: relative; z-index: 2;}
+}
+
+.bg_bar {
+  background: #FB762E;
+  width: 50rem;
+  height: 300dvh;
+  position: absolute; z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-50deg);
+}
+
+#bgVideo {
+  position: absolute; z-index: 1;
+  top: 0; left: 50%; transform: translateX(-50%); 
+  width: 100%; min-width: clamp(2000px, 140vw, 3000px);
+}
+
+.titleBox {
+  text-align: center; color: #fff;
+}
+
+
+.sec04_swiper {
+
+  // :global(.swiper-wrapper) {
+  //   transition-timing-function: linear;
+  // }
+
+  .slide_unit {
+    padding: 5rem 10px 3.4rem;
+    border-radius: 20px; position: relative;
+    background: var(--slideBg) no-repeat center center / cover;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 25px;
+
+    .bg_layer {
+      position: absolute; top: 50%; left: 50%; z-index: 1;
+      width: 110%; height: 110%; transform: translate(-50%, -50%);
+      background-repeat: no-repeat;
+    }
+
+    .textLine {
+      position: absolute; top: 50%; left: 50%;
+      width: 100%; transform: translate(-50%, -50%);
+      padding: 13px 0 17px; overflow: hidden; z-index: 2;
+
+      > span {
+        display: inline-block;
+        font-size: clamp(30px, min(calc(60 / 1920 * 100vw), 60px), 60px);
+        white-space: nowrap; color: transparent;
+        -webkit-text-stroke: 1px #fff;
+        letter-spacing: 3px;
+        line-height: 1;
+
+        animation: text_flow 120s infinite linear;
+      }
+    }
+
+
+    .img {
+      position: relative; z-index: 3;
+      transition: 0.3s;
+
+      > img {width: clamp(70px, min(calc(170 / 1920 * 100vw), 170px), 190px);}
+    }
+
+
+    .textBox {
+      position: relative; z-index: 3;
+      text-align: center; color: #fff;
+
+      h5 {font-size: max(15px, 2rem); color: inherit; margin-bottom: 10px; line-height: 1;}
+
+      h4 {font-size: max(20px, 3rem); color: inherit; font-weight: 700; line-height: 1;}
+    }
+
+  }
+}
+
+.buttonBox {
+  margin: 5rem auto 0; z-index: 2;
+  position: relative; border-radius: 10px;
+  background: #333; width: 100%; max-width: 38.6rem;
+
+  > a {
+    display: block; width: 100%; height: 100%;
+    padding: max(15px, 2.6rem) 10px; text-align: center;
+    color: #fff; font-size: max(20px, 3.5rem);
+    font-weight: 700;
+  }
+
+  &::before {
+    content: ''; z-index: 2;
+    position: absolute; top: 110%;
+    left: 0; width: 100%; height: 100%;
+    background: linear-gradient(#333333, #33333300 20%); border-radius: inherit;
+  }
+}
+
+
+@keyframes text_flow {
+	0%{
+      transform: translate3d(-90%, 0, 0);
+    }
+	100%{
+      transform: translate3d(100%, 0, 0);
+    }
+}
+
+
+// 반응형 ------------------------------------------------------
+
+@media (min-width: 992px) {
+  .sec04_swiper .slide_unit .textLine > span {
+    animation-play-state: paused;
+  }
+  .sec04_swiper .slide_unit:hover .textLine > span {
+    animation-play-state: running;
+  }
+
+  .sec04_swiper .slide_unit:hover .img {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 480px) {
+  .sec04_swiper {
+    .slide_unit {
+      .textBox {
+
+        h5 {font-size: max(14px, 2rem);}
+
+        h4 {font-size: max(18px, 3rem);}
+      }
+    }
+  }
+}

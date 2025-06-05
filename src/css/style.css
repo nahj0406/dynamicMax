@@ -20,6 +20,25 @@
   margin: 0 auto;
 }
 
+.titleBox {
+  margin-bottom: 10rem;
+}
+.titleBox p {
+  font-size: max(18px, 3.5rem);
+  font-weight: 700;
+  color: #fff;
+}
+.titleBox p span {
+  font-size: inherit;
+  font-weight: inherit;
+}
+.titleBox h2 {
+  font-size: max(50px, 10rem);
+  color: #fff;
+  position: relative;
+  left: -10px;
+}
+
 #canvas {
   margin: 0 auto;
   display: block;
@@ -29,6 +48,7 @@
 }
 
 .test_bg {
+  background: url("../img/MainSec/main_sec_bg3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -41,5 +61,10 @@
 @media (max-width: 1430px) {
   .containerV1 {
     padding: 0 15px;
+  }
+}
+@media (max-width: 680px) {
+  .titleBox h2 {
+    font-size: 45px;
   }
 }/*# sourceMappingURL=style.css.map */

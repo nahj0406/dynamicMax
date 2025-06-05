@@ -6,24 +6,8 @@
   background: url("../../img/Sec2/sec2_bg.jpg") no-repeat right center/cover;
 }
 
-.titleBox {
-  margin-bottom: 10rem;
-}
-.titleBox p {
-  font-size: max(25px, 3.5rem);
-  font-weight: 700;
-  color: #fff;
-}
-.titleBox p span {
-  font-size: inherit;
-  font-weight: inherit;
+.titleBox p > span {
   color: var(--main-color4);
-}
-.titleBox h2 {
-  font-size: max(50px, 10rem);
-  color: #fff;
-  position: relative;
-  left: -10px;
 }
 
 .product {
@@ -73,7 +57,7 @@
     padding: 3rem max(30px, 6rem);
   }
   .itemBox article p {
-    font-size: max(18px, 2rem);
+    font-size: max(14px, 2rem);
     line-height: 1.5;
     color: #fff;
   }

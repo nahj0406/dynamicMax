@@ -16,6 +16,19 @@
 }
 
 
+// titleBox --------------------------------------------------------------------
+.titleBox {
+  margin-bottom: 10rem;
+
+  p {
+    font-size: max(18px, 3.5rem); font-weight: 700; color: #fff;
+
+    span {font-size: inherit; font-weight: inherit;}
+  }
+  h2 {font-size: max(50px, 10rem); color: #fff; position: relative; left: -10px;}
+}
+
+
 #canvas { // 3d 이미지
     margin: 0 auto; display: block; width: 100%; 
     height: min(calc(1047 / 1920 * 100vw), 1047px); display: block;
@@ -23,7 +36,7 @@
 }
 
 .test_bg {
-    // background: url('../img/MainSec/main_sec_bg3.jpg');
+    background: url('../img/MainSec/main_sec_bg3.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -35,4 +48,8 @@
 
 @media (max-width: 1430px) {
     .containerV1 {padding: 0 15px;}
+}
+
+@media (max-width: 680px) {
+    .titleBox h2 {font-size: 45px;}
 }

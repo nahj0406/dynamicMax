@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, Suspense } from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
 import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './Section02.module.css'
-import ImgTag from '../../componunts/ImgTag/ImgTag'
+import ImgTag from '../../components/ImgTag/ImgTag'
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 
@@ -19,7 +19,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-function Section01() {
+function Section02() {
 
   useEffect(() => {
      Splitting();
@@ -30,13 +30,14 @@ function Section01() {
 
       <section className='containerV1'>
 
-        <div className={styles.titleBox}>
+        <div className={`${styles.titleBox} titleBox`}>
           <p>차별화된 배터리 및 액상 <span>잔량 확인 시스템</span></p>
           <h2 className='HemiHead'>VISIBILITY</h2>
         </div>
 
         <figure className={styles.product}>
           <ImgTag clsName={styles.img} src={Product01} alt={'다이나믹 맥스 충전량 표시'} />
+          <div className="scroll_unit"></div>
         </figure>
 
 
@@ -61,11 +62,10 @@ function Section01() {
           </article>
         </div>
   
-        
       </section>
 
     </section>
   )
 }
 
-export default Section01
+export default Section02

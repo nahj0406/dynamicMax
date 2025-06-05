@@ -5,7 +5,7 @@ import styles from './MainSec.module.css'
 
 
 // 컴포넌트
-import ImgTag from '../../componunts/ImgTag/ImgTag'
+import ImgTag from '../../components/ImgTag/ImgTag'
 
 
 // img
