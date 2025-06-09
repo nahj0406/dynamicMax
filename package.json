@@ -23,6 +23,10 @@
     "react-intersection-observer": "^9.16.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.1",
+<<<<<<< HEAD
+=======
+    "scroll-out": "^2.2.12",
+>>>>>>> bbef629 (sec3, sec4 gsap 수정 scrollout 설치)
     "splitting": "^1.1.0",
     "swiper": "^11.2.8",
     "three": "^0.177.0"

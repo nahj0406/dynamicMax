@@ -1,9 +1,20 @@
 #Section02 {
   position: relative;
+<<<<<<< HEAD
   background: linear-gradient(#201E1F, #011722 50%);
   padding: 19rem 0 20rem;
   overflow: hidden;
   background: url("../../img/Sec2/sec2_bg.jpg") no-repeat right center/cover;
+=======
+  background: #131212;
+  overflow: hidden;
+}
+
+.pin_wrapper {
+  background: url("../../img/Sec2/sec2_bg.jpg") no-repeat right center / cover;
+  width: 100%; position: relative; height: auto;
+  padding: 19rem 0 20rem;
+>>>>>>> bbef629 (sec3, sec4 gsap 수정 scrollout 설치)
 }
 
 .titleBox p > span {color: var(--main-color4);}
@@ -18,7 +29,11 @@
   .scroll_unit {
     position: absolute; top: 26%; left: 84.5%;
     transform: translate(-50%, -50%);
+<<<<<<< HEAD
     width: 140px; height: 74px; background: #222322;
+=======
+    width: 14rem; height: 7.4rem; background: #222322;
+>>>>>>> bbef629 (sec3, sec4 gsap 수정 scrollout 설치)
     z-index: 2; opacity: 1; transition: 0.3s;
   }
 
@@ -69,8 +84,29 @@
 }
 
 @media (max-width: 769px) {
+<<<<<<< HEAD
+=======
+
+  .product {
+    transform: translateX(-22%);
+    
+    img {width: min(calc(860 / 769 * 100vw), 860px); position: relative; z-index: 1;}
+
+    .scroll_unit {
+      width: min(calc(150 / 769 * 100vw), 150px); height: min(calc(80 / 769 * 100vw), 80px);
+    }
+  }
+
+>>>>>>> bbef629 (sec3, sec4 gsap 수정 scrollout 설치)
   .itemBox {
 
     grid-template-columns: repeat(1, 1fr);
   }
+<<<<<<< HEAD
+=======
+}
+
+@media (max-width: 480px) {
+  .product {transform: translateX(-30%);}
+>>>>>>> bbef629 (sec3, sec4 gsap 수정 scrollout 설치)
 }
