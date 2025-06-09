@@ -23,9 +23,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Section02() {
 
-  const containerRef = useRef();
-  const productRef = useRef();
-  const unitRef = useRef();
+  const containerRef = useRef(null);
+  const productRef = useRef(null);
+  const unitRef = useRef(null);
 
   useEffect(() => {
      Splitting();
