@@ -1,11 +1,5 @@
 #Section02 {
   position: relative;
-<<<<<<< HEAD
-  background: linear-gradient(#201E1F, #011722 50%);
-  padding: 19rem 0 20rem;
-  overflow: hidden;
-  background: url("../../img/Sec2/sec2_bg.jpg") no-repeat right center/cover;
-=======
   background: #131212;
   overflow: hidden;
 }
@@ -16,7 +10,6 @@
   position: relative;
   height: auto;
   padding: 19rem 0 20rem;
->>>>>>> bbef629 (sec3, sec4 gsap 수정 scrollout 설치)
 }
 
 .titleBox p > span {
@@ -39,13 +32,8 @@
   top: 26%;
   left: 84.5%;
   transform: translate(-50%, -50%);
-<<<<<<< HEAD
-  width: 140px;
-  height: 74px;
-=======
   width: 14rem;
   height: 7.4rem;
->>>>>>> bbef629 (sec3, sec4 gsap 수정 scrollout 설치)
   background: #222322;
   z-index: 2;
   opacity: 1;
@@ -107,11 +95,6 @@
   }
 }
 @media (max-width: 769px) {
-<<<<<<< HEAD
-  .itemBox {
-    grid-template-columns: repeat(1, 1fr);
-  }
-=======
   .product {
     transform: translateX(-22%);
   }
@@ -132,5 +115,4 @@
   .product {
     transform: translateX(-30%);
   }
->>>>>>> bbef629 (sec3, sec4 gsap 수정 scrollout 설치)
 }/*# sourceMappingURL=Section02.module.css.map */
