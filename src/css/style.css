@@ -11,6 +11,7 @@
 #App {
   width: 100%;
   background: #fff;
+  overflow: hidden;
 }
 
 .containerV1 {
@@ -24,7 +25,7 @@
   margin-bottom: 10rem;
 }
 .titleBox p {
-  font-size: max(18px, 3.5rem);
+  font-size: max(18px, 2.5rem);
   font-weight: 700;
   color: #fff;
 }
@@ -33,24 +34,10 @@
   font-weight: inherit;
 }
 .titleBox h2 {
-  font-size: max(50px, 10rem);
+  font-size: max(50px, 8rem);
   color: #fff;
   position: relative;
   left: -10px;
-}
-
-#canvas {
-  margin: 0 auto;
-  display: block;
-  width: 100%;
-  height: min(54.53125vw, 1047px);
-  display: block;
-}
-
-.test_bg {
-  background: url("../img/MainSec/main_sec_bg3.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 @media (min-width: 2000px) {

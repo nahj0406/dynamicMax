@@ -138,17 +138,21 @@ function Section04() {
     loop: true,
     modules: [Autoplay],
     autoplay: {
-      delay: 3000,
+      delay: 30000,
       disableOnInteraction: false,
       pauseOnMouseEnter: true,
     },
     breakpoints: {
       480: {
-        slidesPerView: 2,
+        slidesPerView: 2.4,
+        spaceBetween: 15,
+      },
+      560: {
+        slidesPerView: 2.8,
         spaceBetween: 15,
       },
       680: {
-        slidesPerView: 2.8,
+        slidesPerView: 3.4,
         spaceBetween: 15,
       },
       769: {
@@ -156,7 +160,7 @@ function Section04() {
         spaceBetween: 15,
       },
       992: {
-        slidesPerView: 4.8,
+        slidesPerView: 4.2,
       },
       1400: {
         slidesPerView: 4.8,

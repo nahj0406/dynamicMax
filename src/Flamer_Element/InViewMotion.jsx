@@ -4,11 +4,12 @@ import { useInView } from "react-intersection-observer";
 
 
 
-function InViewMotion({children, scrollUp}) {
+function InViewMotion({children, scrollUp,}) {
 
    const { ref, inView } = useInView({
-     threshold: 0.3, // 30% 보이면 true
-     triggerOnce: true,
+      threshold: 1, // 30% 보이면 true
+      triggerOnce: true, // true면 한번만 동작
+      rootMargin: '-300px 0px',
    });
 
 

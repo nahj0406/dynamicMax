@@ -5,6 +5,8 @@ import styles from './Section02.module.css'
 import ImgTag from '../../components/ImgTag/ImgTag'
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import InViewMotion from '../../Flamer_Element/InViewMotion'
+
 
 // img
 import Product01 from '../../img/Sec2/sec2_product01.png';
@@ -21,23 +23,63 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Section02() {
 
+  const containerRef = useRef();
+  const productRef = useRef();
+  const unitRef = useRef();
+
   useEffect(() => {
      Splitting();
   }, []);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+
+      const addActiveClass = () => unitRef.current.classList.add(styles.active);
+      const removeActiveClass = () => unitRef.current.classList.remove(styles.active);
+
+      // 부모 요소를 고정
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "+=150",
+        end: `+=1000`, // 필요에 따라 조절
+        pin: true,
+        // markers: true,
+      });
+
+      // 자식 요소를 y값으로 위로 이동
+      gsap.to(unitRef.current, {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "+=150",
+          end: `+=800`,
+          // scrub: true,
+          onEnter: addActiveClass,
+          onLeave: removeActiveClass,
+          onEnterBack: addActiveClass,
+          onLeaveBack: removeActiveClass,
+          markers: true,
+        },
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id={styles.Section02}>
+    <section id={styles.Section02} ref={containerRef}>
 
       <section className='containerV1'>
 
-        <div className={`${styles.titleBox} titleBox`}>
-          <p>차별화된 배터리 및 액상 <span>잔량 확인 시스템</span></p>
-          <h2 className='HemiHead'>VISIBILITY</h2>
-        </div>
+        <InViewMotion>
+          <div className={`${styles.titleBox} titleBox`}>
+            <p>차별화된 배터리 및 액상 <span>잔량 확인 시스템</span></p>
+            <h2 className='HemiHead'>VISIBILITY</h2>
+          </div>
+        </InViewMotion>
 
-        <figure className={styles.product}>
+        <figure className={styles.product} ref={productRef}>
           <ImgTag clsName={styles.img} src={Product01} alt={'다이나믹 맥스 충전량 표시'} />
-          <div className="scroll_unit"></div>
+          <div className={styles.scroll_unit} ref={unitRef}></div>
         </figure>
 
 

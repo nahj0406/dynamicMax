@@ -12,7 +12,6 @@ import InViewMotion from './Flamer_Element/InViewMotion';
 // 페이지
 import Header from './components/Header/Header';
 import MainSec from './sections/MainSec/MainSec'
-import Section01 from './sections/Section01/Section01'
 import Section02 from './sections/Section02/Section02'
 import Section03 from './sections/Section03/Section03'
 import Section04 from './sections/Section04/Section04'
@@ -34,23 +33,36 @@ function App() {
     window.scrollTo(0, 0);
   })
 
-  useEffect(() => {
-    // Lenis 초기화
-    const lenis = new Lenis({
-      smoothWheel: true,
-      smoothTouch: true,
-      wheelMultiplier: 1, // 휠로 이동되는 거리 감소
-      touchMultiplier: 0.5, // 터치로 이동되는 거리 감소
-    });
+  useEffect(() => { // lenis 적용, 첫화면에서 스크롤 제어
+    let lenis;
 
-    function raf(time) {
-      lenis.raf(time);
+    // document.body.style.overflowY = 'hidden'; // 초기에 스크롤 차단
+
+    // // 3초 후 스크롤 허용
+    // const enableScrollTimeout = setTimeout(() => {
+    //   document.body.style.overflow = '';
+    // }, 3500);
+
+    const timeout = setTimeout(() => {
+      lenis = new Lenis({
+        smoothWheel: true,
+        smoothTouch: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 0.5,
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
       requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+    }, 2000); // 2초 뒤에 실행
 
     return () => {
-      lenis.destroy();
+      // clearTimeout(enableScrollTimeout);
+      clearTimeout(timeout); // 컴포넌트 언마운트 시 타이머 제거
+      if (lenis) lenis.destroy(); // Lenis가 존재할 때만 destroy
     };
   }, []);
 
@@ -67,16 +79,14 @@ function App() {
 
       {/* 헤더 */}
       <Header/>
-
-      {/* 메인 베너 */}
-      <div className='test_bg'>
-        <MainSec />
-        <Section01 />
-      </div>
+      
+      {/* 메인 */}
+      <MainSec />
       <Section02 />
       <Section03 />
       <Section04 />
 
+      {/* 푸터 */}
       <Footer/>
     </div>
   )

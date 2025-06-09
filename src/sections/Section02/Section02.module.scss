@@ -9,9 +9,20 @@
 .titleBox p > span {color: var(--main-color4);}
 
 .product {
+  position: relative;
    width: fit-content; margin: 0 auto 9rem;
 
-   img {width: 80rem;}
+   img {width: 80rem; position: relative; z-index: 1;}
+
+
+  .scroll_unit {
+    position: absolute; top: 26%; left: 84.5%;
+    transform: translate(-50%, -50%);
+    width: 140px; height: 74px; background: #222322;
+    z-index: 2; opacity: 1; transition: 0.3s;
+  }
+
+  .scroll_unit.active {opacity: 0;}
 }
 
 .itemBox {

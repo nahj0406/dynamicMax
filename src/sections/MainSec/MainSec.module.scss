@@ -1,68 +1,78 @@
+@mixin banner_title1_fontSizeColor {
+  font-size: min(calc(390 / 1920 * 100vw), 390px);
+  color: #fff;
+}
+
+.bg_container {
+   position: relative;
+   background: #000002;
+
+   &::before {
+      content:'';
+      position: absolute; z-index: 1;
+      top: 0; left: 50%; width: 110%; height: 100%;
+      transform: translateX(-50%);
+      background: url('../../img/MainSec/main_sec_bg.jpg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center top;
+
+      animation: main_bg_move 3s infinite alternate ease-in-out;
+   }
+}
+
 #main_Section {
-   // background: url('../../img/MainSec/main_sec_bg2.jpg') no-repeat center center / cover;
-   // background: url('../../img/MainSec/main_sec_bg3.jpg') no-repeat center top / cover;
    width: 100%; height: 100dvh; position: relative;
    overflow: hidden;
 }
 
-.product {
-   position: absolute; top: 50%; left: 50%;
-   transform: translate(-50%, -50%); z-index: 10;
-   width: fit-content;
-
-   img {width: max(230px, min(calc(448 / 992 * 100vw), 448px));}
-}
-
+.banner_title {@include banner_title1_fontSizeColor;}
 
 .banner_txtBox {
    position: absolute; top: 62%; left: 50%;
-   transform: translate(-50%, -50%); z-index: 9;
-   width: fit-content; perspective: 600px;
+   transform: translate(-50%, -50%); z-index: 1001;
+   width: fit-content;
+   
 
    > * {line-height: 1; cursor: default; color: #fff;}
 
+   .unit_box {
+      position: relative;
+   }
+
    .banner_title_txt1 {
-      font-size: min(calc(390 / 1920 * 100vw), 390px);
       width: min(calc(1700 / 1920 * 100vw), 1700px);
-      color: #000;
+      color: #fff;
       background-clip: text;
       -webkit-background-clip: text;
       background-image: url('../../img/MainSec/main_text_bg2.png');
       background-position: center center;
       background-size: 1700px;
       background-repeat: no-repeat;
-      transform-origin: bottom;
-      transform: rotateX(30deg) translateY(30%);
-      // transition: transform 0.6s ease;
-      animation: txt_bg 1s 0.5s forwards ease;
-   }
-
-   @keyframes txt_bg {
-      to {color: transparent; transform: rotateX(0deg) translateY(0%);}
-      // 0% {background-position: 20px 100%;}
-      // 25% {background-position: 50px 80%;}
-      // 50% {background-position: 20px 50%;}
-      // 75% {background-position: 70px center;}
-      // 100% {background-position: 80px center;}
+      line-height: 1;
+      position: relative; z-index: 2;
    }
 
    .banner_title_txt2 {
       font-size: min(calc(250 / 1920 * 100vw), 250px); text-align: right;
-      transform: translate(-3.5%, -25%);
+      transform: translate(3.5%, -25%);
       color: transparent;
+      background-image: linear-gradient(90deg, #00CBE5, #49BDB6, #9029EE, #FF6B00, #FF01E1, #FF3F28);
       background-clip: text;
       -webkit-background-clip: text;
-      background-image: linear-gradient(90deg, #00CBE5, #49BDB6, #9029EE, #FF6B00, #FF01E1, #FF3F28);
+      -webkit-text-fill-color: transparent;
       background-repeat: no-repeat;
       width: fit-content;
       // min-width: min(calc(700 / 1920 * 100vw), 600px);
       margin-left: auto;
+      padding-right: 0.1em;
+      opacity: 0;
    }
 }
 
 .sub_txtBox {
    width: 100%; max-width: min(calc(1660 / 1920 * 100vw), 1660px);
-   position: absolute; z-index: 9;
+   position: absolute; z-index: 1001;
    top: 83%; left: 50%;
    transform: translate(-50%, -50%);
    padding: 0 15px;
@@ -73,6 +83,91 @@
    }
 }
 
+
+.product {
+   position: absolute; top: 50%; left: 50%;
+   transform: translate(-50%, -45%); z-index: 10;
+   width: fit-content; opacity: 0;
+
+   img {width: max(230px, min(calc(448 / 992 * 100vw), 448px));}
+}
+
+
+// 애니메이션 keyframes ---------------------------------------
+
+.startBanner {
+   position: absolute; width: 100%; height: 100%;
+   bottom: 0; left: 0; background: transparent;
+   overflow: hidden; z-index: 1000;
+   display: grid; grid-template-columns: repeat(7, 1fr);
+   perspective: 600px;
+
+   .banner_piece {
+      background: #111;
+      // border-right: 1px solid #333;
+      height: 100%;
+      transform: translateY(0%);
+   }
+}
+
+.bannerStart {
+   .startBanner {
+      animation: startBaaner 0.2s 1.5s forwards;
+
+      .banner_piece {
+         animation: piece_move 0.2s calc(var(--i-delay) * 0.1s) forwards;
+      }
+   }
+
+   .banner_txtBox {
+      animation: zIndex 0.2s 1.6s forwards;
+
+      .unit_box {
+
+         &::before {
+            animation: before_txt 0.5s forwards ease;
+         }
+      }
+
+      .banner_title_txt1 {
+         animation: banner_title_text1 0.5s forwards ease;
+      }
+
+      .banner_title_txt2 {
+         animation: banner_title_text2 0.5s 2s forwards ease;
+      }
+   }
+
+   .sub_txtBox {
+      animation: zIndex 1s 1.1s forwards;
+   }
+
+   .product {
+      animation: product 0.5s 1.7s forwards;
+   }
+}
+
+
+@keyframes main_bg_move {
+   to {transform: translateX(-49%);}
+}
+
+@keyframes zIndex {to {z-index: 9;}}
+@keyframes startBaaner {to {visibility: hidden; z-index: -1;}}
+@keyframes piece_move {to {transform: translateY(100%);}}
+
+@keyframes banner_title_text1 {to {color: transparent;}}
+@keyframes banner_title_text2 {to {transform: translate(-3.5%, -25%); opacity: 1;}}
+@keyframes before_txt {to {left: 2px;}}
+@keyframes product {
+   to {opacity: 1; transform: translate(-50%, -50%);}
+}
+
+// 애니메이션 keyframes ---------------------------------------
+
+
+// 반응형 --------------------------------------
+
 @media (max-width: 1200px) {
    .sub_txtBox {max-width: 100%; top: unset; transform: translateX(-50%); bottom: 5%;}
 }
@@ -80,7 +175,8 @@
 
 
 @media (max-width: 769px) {
-   .banner_txtBox {z-index: 11; top: 88%;}
+   .banner_txtBox {top: 88%;}
+   // z-index: 11; 
    .sub_txtBox {display: none;}
 }
 

@@ -35,7 +35,7 @@
   // }
 
   .slide_unit {
-    padding: 5rem 10px 3.4rem;
+    padding: 4rem 10px 3rem;
     border-radius: 20px; position: relative;
     background: var(--slideBg) no-repeat center center / cover;
     overflow: hidden;
@@ -90,12 +90,12 @@
 .buttonBox {
   margin: 5rem auto 0; z-index: 2;
   position: relative; border-radius: 10px;
-  background: #333; width: 100%; max-width: 38.6rem;
+  background: #333; width: 100%; max-width: max(200px, 30rem);
 
   > a {
     display: block; width: 100%; height: 100%;
-    padding: max(15px, 2.6rem) 10px; text-align: center;
-    color: #fff; font-size: max(20px, 3.5rem);
+    padding: max(15px, 2rem) 10px; text-align: center;
+    color: #fff; font-size: max(16px, 2.5rem);
     font-weight: 700;
   }
 
@@ -133,14 +133,22 @@
   }
 }
 
+@media (max-width: 781px) {
+  .sec04_swiper {
+    .slide_unit {
+      .textBox {
+        h4 {font-size: max(18px, 2rem);}
+      }
+    }
+  }
+}
+
 @media (max-width: 480px) {
   .sec04_swiper {
     .slide_unit {
       .textBox {
 
         h5 {font-size: max(14px, 2rem);}
-
-        h4 {font-size: max(18px, 3rem);}
       }
     }
   }

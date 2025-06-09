@@ -8,37 +8,23 @@
 }
 .HemiHead {font-family: 'HemiHead' !important;}
 
-#App {width: 100%; background: #fff;}
+#App {width: 100%; background: #fff; overflow: hidden;}
 
 .containerV1 {
    width: 100%; max-width: 1400px; height: 100%;
    margin: 0 auto;
 }
 
-
 // titleBox --------------------------------------------------------------------
 .titleBox {
   margin-bottom: 10rem;
 
   p {
-    font-size: max(18px, 3.5rem); font-weight: 700; color: #fff;
+    font-size: max(18px, 2.5rem); font-weight: 700; color: #fff;
 
     span {font-size: inherit; font-weight: inherit;}
   }
-  h2 {font-size: max(50px, 10rem); color: #fff; position: relative; left: -10px;}
-}
-
-
-#canvas { // 3d 이미지
-    margin: 0 auto; display: block; width: 100%; 
-    height: min(calc(1047 / 1920 * 100vw), 1047px); display: block;
-    // background: #201E1F;
-}
-
-.test_bg {
-    background: url('../img/MainSec/main_sec_bg3.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+  h2 {font-size: max(50px, 8rem); color: #fff; position: relative; left: -10px;}
 }
 
 
