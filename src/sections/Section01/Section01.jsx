@@ -11,6 +11,8 @@ import Broken_bg from '../../img/Sec1/sec1_broken_bg.png';
 
 // js 라이브러리
 import { Scene, PerspectiveCamera, WebGLRenderer } from 'three';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useGLTF, Environment, OrbitControls } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
@@ -21,16 +23,85 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
+function Model({ url }) {
+  const group = useRef();
+  const { scene, animations } = useGLTF(url);
+  const mixer = useRef();
+  const clock = new THREE.Clock();
+
+  useEffect(() => {
+    if (!group.current) return;
+
+    scene.scale.set(7, 7, 7);
+    scene.position.y = -0.8;
+    group.current.add(scene);
+    group.current.rotation.y = Math.PI / 4;
+
+    scene.traverse((child) => {
+      if (child.isMesh && child.material instanceof THREE.MeshStandardMaterial) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+        child.material.metalness = 0.3;
+        child.material.roughness = 0.05;
+      }
+    });
+
+    if (animations.length > 0) {
+      mixer.current = new THREE.AnimationMixer(scene);
+      animations.forEach((clip) => mixer.current.clipAction(clip).play());
+    }
+
+    gsap.to(scene.scale, {
+      x: 5,
+      y: 5,
+      z: 5,
+      scrollTrigger: {
+        trigger: document.body,
+        start: 'top top',
+        end: '+=2000',
+        scrub: true,
+      },
+    });
+
+    gsap.to(scene.position, {
+      y: 0,
+      scrollTrigger: {
+        trigger: document.body,
+        start: 'top top',
+        end: '+=2000',
+        scrub: true,
+      },
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: document.body,
+        start: 'top top',
+        end: '+=2000',
+        scrub: true,
+        markers: true,
+      },
+    });
+
+    tl.to(group.current.rotation, { y: -Math.PI * 1.9, duration: 2 });
+    tl.to(scene.rotation, { x: -Math.PI / 8, duration: 1 });
+  }, [scene, animations]);
+
+  useFrame(() => {
+    if (mixer.current) mixer.current.update(clock.getDelta());
+  });
+
+  return <group ref={group} />;
+}
 
 
 function Section01() {
 
+  const sectionRef = useRef(null);
+
   useEffect(() => {
      Splitting();
   }, []);
-
-  const sectionRef = useRef(null);
-  const canvasRef = useRef(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -51,178 +122,6 @@ function Section01() {
 
   }, []);
 
-// three 3d
-useLayoutEffect(() => {
-  const canvas = canvasRef.current;
-  const scene = new THREE.Scene();
-  let isReadyToRender = false;
-
-  const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-    antialias: true,
-    alpha: true,
-  });
-  renderer.outputEncoding = THREE.sRGBEncoding;
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  renderer.setClearColor(0x000000, 0);
-  renderer.clear();
-
-  const pmremGenerator = new THREE.PMREMGenerator(renderer);
-  pmremGenerator.compileEquirectangularShader();
-
-  const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-  camera.position.set(0, 0.1, 1);
-  scene.background = null;
-
-  const mainLight = new THREE.DirectionalLight(0xffffff, 1.5);
-  mainLight.position.set(0, 2, 5);
-  mainLight.target.position.set(0, 0, 0);
-  mainLight.castShadow = true;
-  mainLight.shadow.mapSize.set(2048, 2048);
-  mainLight.shadow.camera.near = 0.1;
-  mainLight.shadow.camera.far = 50;
-  mainLight.shadow.camera.left = -5;
-  mainLight.shadow.camera.right = 5;
-  mainLight.shadow.camera.top = 5;
-  mainLight.shadow.camera.bottom = -5;
-  scene.add(mainLight);
-  scene.add(mainLight.target);
-
-  const sideLightL = new THREE.DirectionalLight(0xffffff, 0.6);
-  sideLightL.position.set(-5, 1, 0);
-  scene.add(sideLightL);
-
-  const sideLightR = new THREE.DirectionalLight(0xffffff, 0.6);
-  sideLightR.position.set(5, 1, 0);
-  scene.add(sideLightR);
-
-  const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.5);
-  hemiLight.position.set(0, 10, 0);
-  scene.add(hemiLight);
-
-  const ambient = new THREE.AmbientLight(0xffffff, 0.4);
-  scene.add(ambient);
-
-  const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath('/draco/');
-
-  const loader = new GLTFLoader();
-  loader.setDRACOLoader(dracoLoader);
-
-  const clock = new THREE.Clock();
-  let mixer = null;
-  const root = new THREE.Group();
-
-  loader.load('/3d/dynamic_3d.glb', (gltf) => {
-    gltf.scene.scale.set(9, 9, 9);
-    gltf.scene.position.y = -0.45;
-    root.add(gltf.scene);
-    root.rotation.y = Math.PI / 4;
-    scene.add(root);
-
-    gltf.scene.traverse((child) => {
-      if (child.isMesh && child.material) {
-        if (child.material instanceof THREE.MeshStandardMaterial) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-
-          child.material.metalness = 1.0;
-          child.material.roughness = 0.05;
-        }
-      }
-    });
-
-    if (gltf.animations && gltf.animations.length > 0) {
-      mixer = new THREE.AnimationMixer(gltf.scene);
-      gltf.animations.forEach((clip) => {
-        mixer.clipAction(clip).play();
-      });
-    }
-
-    gsap.to(gltf.scene.scale, {
-      x: 5,
-      y: 5,
-      z: 5,
-      scrollTrigger: {
-        trigger: canvasRef.current,
-        start: 'top top',
-        end: '+=2000',
-        scrub: true,
-      },
-    });
-
-    gsap.to(gltf.scene.position, {
-      y: 0,
-      scrollTrigger: {
-        trigger: canvasRef.current,
-        start: 'top top',
-        end: '+=2000',
-        scrub: true,
-      },
-    });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: canvasRef.current,
-        start: 'top top',
-        end: '+=2000',
-        scrub: true,
-        markers: true,
-      },
-    });
-
-    tl.to(root.rotation, { y: -Math.PI * 1.9, duration: 2 });
-    tl.to(gltf.scene.rotation, { x: -Math.PI / 8, duration: 1 });
-
-    // ✅ 모든 준비가 끝난 후에 환경맵 설정 및 렌더 시작
-    const envMap = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
-    requestAnimationFrame(() => {
-      scene.environment = envMap;
-      renderer.compile(scene, camera);
-      isReadyToRender = true;
-      animate();
-    });
-  });
-
-  const handleResize = () => {
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height, false);
-  };
-
-  window.addEventListener('resize', handleResize);
-  handleResize();
-
-  function animate() {
-    requestAnimationFrame(animate);
-    if (!isReadyToRender || !scene || !camera) return;
-    const delta = clock.getDelta();
-    if (mixer) mixer.update(delta);
-    try {
-      renderer.render(scene, camera); // ✅ try-catch로 WebGL 상태 감지
-    } catch (e) {
-      console.error('Renderer error:', e);
-    }
-  }
-
-  return () => {
-    window.removeEventListener('resize', handleResize);
-    renderer.dispose();
-    pmremGenerator.dispose();
-    scene.clear();
-    dracoLoader.dispose();
-  };
-}, []);
-
-
-
-
-
-
   return (
     <section id={styles.Section01}>
       <h2 className={`${styles.title_bg} HemiHead`}>DYNAMIC</h2>
@@ -242,7 +141,35 @@ useLayoutEffect(() => {
       </section>
 
       <div className={styles.canvas_wrapper} ref={sectionRef}>
-        <canvas ref={canvasRef} className={styles.canvas}></canvas>
+        <Canvas
+          shadows
+          camera={{ position: [0, 0.1, 1], fov: 60 }}
+          gl={{ antialias: true, alpha: true }}
+          className={styles.canvas}
+        >
+          <ambientLight intensity={0.4} />
+          <directionalLight
+            intensity={1.5}
+            position={[0, 1, 5]}
+            castShadow
+            shadow-mapSize-width={2048}
+            shadow-mapSize-height={2048}
+            shadow-camera-near={0.1}
+            shadow-camera-far={50}
+            shadow-camera-left={-5}
+            shadow-camera-right={5}
+            shadow-camera-top={5}
+            shadow-camera-bottom={-5}
+          />
+          <directionalLight intensity={0.6} position={[-5, 1, 0]} />
+          <directionalLight intensity={0.6} position={[5, 1, 0]} />
+          <hemisphereLight intensity={0.5} groundColor={0x444444} position={[0, 10, 0]} />
+          <Environment preset="city" background={false} />
+          <Suspense fallback={null}>
+            <Model url="/3d/dynamic_3d.glb" />
+          </Suspense>
+          <OrbitControls />
+        </Canvas>
         <div className={styles.Broken_bg}></div>
       </div>
 
