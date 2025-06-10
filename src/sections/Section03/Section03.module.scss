@@ -9,11 +9,12 @@
 #Section03 {
   position: relative;
   background: #101010;
-  padding: 19rem 0;
   overflow: hidden;
 
-  :global(.containerV1) {position: relative; z-index: 2;}
+  :global(.containerV1) {position: relative; z-index: 2; width: 100%; height: auto;}
 }
+
+.pin_wrapper {padding: 19rem 0; position: relative; position: relative; z-index: 2;}
 
 #bgVideo {
   position: absolute; z-index: 1;
@@ -65,8 +66,8 @@
 
 .triggerBox {
   width: 100%;
-  position: absolute; z-index: 3;
-  top: 0; left: 0;
+  position: relative; z-index: 3;
+  // top: 0; left: 0;
   @include flexColum;
   gap: 40rem;
 

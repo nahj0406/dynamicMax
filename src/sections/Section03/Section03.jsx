@@ -38,6 +38,8 @@ function Section03() {
   const containerRef = useRef(null);
   const containerV1Ref = useRef(null);
   const triggerRef = useRef(null);
+  const content01Ref = useRef(null);
+  const content02Ref = useRef(null);
   const slideRef = useRef(null);
 
   useEffect(() => {
@@ -73,16 +75,20 @@ function Section03() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const contentHeight = containerV1Ref.current.offsetHeight;
+      const containerRefHeight = containerRef.current.offsetHeight;
       const triggerHeight = triggerRef.current.offsetHeight;
 
       const totalHeight = contentHeight + triggerHeight;
       containerRef.current.style.height = `${totalHeight}px`;
 
+      console.log(containerRefHeight);
+
       // pin 설정
       ScrollTrigger.create({
         trigger: containerRef.current,
-        start: "top+=150 top",
-        end: `+=${triggerHeight}`,
+        start: "top+=100 top-=3%",
+        // end: `+=${triggerHeight}`,
+        end: `bottom top`,
         pin: true,
         markers: true,
         invalidateOnRefresh: true,
@@ -92,18 +98,18 @@ function Section03() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top+=150 top",
-          end: `+=${triggerHeight}`,  // pin과 동일한 종료 지점
+          start: "top+=100 top-=3%",
+          end: `bottom top`,  // pin과 동일한 종료 지점
           scrub: 1,
-          markers: true,
+          // markers: true,
           invalidateOnRefresh: true,
         },
       });
 
       // 요소 위치 초기화 → 자연스럽게 시작
-      tl.fromTo(triggerRef.current, 
+      tl.fromTo(triggerRef.current,
         { y: triggerHeight },
-        { y: -(triggerHeight - 400) }
+        { y: -(triggerHeight - 200) }
       );
 
       // slideRef 슬라이드 애니메이션
@@ -153,77 +159,75 @@ function Section03() {
   ]
 
   return (
-    <section id={styles.Section03} ref={containerRef}>
-        <video autoPlay muted loop playsInline preload="auto" id={styles.bgVideo}>
-          <source src={'/video/sec3_video.mp4'} type="video/mp4" />
-        </video>
-
-      {/* <div className={styles.pin_wrapper}> */}
-        <section className='containerV1' ref={containerV1Ref}>
-  
-          <div className={`${styles.titleBox} ${styles.scAni} titleBox`}>
-            <p>다이나믹만이 가진 <span>특별함</span></p>
-            <h2 data-splitting className='HemiHead'>SPECIALITY</h2>
-          </div>
-  
-          <figure className={styles.product}>
-            <ImgTag clsName={styles.img3} src={Product03} alt={'다이나믹 맥스 모델3'} />
-            <ImgTag clsName={styles.img1} src={Product01} alt={'다이나믹 맥스 모델1'} />
-            <ImgTag clsName={styles.img2} src={Product02} alt={'다이나믹 맥스 모델2'} />
-          </figure>
+    <section id={styles.Section03}>
+        <div className={styles.pin_wrapper} ref={containerRef}>
+          <video autoPlay muted loop playsInline preload="auto" id={styles.bgVideo}>
+            <source src={'/video/sec3_video.mp4'} type="video/mp4" />
+          </video>
+          <section className='containerV1' ref={containerV1Ref}>
     
-        </section>
-  
-        <section className={styles.triggerBox} ref={triggerRef}>
-          
-          <article className={styles.content01}>
-            <figure className={styles.iconBox}>
-              <ImgTag clsName={styles.img} src={coilIcon} alt={'코일 아이콘'} />
-              <ImgTag clsName={styles.img} src={plusIcon} alt={'플러스 아이콘'} />
-              <ImgTag clsName={styles.img} src={cottonIcon} alt={'솜 아이콘'} />
+            <div className={`${styles.titleBox} ${styles.scAni} titleBox`}>
+              <p>다이나믹만이 가진 <span>특별함</span></p>
+              <h2 data-splitting className='HemiHead'>SPECIALITY</h2>
+            </div>
+    
+            <figure className={styles.product}>
+              <ImgTag clsName={styles.img3} src={Product03} alt={'다이나믹 맥스 모델3'} />
+              <ImgTag clsName={styles.img1} src={Product01} alt={'다이나믹 맥스 모델1'} />
+              <ImgTag clsName={styles.img2} src={Product02} alt={'다이나믹 맥스 모델2'} />
             </figure>
-  
-            <p>
-              듀얼 매쉬 코일과 친환경 펄프솜을 사용하여 <br />
-              높은 무화량과 풍부한 맛표현으로 사용자에게 <br />
-              더욱 깊은 만족도를  가져다 줍니다.
-            </p>
-          </article>
-  
-          <article className={styles.content02}>
-            <figure className={styles.iconBox}>
-              <ImgTag clsName={styles.img} src={worldImg} alt={'월드 인터네셔널 이미지'} />
-            </figure>
-  
-            <p>
-              월드인터네셔널은 10년 경력의 전자담배 기업으로 <br />
-              타사제품의 액상을 그대로 사용하는 다른 제품들과 달리 <br />
-              자체 개발한 맞춤형 액상을 사용합니다.
-            </p>
-          </article>
-  
-  
-          <article className={styles.content_Slide} ref={slideRef}>
-            {
-              slideData.map((item, index) => {
-                return(
-                  <figure className={styles.item} key={index}>
-                    <ImgTag clsName={styles.img} src={item.url} alt={item.name} />
-  
-                    <div className={styles.textBox}>
-                      <h5>{item.name}</h5>
-                      <figcaption>{item.text}</figcaption>
-                    </div>
-                  </figure>
-                )
-              })
-            }
-          </article>
-  
-  
-        </section>
-  
-      {/* </div> */}
+      
+          </section>
+    
+          <section className={styles.triggerBox} ref={triggerRef}>
+            
+            <article className={styles.content01} ref={content01Ref}>
+              <figure className={styles.iconBox}>
+                <ImgTag clsName={styles.img} src={coilIcon} alt={'코일 아이콘'} />
+                <ImgTag clsName={styles.img} src={plusIcon} alt={'플러스 아이콘'} />
+                <ImgTag clsName={styles.img} src={cottonIcon} alt={'솜 아이콘'} />
+              </figure>
+    
+              <p>
+                듀얼 매쉬 코일과 친환경 펄프솜을 사용하여 <br />
+                높은 무화량과 풍부한 맛표현으로 사용자에게 <br />
+                더욱 깊은 만족도를  가져다 줍니다.
+              </p>
+            </article>
+    
+            <article className={styles.content02} ref={content02Ref}>
+              <figure className={styles.iconBox}>
+                <ImgTag clsName={styles.img} src={worldImg} alt={'월드 인터네셔널 이미지'} />
+              </figure>
+    
+              <p>
+                월드인터네셔널은 10년 경력의 전자담배 기업으로 <br />
+                타사제품의 액상을 그대로 사용하는 다른 제품들과 달리 <br />
+                자체 개발한 맞춤형 액상을 사용합니다.
+              </p>
+            </article>
+    
+    
+            <article className={styles.content_Slide} ref={slideRef}>
+              {
+                slideData.map((item, index) => {
+                  return(
+                    <figure className={styles.item} key={index}>
+                      <ImgTag clsName={styles.img} src={item.url} alt={item.name} />
+    
+                      <div className={styles.textBox}>
+                        <h5>{item.name}</h5>
+                        <figcaption>{item.text}</figcaption>
+                      </div>
+                    </figure>
+                  )
+                })
+              }
+            </article>
+    
+    
+          </section>
+        </div>
     </section>
   )
 }
