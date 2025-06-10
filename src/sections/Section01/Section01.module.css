@@ -15,7 +15,7 @@
   transform: translateY(-10%);
 }
 .scAni .tagSecd span:nth-child(2) {
-  transform: scale(1.5);
+  transform: scale(1);
 }
 .scAni .tagSecd span:nth-child(3) {
   transform: translateY(-10%);
@@ -88,11 +88,12 @@
 }
 
 .canvas_wrapper {
+  --canvas-H: min(calc(1047 / 1920 * 100vw), 1047px);
   position: relative;
   z-index: 2;
   width: 100%;
   overflow: hidden;
-  height: min(54.53125vw, 1047px);
+  height: var(--canvas-H);
 }
 .canvas_wrapper .Broken_bg {
   position: absolute;
@@ -101,7 +102,7 @@
   z-index: 1;
   background: url("../../img/Sec1/sec1_broken_bg.png") no-repeat center top/cover;
   width: 100%;
-  height: min(46.875vw, 900px);
+  height: var(--canvas-H);
 }
 .canvas_wrapper .canvas {
   position: relative;
@@ -122,4 +123,22 @@
 .canvas_wrapper .titleBox > h3 .colorSpan {
   font-weight: 700;
   font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+  .canvas_wrapper {
+    --canvas-H: max(500px, min(calc(800 / 769 * 100vw), 800px));
+    height: var(--canvas-H);
+  }
+  .canvas_wrapper .mob_touch_clear {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .canvas_wrapper .Broken_bg {
+    height: var(--canvas-H);
+  }
 }/*# sourceMappingURL=Section01.module.css.map */

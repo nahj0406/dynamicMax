@@ -79,7 +79,7 @@ function Section02() {
             start: "top+=100 top-=3%",
             end: "bottom-=25% 50%",
             scrub: true,
-            markers: true,
+            // markers: true,
           },
         });
       }, containerRef);

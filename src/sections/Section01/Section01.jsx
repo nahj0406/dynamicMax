@@ -33,10 +33,7 @@ function Model({ url, sectionRef, BrokenRef, titleBoxRef }) {
   useLayoutEffect(() => {
     if (!group.current) return;
 
-    scene.scale.set(7, 7, 7);
-    scene.position.y = -0.3;
     group.current.add(scene);
-    group.current.rotation.y = Math.PI / 6;
 
     scene.traverse((child) => {
       if (child.isMesh && child.material instanceof THREE.MeshStandardMaterial) {
@@ -62,48 +59,82 @@ function Model({ url, sectionRef, BrokenRef, titleBoxRef }) {
       animations.forEach((clip) => mixer.current.clipAction(clip).play());
     }
 
+    const mm = gsap.matchMedia();
+
     requestAnimationFrame(() => {
 
-      gsap.set(BrokenRef.current, { opacity: 0, scale: 0.9 });
-      gsap.set(titleBoxRef.current, { opacity: 0, y: 50 });
+      mm.add("(min-width: 769px)", () => {
+        const ctx = gsap.context(() => {
+          scene.scale.set(7, 7, 7);
+          scene.position.y = -0.3;
+          group.current.rotation.y = Math.PI / 6;
 
-      gsap.to(scene.scale, {
-        x: 6,
-        y: 6,
-        z: 6,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top+=15% 20%',
-          end: `bottom+=50% 30%`,
-          scrub: true,
-          // markers: true,
-        },
+          // gsap
+          gsap.set(BrokenRef.current, { opacity: 0, scale: 0.9 });
+          gsap.set(titleBoxRef.current, { opacity: 0, y: 50 });
+
+          gsap.to(scene.scale, {
+            x: 6,
+            y: 6,
+            z: 6,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top+=15% 20%',
+              end: `bottom+=50% 30%`,
+              scrub: true,
+              // markers: true,
+            },
+          });
+
+          gsap.to(scene.position, {
+            y: -0.2,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top+=15% 20%',
+              end: `bottom+=50% 30%`,
+              scrub: true,
+            },
+          });
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top+=15% 20%',
+              end: `bottom+=50% 30%`,
+              scrub: true,
+              // markers: true,
+            },
+          });
+
+          tl.to(group.current.rotation, { y: -Math.PI * 1.9, duration: 2 });
+          tl.to(scene.rotation, { x: -Math.PI / 8, duration: 1 });
+          tl.to(BrokenRef.current, { opacity: 1, scale: 0.98});
+          tl.to(titleBoxRef.current, { opacity: 1, y: 0});
+        }, sectionRef);
+
+        return () => ctx.revert();
       });
 
-      gsap.to(scene.position, {
-        y: -0.2,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top+=15% 20%',
-          end: `bottom+=50% 30%`,
-          scrub: true,
-        },
-      });
+      mm.add("(max-width: 768px)", () => {
+        const ctx = gsap.context(() => {
+          // ✅ 모바일 초기 설정
+          scene.scale.set(7, 7, 7);
+          scene.position.y = -0.3;
+          group.current.rotation.y = Math.PI / 4;
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top+=15% 20%',
-          end: `bottom+=50% 30%`,
-          scrub: true,
-          // markers: true,
-        },
-      });
+          gsap.to(group.current.rotation, {
+            y: '+=6.28319', // 2 * Math.PI (360도 회전)
+            duration: 7,     // 5초에 한 바퀴
+            repeat: -1,      // 무한 반복
+            ease: 'none',     // 일정한 속도
+          });
 
-      tl.to(group.current.rotation, { y: -Math.PI * 1.9, duration: 2 });
-      tl.to(scene.rotation, { x: -Math.PI / 8, duration: 1 });
-      tl.to(BrokenRef.current, { opacity: 1, scale: 0.98});
-      tl.to(titleBoxRef.current, { opacity: 1, y: 0});
+        }, sectionRef);
+
+        return () => ctx.revert();
+      });
+      
+      return () => mm.revert(); 
     });
   }, [scene, animations]);
 
@@ -152,21 +183,32 @@ function Section01() {
 
   useLayoutEffect(() => {
     // const offset = window.innerWidth >= 1200 ? -100 : -50;
-    const ctx = gsap.context(() => {
-      
-      ScrollTrigger.create({
-        trigger: sectionRef.current,   // 캔버스를 감싼 div
-        start: 'top+=15% 20%',   // 스크롤 시작 지점
-        end: `bottom+=50% 30%`,     // 고정 유지 거리
-        pin: true,
-        // scrub: true, // 필요하면 부드럽게 고정 (주로 애니메이션용)
-        // markers: true,
-      });
+    const mm = gsap.matchMedia();
 
+    mm.add("(min-width: 769px)", () => {
+      const ctx = gsap.context(() => {
+        ScrollTrigger.create({
+          trigger: sectionRef.current,   // 캔버스를 감싼 div
+          start: 'top+=15% 20%',   // 스크롤 시작 지점
+          end: `bottom+=50% 30%`,     // 고정 유지 거리
+          pin: true,
+          // scrub: true, // 필요하면 부드럽게 고정 (주로 애니메이션용)
+          // markers: true,
+        });
+      }, sectionRef);
 
-    }, sectionRef);
-    
-    return () => ctx.revert();
+      return () => ctx.revert(); // ✅ 미디어 해제 시 정리
+    });
+
+    mm.add("(max-width: 768px)", () => { // 모바일용 ScrollTrigger 설정 (필요 시)
+      const ctx = gsap.context(() => {
+        
+      }, sectionRef);
+
+      return () => ctx.revert(); // ✅ 미디어 해제 시 정리
+    });
+
+    return () => mm.revert(); 
 
   }, []);
 
@@ -184,6 +226,8 @@ function Section01() {
 
       <div className={styles.canvas_wrapper} ref={sectionRef}>
         <div className={styles.Broken_bg} ref={BrokenRef}></div>
+
+        <div className={styles.mob_touch_clear}></div>
         <Canvas
           shadows
           camera={{ position: [0, 0.1, 1], fov: 60 }}

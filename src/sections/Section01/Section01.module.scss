@@ -15,7 +15,7 @@
    .tagSecd {
       span {display: inline-block; opacity: 0; transition: 0.5s;}
       span:nth-child(1) {transform: translateY(-10%);}
-      span:nth-child(2) {transform: scale(1.);}
+      span:nth-child(2) {transform: scale(1);}
       span:nth-child(3) {transform: translateY(-10%);}
    }
 }
@@ -79,14 +79,16 @@
 }
 
 .canvas_wrapper {
+   --canvas-H: min(calc(1047 / 1920 * 100vw), 1047px);
+
    position: relative; z-index: 2;
    width: 100%; overflow: hidden;
-   height: min(calc(1047 / 1920 * 100vw), 1047px);
+   height: var(--canvas-H);
 
    .Broken_bg {
       position: absolute; top: 0; left: 0; z-index: 1;
       background: url('../../img/Sec1/sec1_broken_bg.png') no-repeat center top / cover;
-      width: 100%; height: min(calc(900 / 1920 * 100vw), 900px);
+      width: 100%; height: var(--canvas-H);
    }
 
    .canvas { // 3d 이미지
@@ -105,6 +107,26 @@
          font-size: 4rem;
 
          .colorSpan {font-weight: 700; font-size: 1.2em;}
+      }
+   }
+}
+
+
+
+// 반응형 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@media (max-width: 768px) {
+   .canvas_wrapper {
+      --canvas-H: max(500px, min(calc(800 / 769 * 100vw), 800px));
+
+      height: var(--canvas-H);
+
+      .mob_touch_clear {
+         position: absolute; z-index: 10;
+         top: 0; left: 0; width: 100%; height: 100%;
+      }
+
+      .Broken_bg {
+         height: var(--canvas-H);
       }
    }
 }
