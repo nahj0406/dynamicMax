@@ -8,7 +8,7 @@
 
 #Section03 {
   position: relative;
-  background: linear-gradient(#201E1F, #011722 50%);
+  background: #101010;
   padding: 19rem 0;
   overflow: hidden;
 
@@ -30,37 +30,73 @@
 
   > img {position: relative; width: clamp(100px, 20rem, 320px);}
 
-  .img3 { z-index: 1; transform: translateX(30%);}
-  .img1 { z-index: 2; transform: translateY(10%);}
-  .img2 { z-index: 1; transform: translate(-30%, 20%);}
+  .img3 { z-index: 1; transform: translateX(30%); }
+  .img1 { z-index: 2; transform: translateY(10%); }
+  .img2 { z-index: 1; transform: translate(-30%, 20%); }
 }
+
+// 스크롤 애니메이션
+.scAni.titleBox {
+
+   h2 {
+      :global(.char) {
+         opacity: 0;
+         display: inline-block;
+         transform: scale(1.2);
+      }
+   }
+
+   p {transform: translateY(-10%); opacity: 0; transition: 0.5s;}
+}
+
+.scAni.titleBox.animate[data-scroll="in"] {
+
+   h2 {
+      :global(.char) {
+         opacity: 1;
+         transition: 0.5s calc(var(--char-index) * 0.1s);
+         transform: scale(1);
+      }
+   }
+
+   p {transform: translateY(0%); opacity: 1; transition-delay: 0.1s;}
+}
+
 
 .triggerBox {
   width: 100%;
   position: absolute; z-index: 3;
   top: 0; left: 0;
   @include flexColum;
-  gap: 23.2rem;
+  gap: 40rem;
 
   > * {
     width: fit-content; text-align: center;
 
-    p {font-size: max(16px, 3rem); font-weight: 500; color: #fff; line-height: 1.5;}
+    p {font-size: clamp(18px, 2rem, 23px,); font-weight: 500; color: #fff; line-height: 1.5;}
   }
 
   .content01 {
     @include flexColum;
-    gap: 6.5rem;
+    gap: max(20px, 5rem);
 
     .iconBox {
       display: flex; gap: 2.5rem;
       align-items: center;
+
+      img:nth-child(1) {width: clamp(60px, 12rem, 120px);}
+      img:nth-child(2) {width: clamp(20px, 4rem, 40px);}
+      img:nth-child(3) {width: clamp(60px, 12rem, 120px);}
     }
   }
 
   .content02 {
     @include flexColum;
     gap: 3rem;
+
+    .iconBox {
+      img {width: clamp(250px, 33.5rem, 335px);}
+    }
   }
 
   .content_Slide {
@@ -71,17 +107,26 @@
       @include flexColum;
       gap: 20px;
 
+      .img {width: clamp(250px, 37.2rem, 372px);}
+
       .textBox {
         text-align: center; color: #fff;
-        padding: 0 5px;
+        padding: 0 5px; width: 100%; max-width: clamp(200px, 37.2rem, 380px);
 
         h5 {
           font-size: max(18px, 2.5rem); font-weight: 600; line-height: 1.2; margin-bottom: 15px;
           text-transform: uppercase;
         }
-        figcaption {font-size: max(14px, 1.8rem);}
+        figcaption {font-size: clamp(14px, 1.8rem, 18px);}
       }
 
     }
+  }
+}
+
+
+@media (max-width: 680px) {
+  .triggerBox {
+    p {font-size: clamp(15px, 2rem, 23px,);}
   }
 }

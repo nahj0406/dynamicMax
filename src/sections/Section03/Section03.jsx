@@ -38,6 +38,7 @@ function Section03() {
   const containerRef = useRef(null);
   const containerV1Ref = useRef(null);
   const triggerRef = useRef(null);
+  const slideRef = useRef(null);
 
   useEffect(() => {
     Splitting();
@@ -69,51 +70,54 @@ function Section03() {
   }, []);
 
 
-  // useLayoutEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     const updateLayout = () => {
-  //       const contentHeight = containerV1Ref.current.offsetHeight;
-  //       const triggerHeight = triggerRef.current.offsetHeight;
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const contentHeight = containerV1Ref.current.offsetHeight;
+      const triggerHeight = triggerRef.current.offsetHeight;
 
-  //       const totalHeight = contentHeight + triggerHeight;
-  //       containerRef.current.style.height = `${totalHeight}px`;
+      const totalHeight = contentHeight + triggerHeight;
+      containerRef.current.style.height = `${totalHeight}px`;
 
-  //       ScrollTrigger.getAll().forEach(st => st.kill());
+      // pin 설정
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top+=150 top",
+        end: `+=${triggerHeight}`,
+        pin: true,
+        markers: true,
+        invalidateOnRefresh: true,
+      });
 
-  //       ScrollTrigger.create({
-  //         trigger: containerRef.current,
-  //         start: "top+=150 top",
-  //         end: `+=${triggerHeight}`,
-  //         pin: true,
-  //         markers: true,
-  //         invalidateOnRefresh: true,
-  //       });
+      // timeline 생성
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top+=150 top",
+          end: `+=${triggerHeight}`,  // pin과 동일한 종료 지점
+          scrub: 1,
+          markers: true,
+          invalidateOnRefresh: true,
+        },
+      });
 
-  //       gsap.set(triggerRef.current, { y: triggerHeight });
+      // 요소 위치 초기화 → 자연스럽게 시작
+      tl.fromTo(triggerRef.current, 
+        { y: triggerHeight },
+        { y: -(triggerHeight - 400) }
+      );
 
-  //       gsap.to(triggerRef.current, {
-  //         y: -(triggerHeight - 100),
-  //         scrollTrigger: {
-  //           trigger: containerRef.current,
-  //           start: "top+=150 top",
-  //           end: `+=${triggerHeight}`,
-  //           scrub: true,
-  //           invalidateOnRefresh: true,
-  //         },
-  //       });
-  //     };
+      // slideRef 슬라이드 애니메이션
+      tl.fromTo(slideRef.current,
+        { xPercent: 50 },
+        { xPercent: -20 },
+        ">" // 이전 애니메이션과 동시에 시작하려면 "<", 그 이후에 하려면 ">"
+      );
 
-  //     updateLayout();
-  //     window.addEventListener('resize', updateLayout);
+    }, containerRef);
 
-  //     return () => {
-  //       window.removeEventListener('resize', updateLayout);
-  //       ScrollTrigger.getAll().forEach(st => st.kill());
-  //     };
-  //   }, containerRef);
+    return () => ctx.revert();
+  }, []);
 
-  //   return () => ctx.revert();
-  // }, []);
 
 
   const slideData = [
@@ -199,7 +203,7 @@ function Section03() {
           </article>
   
   
-          <article className={styles.content_Slide}>
+          <article className={styles.content_Slide} ref={slideRef}>
             {
               slideData.map((item, index) => {
                 return(

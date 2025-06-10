@@ -1,6 +1,6 @@
 #Section03 {
   position: relative;
-  background: linear-gradient(#201E1F, #011722 50%);
+  background: #101010;
   padding: 19rem 0;
   overflow: hidden;
 }
@@ -45,6 +45,28 @@
   transform: translate(-30%, 20%);
 }
 
+.scAni.titleBox h2 :global(.char) {
+  opacity: 0;
+  display: inline-block;
+  transform: scale(1.2);
+}
+.scAni.titleBox p {
+  transform: translateY(-10%);
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.scAni.titleBox.animate[data-scroll=in] h2 :global(.char) {
+  opacity: 1;
+  transition: 0.5s calc(var(--char-index) * 0.1s);
+  transform: scale(1);
+}
+.scAni.titleBox.animate[data-scroll=in] p {
+  transform: translateY(0%);
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
 .triggerBox {
   width: 100%;
   position: absolute;
@@ -54,7 +76,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 23.2rem;
+  gap: 40rem;
 }
 .triggerBox > * {
   width: -moz-fit-content;
@@ -62,7 +84,7 @@
   text-align: center;
 }
 .triggerBox > * p {
-  font-size: max(16px, 3rem);
+  font-size: clamp(18px, 2rem, 23px);
   font-weight: 500;
   color: #fff;
   line-height: 1.5;
@@ -71,18 +93,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6.5rem;
+  gap: max(20px, 5rem);
 }
 .triggerBox .content01 .iconBox {
   display: flex;
   gap: 2.5rem;
   align-items: center;
 }
+.triggerBox .content01 .iconBox img:nth-child(1) {
+  width: clamp(60px, 12rem, 120px);
+}
+.triggerBox .content01 .iconBox img:nth-child(2) {
+  width: clamp(20px, 4rem, 40px);
+}
+.triggerBox .content01 .iconBox img:nth-child(3) {
+  width: clamp(60px, 12rem, 120px);
+}
 .triggerBox .content02 {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3rem;
+}
+.triggerBox .content02 .iconBox img {
+  width: clamp(250px, 33.5rem, 335px);
 }
 .triggerBox .content_Slide {
   display: flex;
@@ -94,10 +128,15 @@
   align-items: center;
   gap: 20px;
 }
+.triggerBox .content_Slide .item .img {
+  width: clamp(250px, 37.2rem, 372px);
+}
 .triggerBox .content_Slide .item .textBox {
   text-align: center;
   color: #fff;
   padding: 0 5px;
+  width: 100%;
+  max-width: clamp(200px, 37.2rem, 380px);
 }
 .triggerBox .content_Slide .item .textBox h5 {
   font-size: max(18px, 2.5rem);
@@ -107,5 +146,11 @@
   text-transform: uppercase;
 }
 .triggerBox .content_Slide .item .textBox figcaption {
-  font-size: max(14px, 1.8rem);
+  font-size: clamp(14px, 1.8rem, 18px);
+}
+
+@media (max-width: 680px) {
+  .triggerBox p {
+    font-size: clamp(15px, 2rem, 23px);
+  }
 }/*# sourceMappingURL=Section03.module.css.map */

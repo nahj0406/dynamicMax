@@ -60,12 +60,12 @@ function Section02() {
   useLayoutEffect(() => {
     const id = requestAnimationFrame(() => {
       const ctx = gsap.context(() => {
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: "top+=150 top",
-          end: "+=800",
-          pin: true,
-        });
+        // ScrollTrigger.create({
+        //   trigger: containerRef.current,
+        //   start: "top+=150 top",
+        //   end: "+=200",
+        //   pin: true,
+        // });
 
         gsap.set(unitRef.current, { opacity: 1 });
 
@@ -75,6 +75,7 @@ function Section02() {
             trigger: containerRef.current,
             start: "top+=150 top",
             end: "+=200",
+            pin: true,
             scrub: true,
             markers: true,
           },

@@ -32,7 +32,7 @@ function MainSec() {
 
     const bannerTimerAni = setTimeout(() => {
       bannerSet('true');
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(bannerTimerAni);
 

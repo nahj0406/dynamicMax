@@ -43,7 +43,7 @@ function App() {
     //   document.body.style.overflow = '';
     // }, 3500);
 
-    const timeout = setTimeout(() => {
+    // const timeout = setTimeout(() => {
       lenis = new Lenis({
         smoothWheel: true,
         smoothTouch: true,
@@ -57,11 +57,11 @@ function App() {
       }
 
       requestAnimationFrame(raf);
-    }, 2000); // 2초 뒤에 실행
+    // }, 2000); // 2초 뒤에 실행
 
     return () => {
       // clearTimeout(enableScrollTimeout);
-      clearTimeout(timeout); // 컴포넌트 언마운트 시 타이머 제거
+      // clearTimeout(timeout); // 컴포넌트 언마운트 시 타이머 제거
       if (lenis) lenis.destroy(); // Lenis가 존재할 때만 destroy
     };
   }, []);
