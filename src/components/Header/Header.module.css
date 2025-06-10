@@ -43,7 +43,7 @@
 }
 
 @media (min-width: 992px) {
-  :global(.char) {
+  #header :global(.char) {
     transition: 0.1s calc(var(--char-index) * 0.025s) !important;
   }
   #header .headerContainer nav > .outerMenu > li:nth-child(1):hover h5 * {

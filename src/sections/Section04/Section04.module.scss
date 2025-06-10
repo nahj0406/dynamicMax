@@ -118,6 +118,34 @@
 }
 
 
+// 스크롤 애니메이션
+.scAni.titleBox {
+
+   h2 {
+      :global(.char) {
+         opacity: 0;
+         display: inline-block;
+         transform: scale(1.2);
+      }
+   }
+
+   p {transform: translateY(-10%); opacity: 0; transition: 0.5s;}
+}
+
+.scAni.titleBox.animate[data-scroll="in"] {
+
+   h2 {
+      :global(.char) {
+         opacity: 1;
+         transition: 0.5s calc(var(--char-index) * 0.1s);
+         transform: scale(1);
+      }
+   }
+
+   p {transform: translateY(0%); opacity: 1; transition-delay: 0.1s;}
+}
+
+
 // 반응형 ------------------------------------------------------
 
 @media (min-width: 992px) {

@@ -35,7 +35,9 @@
 }
 
 @media (min-width: 992px) {
-   :global(.char) {transition: 0.1s calc(var(--char-index) * 0.025s) !important;}
+   #header {
+      :global(.char) {transition: 0.1s calc(var(--char-index) * 0.025s) !important;}
+   }
 
    #header .headerContainer nav > .outerMenu > li:nth-child(1):hover h5 * {color: #f81884;}
    #header .headerContainer nav > .outerMenu > li:nth-child(2):hover h5 * {color: var(--main-color);}

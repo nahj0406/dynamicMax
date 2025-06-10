@@ -3,8 +3,7 @@ import { Route, Routes, Link } from 'react-router-dom'
 import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './Section01.module.css'
 import ImgTag from '../../components/ImgTag/ImgTag'
-import { Swiper, SwiperSlide } from 'swiper/react';
-
+import ScrollOut from 'scroll-out';
 
 // img
 import Broken_bg from '../../img/Sec1/sec1_broken_bg.png';
@@ -23,27 +22,39 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-function Model({ url }) {
+function Model({ url, sectionRef, BrokenRef, titleBoxRef }) {
+
   const group = useRef();
   const { scene, animations } = useGLTF(url);
   const mixer = useRef();
   const clock = new THREE.Clock();
+  
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!group.current) return;
 
     scene.scale.set(7, 7, 7);
-    scene.position.y = -0.8;
+    scene.position.y = -0.3;
     group.current.add(scene);
-    group.current.rotation.y = Math.PI / 4;
+    group.current.rotation.y = Math.PI / 6;
 
     scene.traverse((child) => {
       if (child.isMesh && child.material instanceof THREE.MeshStandardMaterial) {
         child.castShadow = true;
         child.receiveShadow = true;
-        child.material.metalness = 0.3;
-        child.material.roughness = 0.05;
+        child.material.metalness = 0.5;
+        child.material.roughness = 0.4;
+        // child.material.metalness = 0.5;
+        // child.material.roughness = 2;
       }
+      // console.log(child.name);
+      // if (child.isMesh && child.name === 'P407200_16') {
+      //   child.material = new THREE.MeshStandardMaterial({
+      //     color: 0xffd700, // 금색
+      //     metalness: 1,
+      //     roughness: 0.2,
+      //   });
+      // }
     });
 
     if (animations.length > 0) {
@@ -51,40 +62,49 @@ function Model({ url }) {
       animations.forEach((clip) => mixer.current.clipAction(clip).play());
     }
 
-    gsap.to(scene.scale, {
-      x: 5,
-      y: 5,
-      z: 5,
-      scrollTrigger: {
-        trigger: document.body,
-        start: 'top top',
-        end: '+=2000',
-        scrub: true,
-      },
-    });
+    requestAnimationFrame(() => {
 
-    gsap.to(scene.position, {
-      y: 0,
-      scrollTrigger: {
-        trigger: document.body,
-        start: 'top top',
-        end: '+=2000',
-        scrub: true,
-      },
-    });
+      gsap.set(BrokenRef.current, { opacity: 0, scale: 0.9 });
+      gsap.set(titleBoxRef.current, { opacity: 0, y: 50 });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: document.body,
-        start: 'top top',
-        end: '+=2000',
-        scrub: true,
-        markers: true,
-      },
-    });
+      gsap.to(scene.scale, {
+        x: 5,
+        y: 5,
+        z: 5,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: '+=2000',
+          scrub: true,
+          // markers: true,
+        },
+      });
 
-    tl.to(group.current.rotation, { y: -Math.PI * 1.9, duration: 2 });
-    tl.to(scene.rotation, { x: -Math.PI / 8, duration: 1 });
+      gsap.to(scene.position, {
+        y: -0.2,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: '+=2000',
+          scrub: true,
+        },
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: '+=2000',
+          scrub: true,
+          markers: true,
+        },
+      });
+
+      tl.to(group.current.rotation, { y: -Math.PI * 1.9, duration: 2 });
+      tl.to(scene.rotation, { x: -Math.PI / 8, duration: 1 });
+      tl.to(BrokenRef.current, { opacity: 1, scale: 0.98});
+      tl.to(titleBoxRef.current, { opacity: 1, y: 0});
+    });
   }, [scene, animations]);
 
   useFrame(() => {
@@ -98,17 +118,45 @@ function Model({ url }) {
 function Section01() {
 
   const sectionRef = useRef(null);
+  const BrokenRef = useRef(null);
+  const titleBoxRef = useRef(null);
 
   useEffect(() => {
-     Splitting();
+    Splitting();
+
+    const elements = Array.from(document.querySelectorAll(`.${styles.scAni}`));
+
+    const scrollOutInstance = ScrollOut({
+        targets: `.${styles.scAni}`,
+        threshold: 0.5,
+        once: true, // 요소가 한 번만 감지되도록 설정
+        onShown: function (el) {
+          // 요소가 뷰포트에 들어왔을 때 실행
+          const index = elements.indexOf(el);
+
+          const isWideScreen = window.innerWidth <= 1920 && window.innerWidth >= 768;
+          const delay = isWideScreen
+          ? (index >= 4 ? 100 : index * 700)
+          : index * 200;
+
+          setTimeout(() => {
+            el.classList.add(`${styles.animate}`); // 순차적으로 animate 클래스 추가
+          }, delay);
+        },
+    });
+
+    return () => {
+        scrollOutInstance.teardown(); // ScrollOut 인스턴스 정리
+    };
   }, []);
 
   useLayoutEffect(() => {
+    // const offset = window.innerWidth >= 1200 ? -100 : -50;
     const ctx = gsap.context(() => {
-    
+      
       ScrollTrigger.create({
         trigger: sectionRef.current,   // 캔버스를 감싼 div
-        start: 'top top',               // 스크롤 시작 지점
+        start: `top top`,   // 스크롤 시작 지점
         end: `+=2000`,     // 고정 유지 거리
         pin: true,
         // scrub: true, // 필요하면 부드럽게 고정 (주로 애니메이션용)
@@ -128,28 +176,24 @@ function Section01() {
 
       <section className='containerV1'>
   
-        <div className={styles.titleBox}>
-          <h3>
-              더욱 강력해져 돌아온 <br />
-              새로운 <span className='HemiHead'>DYNAMIC</span> 시리즈
-          </h3>
-          <p>
-              업계 10년 경력의 베테랑들이 <br />
-              만들어낸 새로운 패러다임을 확인하세요!
-          </p>
+        <div className={`${styles.titleBox} ${styles.scAni}`}>
+          <h3 data-splitting>더욱 강력해져 돌아온</h3>
+          <h3 className={styles.tagSecd}><span>새로운</span> <span className={`${styles.colorSpan} HemiHead`}>DYNAMIC</span> <span>시리즈</span></h3>
         </div>
       </section>
 
       <div className={styles.canvas_wrapper} ref={sectionRef}>
+        <div className={styles.Broken_bg} ref={BrokenRef}></div>
         <Canvas
           shadows
           camera={{ position: [0, 0.1, 1], fov: 60 }}
-          gl={{ antialias: true, alpha: true }}
+          gl={{ antialias: true, alpha: true, }}
+          // toneMappingExposure: 5 
           className={styles.canvas}
         >
           <ambientLight intensity={0.4} />
           <directionalLight
-            intensity={1.5}
+            intensity={0.5} // 밝기 조절
             position={[0, 1, 5]}
             castShadow
             shadow-mapSize-width={2048}
@@ -164,13 +208,19 @@ function Section01() {
           <directionalLight intensity={0.6} position={[-5, 1, 0]} />
           <directionalLight intensity={0.6} position={[5, 1, 0]} />
           <hemisphereLight intensity={0.5} groundColor={0x444444} position={[0, 10, 0]} />
-          <Environment preset="city" background={false} />
+          <Environment preset="city" background={false} /> {/* 비취지는 배경 city는 도시 */}
           <Suspense fallback={null}>
-            <Model url="/3d/dynamic_3d.glb" />
+            <Model sectionRef={sectionRef} BrokenRef={BrokenRef} titleBoxRef={titleBoxRef} url="/3d/dynamic_3d.glb" />
           </Suspense>
-          <OrbitControls />
+          <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
         </Canvas>
-        <div className={styles.Broken_bg}></div>
+
+        <div className={styles.titleBox} ref={titleBoxRef}>
+          <h3>
+            업계 10년 경력의 베테랑들이 <br />
+            만들어낸 새로운 <span className={`${styles.colorSpan}`}>패러다임</span>을 확인하세요!
+          </h3>
+        </div>
       </div>
 
     </section>

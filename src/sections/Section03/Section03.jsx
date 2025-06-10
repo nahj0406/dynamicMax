@@ -4,6 +4,7 @@ import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './Section03.module.css'
 import ImgTag from '../../components/ImgTag/ImgTag'
 import { Swiper, SwiperSlide } from 'swiper/react';
+import ScrollOut from 'scroll-out';
 
 
 // img
@@ -39,53 +40,80 @@ function Section03() {
   const triggerRef = useRef(null);
 
   useEffect(() => {
-     Splitting();
+    Splitting();
+
+    const elements = Array.from(document.querySelectorAll(`.${styles.scAni}`));
+
+    const scrollOutInstance = ScrollOut({
+        targets: `.${styles.scAni}`,
+        threshold: 0.5,
+        once: true, // 요소가 한 번만 감지되도록 설정
+        onShown: function (el) {
+          // 요소가 뷰포트에 들어왔을 때 실행
+          const index = elements.indexOf(el);
+
+          const isWideScreen = window.innerWidth <= 1920 && window.innerWidth >= 768;
+          const delay = isWideScreen
+          ? (index >= 4 ? 100 : index * 700)
+          : index * 200;
+
+          setTimeout(() => {
+            el.classList.add(`${styles.animate}`); // 순차적으로 animate 클래스 추가
+          }, delay);
+        },
+    });
+
+    return () => {
+        scrollOutInstance.teardown(); // ScrollOut 인스턴스 정리
+    };
   }, []);
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const updateLayout = () => {
-        const contentHeight = containerV1Ref.current.offsetHeight;
-        const triggerHeight = triggerRef.current.offsetHeight;
 
-        const totalHeight = contentHeight + triggerHeight;
-        containerRef.current.style.height = `${totalHeight}px`;
 
-        ScrollTrigger.getAll().forEach(st => st.kill());
+  // useLayoutEffect(() => {
+  //   const ctx = gsap.context(() => {
+  //     const updateLayout = () => {
+  //       const contentHeight = containerV1Ref.current.offsetHeight;
+  //       const triggerHeight = triggerRef.current.offsetHeight;
 
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: "top+=150 top",
-          end: `+=${triggerHeight}`,
-          pin: true,
-          markers: true,
-          invalidateOnRefresh: true,
-        });
+  //       const totalHeight = contentHeight + triggerHeight;
+  //       containerRef.current.style.height = `${totalHeight}px`;
 
-        gsap.set(triggerRef.current, { y: triggerHeight });
+  //       ScrollTrigger.getAll().forEach(st => st.kill());
 
-        gsap.to(triggerRef.current, {
-          y: -(triggerHeight - 100),
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top+=150 top",
-            end: `+=${triggerHeight}`,
-            scrub: true,
-            invalidateOnRefresh: true,
-          },
-        });
-      };
+  //       ScrollTrigger.create({
+  //         trigger: containerRef.current,
+  //         start: "top+=150 top",
+  //         end: `+=${triggerHeight}`,
+  //         pin: true,
+  //         markers: true,
+  //         invalidateOnRefresh: true,
+  //       });
 
-      updateLayout();
-      window.addEventListener('resize', updateLayout);
+  //       gsap.set(triggerRef.current, { y: triggerHeight });
 
-      return () => {
-        window.removeEventListener('resize', updateLayout);
-        ScrollTrigger.getAll().forEach(st => st.kill());
-      };
-    }, containerRef);
+  //       gsap.to(triggerRef.current, {
+  //         y: -(triggerHeight - 100),
+  //         scrollTrigger: {
+  //           trigger: containerRef.current,
+  //           start: "top+=150 top",
+  //           end: `+=${triggerHeight}`,
+  //           scrub: true,
+  //           invalidateOnRefresh: true,
+  //         },
+  //       });
+  //     };
 
-    return () => ctx.revert();
-  }, []);
+  //     updateLayout();
+  //     window.addEventListener('resize', updateLayout);
+
+  //     return () => {
+  //       window.removeEventListener('resize', updateLayout);
+  //       ScrollTrigger.getAll().forEach(st => st.kill());
+  //     };
+  //   }, containerRef);
+
+  //   return () => ctx.revert();
+  // }, []);
 
 
   const slideData = [
@@ -129,9 +157,9 @@ function Section03() {
       {/* <div className={styles.pin_wrapper}> */}
         <section className='containerV1' ref={containerV1Ref}>
   
-          <div className={`${styles.titleBox} titleBox`}>
+          <div className={`${styles.titleBox} ${styles.scAni} titleBox`}>
             <p>다이나믹만이 가진 <span>특별함</span></p>
-            <h2 className='HemiHead'>SPECIALITY</h2>
+            <h2 data-splitting className='HemiHead'>SPECIALITY</h2>
           </div>
   
           <figure className={styles.product}>

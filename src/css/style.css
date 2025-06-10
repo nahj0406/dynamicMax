@@ -39,6 +39,12 @@
   position: relative;
   left: -10px;
 }
+.titleBox h2 span {
+  font-size: inherit;
+  color: inherit;
+  font-weight: inherit;
+  font-family: "HemiHead" !important;
+}
 
 @media (min-width: 2000px) {
   .containerV1 {

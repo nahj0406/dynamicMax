@@ -47,7 +47,7 @@
   display: grid;
   gap: 3rem;
   grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: minmax(22rem, auto);
+  grid-auto-rows: minmax(min(230px, 22rem), auto);
 }
 .itemBox article {
   border-radius: 20px;
@@ -60,10 +60,10 @@
   gap: 4.5rem;
 }
 .itemBox article img.icon {
-  width: 7.4rem;
+  min-width: 7.4rem;
 }
 .itemBox article p {
-  font-size: max(18px, 2rem);
+  font-size: clamp(14px, max(18px, 2rem), 23px);
   line-height: 1.5;
   color: #fff;
 }
@@ -74,6 +74,45 @@
 }
 .itemBox article:nth-child(2) img.icon {
   width: 10rem;
+}
+
+.scAni.titleBox h2 :global(.char) {
+  opacity: 0;
+  display: inline-block;
+  transform: scale(1.2);
+}
+.scAni.titleBox p {
+  transform: translateY(-10%);
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.scAni.titleBox.animate[data-scroll=in] h2 :global(.char) {
+  opacity: 1;
+  transition: 0.5s calc(var(--char-index) * 0.1s);
+  transform: scale(1);
+}
+.scAni.titleBox.animate[data-scroll=in] p {
+  transform: translateY(0%);
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+
+.scAni.itemBox article {
+  opacity: 0;
+  transform: translateY(15%);
+  transition: 0.3s;
+}
+
+.scAni.itemBox.animate[data-scroll=in] article {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scAni.itemBox.animate[data-scroll=in] article:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.scAni.itemBox.animate[data-scroll=in] article:nth-child(2) {
+  transition-delay: 0.3s;
 }
 
 @media (max-width: 1230px) {
@@ -109,6 +148,13 @@
   }
   .itemBox {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .itemBox article img.icon {
+    min-width: unset;
+    width: 7.4rem;
+  }
+  .itemBox article p {
+    flex: 1;
   }
 }
 @media (max-width: 480px) {

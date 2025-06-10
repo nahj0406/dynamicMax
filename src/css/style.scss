@@ -24,7 +24,11 @@
 
     span {font-size: inherit; font-weight: inherit;}
   }
-  h2 {font-size: max(50px, 8rem); color: #fff; position: relative; left: -10px;}
+  h2 {
+    font-size: max(50px, 8rem); color: #fff; position: relative; left: -10px;
+
+    span {font-size: inherit; color: inherit; font-weight: inherit; font-family: 'HemiHead' !important;}
+  }
 }
 
 

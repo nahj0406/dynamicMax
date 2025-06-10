@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef, Suspense } from 'react'
+import { useState, useEffect, useRef, useLayoutEffect, Suspense } from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
 import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './Section02.module.css'
 import ImgTag from '../../components/ImgTag/ImgTag'
 import { Swiper, SwiperSlide } from 'swiper/react';
+import ScrollOut from 'scroll-out';
 
 import InViewMotion from '../../Flamer_Element/InViewMotion'
 
@@ -28,41 +29,62 @@ function Section02() {
   const unitRef = useRef(null);
 
   useEffect(() => {
-     Splitting();
+    Splitting();
+
+    const elements = Array.from(document.querySelectorAll(`.${styles.scAni}`));
+
+    const scrollOutInstance = ScrollOut({
+        targets: `.${styles.scAni}`,
+        threshold: 0.5,
+        once: true, // 요소가 한 번만 감지되도록 설정
+        onShown: function (el) {
+          // 요소가 뷰포트에 들어왔을 때 실행
+          const index = elements.indexOf(el);
+
+          const isWideScreen = window.innerWidth <= 1920 && window.innerWidth >= 768;
+          const delay = isWideScreen
+          ? (index >= 4 ? 100 : index * 700)
+          : index * 200;
+
+          setTimeout(() => {
+            el.classList.add(`${styles.animate}`); // 순차적으로 animate 클래스 추가
+          }, delay);
+        },
+    });
+
+    return () => {
+        scrollOutInstance.teardown(); // ScrollOut 인스턴스 정리
+    };
   }, []);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-
-      const addActiveClass = () => unitRef.current.classList.add(styles.active);
-      const removeActiveClass = () => unitRef.current.classList.remove(styles.active);
-
-      // 부모 요소를 고정
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "top+=150 top",
-        end: `+=800`, // 필요에 따라 조절
-        pin: true,
-        // markers: true,
-      });
-
-      // 자식 요소를 y값으로 위로 이동
-      gsap.to(unitRef.current, {
-        scrollTrigger: {
+  useLayoutEffect(() => {
+    const id = requestAnimationFrame(() => {
+      const ctx = gsap.context(() => {
+        ScrollTrigger.create({
           trigger: containerRef.current,
           start: "top+=150 top",
-          end: `+=800`,
-          // scrub: true,
-          onEnter: addActiveClass,
-          onLeave: removeActiveClass,
-          onEnterBack: addActiveClass,
-          onLeaveBack: removeActiveClass,
-          markers: true,
-        },
-      });
-    }, containerRef);
+          end: "+=800",
+          pin: true,
+        });
 
-    return () => ctx.revert();
+        gsap.set(unitRef.current, { opacity: 1 });
+
+        gsap.to(unitRef.current, {
+          opacity: 0,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top+=150 top",
+            end: "+=200",
+            scrub: true,
+            markers: true,
+          },
+        });
+      }, containerRef);
+
+      return () => ctx.revert();
+    });
+
+    return () => cancelAnimationFrame(id);
   }, []);
 
   return (
@@ -71,12 +93,10 @@ function Section02() {
       <div className={styles.pin_wrapper} ref={containerRef}>
         <section className='containerV1'>
   
-          <InViewMotion>
-            <div className={`${styles.titleBox} titleBox`}>
-              <p>차별화된 배터리 및 액상 <span>잔량 확인 시스템</span></p>
-              <h2 className='HemiHead'>VISIBILITY</h2>
-            </div>
-          </InViewMotion>
+          <div className={`${styles.titleBox} ${styles.scAni} titleBox`}>
+            <p>차별화된 배터리 및 액상 <span>잔량 확인 시스템</span></p>
+            <h2 data-splitting className='HemiHead'>VISIBILITY</h2>
+          </div>
   
           <figure className={styles.product} ref={productRef}>
             <ImgTag clsName={styles.img} src={Product01} alt={'다이나믹 맥스 충전량 표시'} />
@@ -85,7 +105,7 @@ function Section02() {
   
   
     
-          <div className={styles.itemBox}>
+          <div className={`${styles.itemBox} ${styles.scAni}`}>
             <article>
               <ImgTag clsName={styles.icon} src={icon01} alt={'잔량 표시'} />
               <p>
@@ -98,8 +118,8 @@ function Section02() {
             <article>
               <ImgTag clsName={styles.icon} src={icon02} alt={'배터리 표시'} />
               <p>
-                다이나믹 맥스는 <span>배터리 상태를 수치화</span>하여 사용자가 <br />
-                보다 편리하고 효율적으로 사용할 수 있도록 사용자 <br />
+                다이나믹 맥스는 <span>배터리 상태를 수치화</span>하여 사용자가
+                보다 편리하고 효율적으로 사용할 수 있도록 사용자 
                 경험을 획기적으로 향상시켰습니다.
               </p>
             </article>

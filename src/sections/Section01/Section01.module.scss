@@ -1,3 +1,48 @@
+
+// 스크롤 애니메이션
+.scAni {
+   // opacity: 0;
+   transition: 0.5s 0.3s;
+
+   h3 {
+      :global(.char) {
+         opacity: 0;
+         display: inline-block;
+         transform: scale(1.2);
+      }
+   }
+
+   .tagSecd {
+      span {display: inline-block; opacity: 0; transition: 0.5s;}
+      span:nth-child(1) {transform: translateY(-10%);}
+      span:nth-child(2) {transform: scale(1.);}
+      span:nth-child(3) {transform: translateY(-10%);}
+   }
+}
+
+.scAni.animate[data-scroll="in"] {
+   // opacity: 1;
+   transform: translateY(0);
+
+   h3 {
+      :global(.char) {
+         opacity: 1;
+         transition: 0.5s calc(var(--char-index) * 0.1s);
+         transform: scale(1);
+      }
+   }
+
+   .tagSecd {
+      span {opacity: 1;}
+      span:nth-child(1) {transform: translateY(0%); transition-delay: 1s;}
+      span:nth-child(2) {transform: scale(1); transition-delay: 1.2s;}
+      span:nth-child(3) {transform: translateY(0%); transition-delay: 1.3s;}
+   }
+}
+
+
+
+
 #Section01 {
    position: relative;
    // background: linear-gradient(#201E1F, #011722 50%);
@@ -5,26 +50,6 @@
    // background: url('../../img/Sec1/sec1_bg1.jpg') no-repeat center top / cover;
    padding: 30rem 0 20rem;
    overflow: hidden;
-}
-
-.canvas_wrapper {
-   position: relative; z-index: 2;
-   width: 100%; overflow: hidden;
-   height: min(calc(1047 / 1920 * 100vw), 1047px);
-
-   .Broken_bg {
-      position: absolute; top: 0; left: 0; z-index: 1;
-      background: url('../../img/Sec1/sec1_broken_bg.png') no-repeat center top / cover;
-      width: 100%; height: min(calc(900 / 1920 * 100vw), 900px);
-   }
-
-   .canvas { // 3d 이미지
-      position: relative; z-index: 2;
-      margin: 0 auto; display: block; 
-      // width: 100%;
-      // height: min(calc(1047 / 1920 * 100vw), 1047px);
-      // background: #201E1F;
-   }
 }
 
 
@@ -46,30 +71,40 @@
    > h3 {
       font-size: 5rem; font-weight: 700;
       line-height: 1.6; color: #fff;
-      margin-bottom: 2.5rem;
 
-      > span {font-size: inherit; color: var(--main-color); font-size: 1.2em;}
-   }
+      span {font-size: inherit; font-weight: inherit;}
 
-   > p {
-      font-size: max(16px, 2rem); font-weight: 600;
-      line-height: 1.6; color: #fff;
+      > .colorSpan {font-size: inherit; color: var(--main-color); font-size: 1.2em;}
    }
 }
 
-// 제품이미지
-.productBox {
-   position: relative; width: fit-content; margin: 0 auto 32rem;
-   z-index: 2;
+.canvas_wrapper {
+   position: relative; z-index: 2;
+   width: 100%; overflow: hidden;
+   height: min(calc(1047 / 1920 * 100vw), 1047px);
 
-   > img {width: min(calc(250 / 769 * 100vw), 250px);}
-
-   > img:not(.item1) {
-      position: absolute; z-index: 1;
-      width: min(calc(240 / 769 * 100vw), 240px);
-      bottom: 10px;
+   .Broken_bg {
+      position: absolute; top: 0; left: 0; z-index: 1;
+      background: url('../../img/Sec1/sec1_broken_bg.png') no-repeat center top / cover;
+      width: 100%; height: min(calc(900 / 1920 * 100vw), 900px);
    }
-   > .item1 {position: relative; z-index: 2;}
-   > .item2 {left: -70%;}
-   > .item3 {left: 80%;}
+
+   .canvas { // 3d 이미지
+      position: relative; z-index: 2;
+      margin: 0 auto; display: block; 
+      // width: 100%;
+      // height: min(calc(1047 / 1920 * 100vw), 1047px);
+      // background: #201E1F;
+   }
+
+   .titleBox {
+      position: absolute; bottom: 8rem; left: 50%;
+      transform: translateX(-50%); z-index: 3;
+
+      > h3 {
+         font-size: 4rem;
+
+         .colorSpan {font-weight: 700; font-size: 1.2em;}
+      }
+   }
 }
