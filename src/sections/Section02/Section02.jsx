@@ -62,10 +62,10 @@ function Section02() {
   useLayoutEffect(() => {
     const mm = gsap.matchMedia();
 
-    const startData = `top+=100 top-=3%`;
-    const endData = `bottom-=15% 50%`;
-
     mm.add("(min-width: 769px)", () => {
+      const startData = `top+=100 top-=3%`;
+      const endData = `bottom-=15% 50%`;
+
       const ctx = gsap.context(() => {
         ScrollTrigger.create({
           trigger: containerRef.current,
@@ -74,8 +74,6 @@ function Section02() {
           pin: true,
           scrub: 1,
         });
-
-        gsap.set(unitRef.current, { opacity: 1 });
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -91,9 +89,6 @@ function Section02() {
         tl.fromTo(unitRef.current, {opacity: 1,}, { opacity: 0}, '+=0.5');
         tl.fromTo(item01Ref.current, {opacity: 0, y: 100,}, { opacity: 1, y: 0,});
         tl.fromTo(item02Ref.current, {opacity: 0, y: 100,}, { opacity: 1, y: 0,});
-        // tl.call(() => {
-        //   gsap.fromTo(unitRef.current, {opacity: 1,}, { opacity: 0, duration: 0.2});
-        // })
 
       }, containerRef);
 
@@ -101,8 +96,33 @@ function Section02() {
     });
 
     mm.add("(max-width: 768px)", () => {
+      const startData = `top+=100 top-=3%`;
+      const endData = `bottom-=15% top`;
+
       const ctx = gsap.context(() => {
-        // 모바일용 ScrollTrigger 설정 (필요 시)
+        ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: startData,
+          end: endData,
+          pin: true,
+          scrub: 1,
+        });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: startData,
+            end: endData,
+            scrub: true,
+            markers: true,
+          },
+        });
+
+        tl.fromTo(productRef.current, {x: '-66%',}, {x: '-22%',});
+        tl.fromTo(unitRef.current, {opacity: 1,}, { opacity: 0}, '+=0.5');
+        tl.fromTo(item01Ref.current, {opacity: 0, y: 100,}, { opacity: 1, y: 0,});
+        tl.fromTo(item02Ref.current, {opacity: 0, y: 100,}, { opacity: 1, y: 0,});
+
       }, containerRef);
 
       return () => ctx.revert(); // ✅ 미디어 해제 시 정리
