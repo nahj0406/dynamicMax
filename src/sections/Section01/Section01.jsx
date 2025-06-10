@@ -68,13 +68,13 @@ function Model({ url, sectionRef, BrokenRef, titleBoxRef }) {
       gsap.set(titleBoxRef.current, { opacity: 0, y: 50 });
 
       gsap.to(scene.scale, {
-        x: 5,
-        y: 5,
-        z: 5,
+        x: 6,
+        y: 6,
+        z: 6,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top top',
-          end: '+=2000',
+          start: 'top+=15% 20%',
+          end: `bottom+=50% 30%`,
           scrub: true,
           // markers: true,
         },
@@ -84,8 +84,8 @@ function Model({ url, sectionRef, BrokenRef, titleBoxRef }) {
         y: -0.2,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top top',
-          end: '+=2000',
+          start: 'top+=15% 20%',
+          end: `bottom+=50% 30%`,
           scrub: true,
         },
       });
@@ -93,10 +93,10 @@ function Model({ url, sectionRef, BrokenRef, titleBoxRef }) {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top top',
-          end: '+=2000',
+          start: 'top+=15% 20%',
+          end: `bottom+=50% 30%`,
           scrub: true,
-          markers: true,
+          // markers: true,
         },
       });
 
@@ -156,11 +156,11 @@ function Section01() {
       
       ScrollTrigger.create({
         trigger: sectionRef.current,   // 캔버스를 감싼 div
-        start: `top top`,   // 스크롤 시작 지점
-        end: `+=2000`,     // 고정 유지 거리
+        start: 'top+=15% 20%',   // 스크롤 시작 지점
+        end: `bottom+=50% 30%`,     // 고정 유지 거리
         pin: true,
         // scrub: true, // 필요하면 부드럽게 고정 (주로 애니메이션용)
-        markers: true,
+        // markers: true,
       });
 
 

@@ -58,14 +58,17 @@ function Section02() {
   }, []);
 
   useLayoutEffect(() => {
-    const id = requestAnimationFrame(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 769px)", () => {
       const ctx = gsap.context(() => {
-        // ScrollTrigger.create({
-        //   trigger: containerRef.current,
-        //   start: "top+=150 top",
-        //   end: "+=200",
-        //   pin: true,
-        // });
+        ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: "top+=100 top-=3%",
+          end: "bottom-=25% 50%",
+          pin: true,
+          scrub: 1,
+        });
 
         gsap.set(unitRef.current, { opacity: 1 });
 
@@ -73,20 +76,28 @@ function Section02() {
           opacity: 0,
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top+=150 top",
-            end: "+=200",
-            pin: true,
+            start: "top+=100 top-=3%",
+            end: "bottom-=25% 50%",
             scrub: true,
             markers: true,
           },
         });
       }, containerRef);
 
-      return () => ctx.revert();
+      return () => ctx.revert(); // ✅ 미디어 해제 시 정리
     });
 
-    return () => cancelAnimationFrame(id);
+    mm.add("(max-width: 768px)", () => {
+      const ctx = gsap.context(() => {
+        // 모바일용 ScrollTrigger 설정 (필요 시)
+      }, containerRef);
+
+      return () => ctx.revert(); // ✅ 미디어 해제 시 정리
+    });
+
+    return () => mm.revert(); // ✅ 컴포넌트 언마운트 시 전체 정리
   }, []);
+
 
   return (
     <section id={styles.Section02}>
@@ -110,8 +121,8 @@ function Section02() {
             <article>
               <ImgTag clsName={styles.icon} src={icon01} alt={'잔량 표시'} />
               <p>
-                액상 부족 시 필터에서 올라오는 불편한 미각적 <br />
-                경험을 해소하기 위해 다이나믹 맥스는 <span>직관 <br />
+                액상 부족 시 필터에서 올라오는 불편한 미각적
+                경험을 해소하기 위해 다이나믹 맥스는 <span>직관
                 적인 용량 표시</span>로 잔량 확인이 가능합니다.
               </p>
             </article>
