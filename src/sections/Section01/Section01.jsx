@@ -206,7 +206,7 @@ function Section01() {
             start: 'top+=10% 30%',
             end: `bottom-=30% 50%`,
             scrub: 2,
-            markers: true,
+            // markers: true,
           },
         });
 

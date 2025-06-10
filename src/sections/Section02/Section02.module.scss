@@ -8,6 +8,15 @@
   background: url("../../img/Sec2/sec2_bg.jpg") no-repeat right center / cover;
   width: 100%; position: relative; height: auto;
   padding: 19rem 0 20rem;
+
+  :global(.containerV1) {position: relative; z-index: 2;}
+
+  .scrollout_bg {
+    position: absolute; z-index: 1;
+    height: 100%; top: 0; left: 0;
+    background: #000;
+    filter: blur(10px);
+  }
 }
 
 
@@ -44,8 +53,9 @@
 
       p {
         font-size: clamp(18px, 2rem, 23px); line-height: 1.5; color: #fff;
+        flex: 1;
 
-        span {font-size: inherit; color: var(--main-color4); font-weight: 500;}
+        span {font-size: inherit; color: var(--main-color4); font-weight: 600;}
       }
    }
 
@@ -58,6 +68,15 @@
 
 
 // 스크롤 애니메이션
+
+.pin_wrapper .scAni.scrollout_bg {
+  width: 100%;
+}
+
+.pin_wrapper .scAni.scrollout_bg.animate[data-scroll="in"] {
+  width: 0%; transition: 3s 0.2s ease-out;
+}
+
 .scAni.titleBox {
 
    h2 {
@@ -84,18 +103,17 @@
    p {transform: translateY(0%); opacity: 1; transition-delay: 0.1s;}
 }
 
-// 스크롤 애니메이션
-.scAni.itemBox {
+// .scAni.itemBox {
 
-   article {opacity: 0; transform: translateY(15%); transition: 0.3s;}
-}
+//    article {opacity: 0; transform: translateY(15%); transition: 0.3s;}
+// }
 
-.scAni.itemBox.animate[data-scroll="in"] {
+// .scAni.itemBox.animate[data-scroll="in"] {
 
-   article {opacity: 1; transform: translateY(0);}
-   article:nth-child(1) {transition-delay: 0.1s;}
-   article:nth-child(2) {transition-delay: 0.3s;}
-}
+//    article {opacity: 1; transform: translateY(0);}
+//    article:nth-child(1) {transition-delay: 0.1s;}
+//    article:nth-child(2) {transition-delay: 0.3s;}
+// }
 
 
 

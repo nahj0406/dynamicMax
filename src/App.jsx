@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef, Suspense } from 'react'
+import { useEffect, Suspense, useRef } from 'react'
 import './css/App.css'
 import './css/style.css'
 import { Route, Routes, Link } from 'react-router-dom'
-import {motion, useMotionValue, useTransform} from 'framer-motion';
+// import {motion, useMotionValue, useTransform} from 'framer-motion';
 import Lenis from '@studio-freight/lenis';
 
 // 커스텀 컴포넌트
@@ -29,9 +29,40 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
 
+  const prevIsMobile = useRef(window.innerWidth <= 768);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  })
+  }, []);
+
+  useEffect(() => {
+
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 768;
+
+      // 현재 상태와 이전 상태가 다르면 새로고침
+      if (isMobile !== prevIsMobile.current) {
+        window.location.reload();
+      }
+
+      // 현재 상태 저장
+      prevIsMobile.current = isMobile;
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => { // gsap 업데이트
+    let resizeTimeout;
+    const onResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => ScrollTrigger.update(), 200);
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   useEffect(() => { // lenis 적용, 첫화면에서 스크롤 제어
     let lenis;
