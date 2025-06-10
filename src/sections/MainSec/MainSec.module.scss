@@ -26,6 +26,21 @@
    overflow: hidden;
 }
 
+.startBanner { // 초기 화면
+   position: absolute; width: 100%; height: 100%;
+   bottom: 0; left: 0; background: transparent;
+   overflow: hidden; z-index: 1000;
+   display: grid; grid-template-columns: repeat(7, 1fr);
+   perspective: 600px;
+
+   .banner_piece {
+      background: #000;
+      // border-right: 1px solid #333;
+      height: 100%;
+      transform: translateY(0%);
+   }
+}
+
 .banner_title {@include banner_title1_fontSizeColor;}
 
 .banner_txtBox {
@@ -36,9 +51,7 @@
 
    > * {line-height: 1; cursor: default; color: #fff;}
 
-   .unit_box {
-      position: relative;
-   }
+   
 
    .banner_title_txt1 {
       width: min(calc(1700 / 1920 * 100vw), 1700px);
@@ -47,15 +60,26 @@
       -webkit-background-clip: text;
       background-image: url('../../img/MainSec/main_text_bg2.png');
       background-position: center center;
-      background-size: 1700px;
+      background-size: min(calc(1700 / 1920 * 100vw), 1700px);
       background-repeat: no-repeat;
       line-height: 1;
       position: relative; z-index: 2;
    }
 
+   .unit_box {
+      position: relative; width: fit-content;
+      margin-left: auto;
+      // transform: translate(3.5%, -25%);
+      transform: translate(-3.5%, -25%);
+
+      .scale_txt {
+         position: absolute; left: 0; top: 0;
+         z-index: 2; transform: scale(1); opacity: 0;
+      }
+   }
+
    .banner_title_txt2 {
       font-size: min(calc(250 / 1920 * 100vw), 250px); text-align: right;
-      transform: translate(3.5%, -25%);
       color: transparent;
       background-image: linear-gradient(90deg, #00CBE5, #49BDB6, #9029EE, #FF6B00, #FF01E1, #FF3F28);
       background-clip: text;
@@ -64,9 +88,10 @@
       background-repeat: no-repeat;
       width: fit-content;
       // min-width: min(calc(700 / 1920 * 100vw), 600px);
-      margin-left: auto;
       padding-right: 0.1em;
       opacity: 0;
+      line-height: 1;
+      transform: scale(1.2);
    }
 }
 
@@ -86,48 +111,46 @@
 
 .product {
    position: absolute; top: 50%; left: 50%;
-   transform: translate(-50%, -45%); z-index: 10;
+   transform: translate(-50%, -45%) scale(1.2); z-index: 10;
    width: fit-content; opacity: 0;
 
-   img {width: max(300px, min(calc(448 / 992 * 100vw), 448px));}
+   img {width: max(230px, min(calc(448 / 992 * 100vw), 448px));}
+}
+
+.scroll_down {
+   position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+   z-index: 10; opacity: 0;
+
+   > p {
+      font-size: clamp(14px, 1.4rem, 16px); color: #fff; font-weight: 300;
+      letter-spacing: 2px;
+   }
+
+   .line {
+      position: relative; width: 1px;
+      height: clamp(50px, 8rem, 120px);
+      margin: 5px auto 0; overflow: hidden;
+      background: #333;
+
+      &::before {
+         content:''; position: absolute; bottom: 0; left: 0;
+         width: 100%; height: 100%;
+         background: linear-gradient(transparent, #fff, #fff, transparent);
+         animation: downLine 2s linear infinite;
+      }
+   }
+
+}
+
+@keyframes downLine {
+   0% {transform-origin: top; transform: scaleY(0);}
+   50% {transform-origin: top; transform: scaleY(1);}
+   51% {transform-origin: bottom; transform: scaleY(1);}
+   100% {transform-origin: bottom; transform: scaleY(0);}
 }
 
 
 // 애니메이션 keyframes ---------------------------------------
-
-.startBanner {
-   position: absolute; width: 100%; height: 100%;
-   bottom: 0; left: 0; background: transparent;
-   overflow: hidden; z-index: 1000;
-   display: grid; grid-template-columns: repeat(7, 1fr);
-   perspective: 600px;
-
-   .banner_piece {
-      background: #111;
-      // border-right: 1px solid #333;
-      height: 100%;
-      transform: translateY(0%);
-   }
-}
-
-.startBanner {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  bottom: 0;
-  left: 0;
-  background: transparent;
-  overflow: hidden;
-  z-index: 1000;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  perspective: 600px;
-}
-.startBanner .banner_piece {
-  background: #111;
-  height: 100%;
-  transform: translateY(0%);
-}
 
 .bannerStart .startBanner {
   animation: startBaaner 0.2s 1.5s forwards;
@@ -135,20 +158,30 @@
 .bannerStart .startBanner .banner_piece {
   animation: piece_move 0.2s calc(var(--i-delay) * 0.1s) forwards;
 }
-.bannerStart .banner_txtBox .unit_box::before {
-  animation: before_txt 0.5s forwards ease;
+@media (min-width: 769px) {
+   .bannerStart .banner_txtBox {
+     animation: zIndex 0.2s 1.6s forwards;
+   }
 }
 .bannerStart .banner_txtBox .banner_title_txt1 {
   animation: banner_title_text1 0.5s forwards ease;
 }
 .bannerStart .banner_txtBox .banner_title_txt2 {
-  animation: banner_title_text2 0.5s 2s forwards ease;
+   animation: banner_title_txt2 0.3s 2.2s forwards ease-out;
 }
+.bannerStart .banner_txtBox .unit_box .scale_txt {
+   animation: banner_title_txt2_scale 0.8s 2.3s forwards;
+}
+
 .bannerStart .sub_txtBox {
   animation: zIndex 1s 1.1s forwards;
 }
 .bannerStart .product {
-  animation: product 0.5s 1.7s forwards;
+  animation: product 0.3s 1.8s forwards;
+}
+
+.bannerStart .scroll_down {
+   animation: scroll_down_opacity 1.5s 2.8s forwards;
 }
 
 
@@ -159,24 +192,20 @@
 @keyframes zIndex {to {z-index: 9;}}
 @keyframes startBaaner {to {visibility: hidden; z-index: -1;}}
 @keyframes piece_move {to {transform: translateY(100%);}}
-
 @keyframes banner_title_text1 {to {color: transparent;}}
-@keyframes banner_title_text2 {to {transform: translate(-3.5%, -25%); opacity: 1;}}
-@keyframes before_txt {to {left: 2px;}}
-@keyframes product {
-   to {opacity: 1; transform: translate(-50%, -50%);}
+@keyframes banner_title_txt2 {to {transform: scale(1); opacity: 1;}}
+@keyframes banner_title_txt2_scale {
+   0% {transform: scale(1.1); opacity: 1;}
+   50% {transform: scale(1.2); opacity: 0;}
+   100% {transform: scale(1.2); opacity: 0;}
 }
+@keyframes product {to {opacity: 1; transform: translate(-50%, -50%) scale(1);}}
+@keyframes scroll_down_opacity {to {opacity: 1;}}
 
 // 애니메이션 keyframes ---------------------------------------
 
 
 // 반응형 --------------------------------------
-
-@media (min-width: 769px) {
-   .bannerStart .banner_txtBox {
-     animation: zIndex 0.2s 1.6s forwards;
-   }
-}
 
 
 @media (max-width: 1200px) {
@@ -190,6 +219,11 @@
    .banner_txtBox {
       top: 50%;
       animation: mobtxtBox 0.5s 1.6s forwards;
+
+      .unit_box {
+         transform: translate(12.5%, -250%);
+         margin: 0 auto 0 0;
+      }
    }
    // z-index: 11; 
    .sub_txtBox {display: none;}

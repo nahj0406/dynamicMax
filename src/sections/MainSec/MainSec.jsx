@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, Suspense } from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
-import {motion, useMotionValue, useTransform} from 'framer-motion';
+// import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './MainSec.module.css'
 
 
@@ -44,11 +44,12 @@ function MainSec() {
         <StartBanner />
   
         <div className={styles.banner_txtBox}>
+          <h1 className={`${styles.banner_title_txt1} ${styles.banner_title} HemiHead`}>DYNAMIC</h1>
+
           <div className={styles.unit_box}>
-            <h1 className={`${styles.banner_title_txt1} ${styles.banner_title} HemiHead`}>DYNAMIC</h1>
+            <h1 className={`${styles.banner_title_txt2} ${styles.scale_txt} HemiHead`}>max</h1> {/* flamer-motion 처리하기 */}
+            <h1 className={`${styles.banner_title_txt2} HemiHead`}>max</h1> {/* flamer-motion 처리하기 */}
           </div>
-  
-          <h1 className={`${styles.banner_title_txt2} HemiHead`}>max</h1> {/* flamer-motion 처리하기 */}
         </div>
   
         <div className={styles.sub_txtBox}>
@@ -58,6 +59,11 @@ function MainSec() {
         <figure className={styles.product}>
           <ImgTag src={mainProduct} alt={'다이나믹 맥스 제품 이미지'} />
         </figure>
+
+        <div className={styles.scroll_down}>
+          <p>SCROLL DOWN</p>
+          <div className={styles.line}></div>
+        </div>
       </section>
 
       <Section01 />
