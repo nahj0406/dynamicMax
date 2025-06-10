@@ -63,7 +63,7 @@
   min-width: 7.4rem;
 }
 .itemBox article p {
-  font-size: clamp(14px, max(18px, 2rem), 23px);
+  font-size: clamp(18px, 2rem, 23px);
   line-height: 1.5;
   color: #fff;
 }
@@ -116,21 +116,10 @@
 }
 
 @media (max-width: 1230px) {
-  .itemBox article {
-    padding: 3rem max(30px, 6rem);
-  }
   .itemBox article p {
     font-size: max(14px, 2rem);
     line-height: 1.5;
     color: #fff;
-  }
-  .itemBox article p br {
-    display: none;
-  }
-  .itemBox article p span {
-    font-size: inherit;
-    color: var(--main-color4);
-    font-weight: 500;
   }
 }
 @media (max-width: 769px) {

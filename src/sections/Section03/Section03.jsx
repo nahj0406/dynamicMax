@@ -37,9 +37,8 @@ function Section03() {
 
   const containerRef = useRef(null);
   const containerV1Ref = useRef(null);
+  const triggerBgRef = useRef(null);
   const triggerRef = useRef(null);
-  const content01Ref = useRef(null);
-  const content02Ref = useRef(null);
   const slideRef = useRef(null);
 
   useEffect(() => {
@@ -73,55 +72,88 @@ function Section03() {
 
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const contentHeight = containerV1Ref.current.offsetHeight;
-      const containerRefHeight = containerRef.current.offsetHeight;
-      const triggerHeight = triggerRef.current.offsetHeight;
 
-      const totalHeight = contentHeight + triggerHeight;
-      containerRef.current.style.height = `${totalHeight}px`;
+    const mm = gsap.matchMedia();
 
-      console.log(containerRefHeight);
+    // const contentHeight = containerV1Ref.current.offsetHeight;
+    // const containerRefHeight = containerRef.current.offsetHeight;
+    const triggerTop = triggerRef.current.getBoundingClientRect().top;
+    const triggerHeight = triggerRef.current.offsetHeight;
+    const viewportHeight = window.innerHeight;
 
-      // pin 설정
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "top+=100 top-=3%",
-        // end: `+=${triggerHeight}`,
-        end: `bottom top`,
-        pin: true,
-        markers: true,
-        invalidateOnRefresh: true,
-      });
+    const centerY = (viewportHeight / 2);
+    // const centerY = (viewportHeight / 2) - (triggerHeight / 2);
 
-      // timeline 생성
-      const tl = gsap.timeline({
-        scrollTrigger: {
+    // const totalHeight = contentHeight + triggerHeight;
+    // containerRef.current.style.height = `${totalHeight}px`;
+
+    mm.add("(min-width: 769px)", () => {
+      const ctx = gsap.context(() => {
+        // pin 설정
+        ScrollTrigger.create({
           trigger: containerRef.current,
           start: "top+=100 top-=3%",
-          end: `bottom top`,  // pin과 동일한 종료 지점
-          scrub: 1,
+          // end: `+=${triggerHeight}`,
+          // end: `bottom top`,
+          end: `+=4000`,
+          pin: true,
           // markers: true,
           invalidateOnRefresh: true,
-        },
-      });
+        });
 
-      // 요소 위치 초기화 → 자연스럽게 시작
-      tl.fromTo(triggerRef.current,
-        { y: triggerHeight },
-        { y: -(triggerHeight - 200) }
-      );
+        gsap.to(triggerBgRef.current, {
+          backgroundColor: "rgba(0,0,0,0.8)", // 원하는 색상으로 변경
+          duration: 1, // 스크롤에 의해 자동 조절되므로 이 값은 참고용
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "top+=10% top",
+            scrub: 1,
+            markers: true, 
+          },
+        });
 
-      // slideRef 슬라이드 애니메이션
-      tl.fromTo(slideRef.current,
-        { xPercent: 50 },
-        { xPercent: -20 },
-        ">" // 이전 애니메이션과 동시에 시작하려면 "<", 그 이후에 하려면 ">"
-      );
+        // timeline 생성
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top+=100 top-=3%",
+            // end: `bottom top`,
+            end: `+=4000`,  
+            scrub: 1,
+            // markers: true,
+            invalidateOnRefresh: true,
+          },
+        });
 
-    }, containerRef);
+        // 요소 위치 초기화 → 자연스럽게 시작
+        tl.fromTo(triggerRef.current,
+          // { y: triggerHeight },
+          { y: (triggerHeight) },
+          { y: -(viewportHeight + 100)},
+          // { y: -(triggerHeight * 1.7)}
+        );
 
-    return () => ctx.revert();
+        // slideRef 슬라이드 애니메이션
+        tl.fromTo(slideRef.current,
+          { xPercent: 50 },
+          { xPercent: -20 },
+          ">" // 이전 애니메이션과 동시에 시작하려면 "<", 그 이후에 하려면 ">"
+        );
+      }, containerRef);
+
+      return () => ctx.revert(); // ✅ 미디어 해제 시 정리
+    });
+
+    mm.add("(max-width: 768px)", () => {
+      const ctx = gsap.context(() => {
+        // 모바일용 ScrollTrigger 설정 (필요 시)
+      }, containerRef);
+
+      return () => ctx.revert(); // ✅ 미디어 해제 시 정리
+    });
+
+    return () => mm.revert();
   }, []);
 
 
@@ -178,10 +210,12 @@ function Section03() {
             </figure>
       
           </section>
+
+          <div className={styles.triggerBg} ref={triggerBgRef}></div>
     
           <section className={styles.triggerBox} ref={triggerRef}>
             
-            <article className={styles.content01} ref={content01Ref}>
+            <article className={styles.content01}>
               <figure className={styles.iconBox}>
                 <ImgTag clsName={styles.img} src={coilIcon} alt={'코일 아이콘'} />
                 <ImgTag clsName={styles.img} src={plusIcon} alt={'플러스 아이콘'} />
@@ -195,7 +229,7 @@ function Section03() {
               </p>
             </article>
     
-            <article className={styles.content02} ref={content02Ref}>
+            <article className={styles.content02}>
               <figure className={styles.iconBox}>
                 <ImgTag clsName={styles.img} src={worldImg} alt={'월드 인터네셔널 이미지'} />
               </figure>
@@ -224,7 +258,6 @@ function Section03() {
                 })
               }
             </article>
-    
     
           </section>
         </div>

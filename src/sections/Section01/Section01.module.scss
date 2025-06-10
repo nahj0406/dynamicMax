@@ -1,4 +1,3 @@
-
 // 스크롤 애니메이션
 .scAni {
    // opacity: 0;
@@ -8,14 +7,14 @@
       :global(.char) {
          opacity: 0;
          display: inline-block;
-         transform: scale(1.2);
+         transform: scale(2);
       }
    }
 
    .tagSecd {
       span {display: inline-block; opacity: 0; transition: 0.5s;}
       span:nth-child(1) {transform: translateY(-10%);}
-      span:nth-child(2) {transform: scale(1);}
+      span:nth-child(2) {transform: scale(1); transition: 1s;}
       span:nth-child(3) {transform: translateY(-10%);}
    }
 }
@@ -35,7 +34,7 @@
    .tagSecd {
       span {opacity: 1;}
       span:nth-child(1) {transform: translateY(0%); transition-delay: 1s;}
-      span:nth-child(2) {transform: scale(1); transition-delay: 1.2s;}
+      span:nth-child(2) {transform: scale(1); transition-delay: 1.5s;}
       span:nth-child(3) {transform: translateY(0%); transition-delay: 1.3s;}
    }
 }
@@ -100,11 +99,11 @@
    }
 
    .titleBox {
-      position: absolute; bottom: 8rem; left: 50%;
+      position: absolute; bottom: 8rem; left: 50%; width: 100%;
       transform: translateX(-50%); z-index: 3;
 
       > h3 {
-         font-size: 4rem;
+         font-size: clamp(20px, 4rem, 42px);
 
          .colorSpan {font-weight: 700; font-size: 1.2em;}
       }
@@ -128,5 +127,7 @@
       .Broken_bg {
          height: var(--canvas-H);
       }
+
+      .titleBox {padding: 0 15px;}
    }
 }

@@ -48,7 +48,8 @@ function App() {
         smoothWheel: true,
         smoothTouch: true,
         wheelMultiplier: 1,
-        touchMultiplier: 0.5,
+        touchMultiplier: 0.2,
+        // touchMultiplier: 0.5,
       });
 
       function raf(time) {
