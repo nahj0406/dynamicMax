@@ -1,47 +1,40 @@
-.scAni {
-  transition: 0.5s 0.3s;
-}
-.scAni h3 :global(.char) {
+.title_container .scAni.titleBox h3 :global(.char) {
   opacity: 0;
   display: inline-block;
   transform: scale(2);
 }
-.scAni .tagSecd span {
+.title_container .scAni.titleBox .tagSecd span {
   display: inline-block;
   opacity: 0;
   transition: 0.5s;
 }
-.scAni .tagSecd span:nth-child(1) {
+.title_container .scAni.titleBox .tagSecd span:nth-child(1) {
   transform: translateY(-10%);
 }
-.scAni .tagSecd span:nth-child(2) {
+.title_container .scAni.titleBox .tagSecd span:nth-child(2) {
   transform: scale(1);
   transition: 1s;
 }
-.scAni .tagSecd span:nth-child(3) {
+.title_container .scAni.titleBox .tagSecd span:nth-child(3) {
   transform: translateY(-10%);
 }
-
-.scAni.animate[data-scroll=in] {
-  transform: translateY(0);
-}
-.scAni.animate[data-scroll=in] h3 :global(.char) {
+.title_container .scAni.titleBox.animate[data-scroll=in] h3 :global(.char) {
   opacity: 1;
   transition: 0.5s calc(var(--char-index) * 0.1s);
   transform: scale(1);
 }
-.scAni.animate[data-scroll=in] .tagSecd span {
+.title_container .scAni.titleBox.animate[data-scroll=in] .tagSecd span {
   opacity: 1;
 }
-.scAni.animate[data-scroll=in] .tagSecd span:nth-child(1) {
+.title_container .scAni.titleBox.animate[data-scroll=in] .tagSecd span:nth-child(1) {
   transform: translateY(0%);
   transition-delay: 1s;
 }
-.scAni.animate[data-scroll=in] .tagSecd span:nth-child(2) {
+.title_container .scAni.titleBox.animate[data-scroll=in] .tagSecd span:nth-child(2) {
   transform: scale(1);
   transition-delay: 1.5s;
 }
-.scAni.animate[data-scroll=in] .tagSecd span:nth-child(3) {
+.title_container .scAni.titleBox.animate[data-scroll=in] .tagSecd span:nth-child(3) {
   transform: translateY(0%);
   transition-delay: 1.3s;
 }
@@ -57,7 +50,7 @@
   z-index: 1;
   top: 70rem;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 50%);
   font-size: min(15.625vw, 300px);
   color: #282828;
   line-height: 1;
@@ -113,14 +106,15 @@
 }
 .canvas_wrapper .titleBox {
   position: absolute;
-  bottom: 8rem;
+  bottom: min(11.4583333333vw, 220px);
   left: 50%;
   width: 100%;
-  transform: translateX(-50%);
+  transform: translate(-50%, 0);
   z-index: 3;
+  margin: 0;
 }
 .canvas_wrapper .titleBox > h3 {
-  font-size: clamp(20px, 4rem, 42px);
+  font-weight: 700;
 }
 .canvas_wrapper .titleBox > h3 .colorSpan {
   font-weight: 700;
@@ -128,6 +122,9 @@
 }
 
 @media (max-width: 768px) {
+  .title_bg {
+    font-size: min(19.5058517555vw, 150px);
+  }
   .canvas_wrapper {
     --canvas-H: max(500px, min(calc(800 / 769 * 100vw), 800px));
     height: var(--canvas-H);
@@ -145,5 +142,23 @@
   }
   .canvas_wrapper .titleBox {
     padding: 0 15px;
+  }
+  .scAni.canvas_wrapper .Broken_bg {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  .scAni.canvas_wrapper .titleBox {
+    opacity: 0;
+    transform: translate(-50%, -15%);
+  }
+  .scAni.canvas_wrapper.animate[data-scroll=in] .Broken_bg {
+    opacity: 1;
+    transform: scale(1);
+    transition: 0.2s 0.5s;
+  }
+  .scAni.canvas_wrapper.animate[data-scroll=in] .titleBox {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    transition: 0.5s 0.5s;
   }
 }/*# sourceMappingURL=Section01.module.css.map */

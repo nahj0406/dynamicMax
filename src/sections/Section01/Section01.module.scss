@@ -1,41 +1,40 @@
 // 스크롤 애니메이션
-.scAni {
-   // opacity: 0;
-   transition: 0.5s 0.3s;
 
-   h3 {
-      :global(.char) {
-         opacity: 0;
-         display: inline-block;
-         transform: scale(2);
+.title_container {
+   .scAni.titleBox {
+
+      h3 {
+         :global(.char) {
+            opacity: 0;
+            display: inline-block;
+            transform: scale(2);
+         }
+      }
+
+      .tagSecd {
+         span {display: inline-block; opacity: 0; transition: 0.5s;}
+         span:nth-child(1) {transform: translateY(-10%);}
+         span:nth-child(2) {transform: scale(1); transition: 1s;}
+         span:nth-child(3) {transform: translateY(-10%);}
       }
    }
 
-   .tagSecd {
-      span {display: inline-block; opacity: 0; transition: 0.5s;}
-      span:nth-child(1) {transform: translateY(-10%);}
-      span:nth-child(2) {transform: scale(1); transition: 1s;}
-      span:nth-child(3) {transform: translateY(-10%);}
-   }
-}
+   .scAni.titleBox.animate[data-scroll="in"] {
 
-.scAni.animate[data-scroll="in"] {
-   // opacity: 1;
-   transform: translateY(0);
-
-   h3 {
-      :global(.char) {
-         opacity: 1;
-         transition: 0.5s calc(var(--char-index) * 0.1s);
-         transform: scale(1);
+      h3 {
+         :global(.char) {
+            opacity: 1;
+            transition: 0.5s calc(var(--char-index) * 0.1s);
+            transform: scale(1);
+         }
       }
-   }
 
-   .tagSecd {
-      span {opacity: 1;}
-      span:nth-child(1) {transform: translateY(0%); transition-delay: 1s;}
-      span:nth-child(2) {transform: scale(1); transition-delay: 1.5s;}
-      span:nth-child(3) {transform: translateY(0%); transition-delay: 1.3s;}
+      .tagSecd {
+         span {opacity: 1;}
+         span:nth-child(1) {transform: translateY(0%); transition-delay: 1s;}
+         span:nth-child(2) {transform: scale(1); transition-delay: 1.5s;}
+         span:nth-child(3) {transform: translateY(0%); transition-delay: 1.3s;}
+      }
    }
 }
 
@@ -55,7 +54,7 @@
 // 후방 배경 텍스트
 .title_bg {
    position: absolute; z-index: 1;
-   top: 70rem; left: 50%; transform: translate(-50%, -50%);
+   top: 70rem; left: 50%; transform: translate(-50%, 50%);
    font-size: min(calc(300 / 1920 * 100vw), 300px);
    color: #282828; line-height: 1; opacity: 0.3;
 }
@@ -99,11 +98,12 @@
    }
 
    .titleBox {
-      position: absolute; bottom: 8rem; left: 50%; width: 100%;
-      transform: translateX(-50%); z-index: 3;
+      position: absolute; bottom: min(calc(220 / 1920 * 100vw), 220px); left: 50%; width: 100%;
+      transform: translate(-50%, 0); z-index: 3; margin: 0;
 
       > h3 {
-         font-size: clamp(20px, 4rem, 42px);
+         font-weight: 700;
+         // font-size: clamp(20px, 4rem, 42px);
 
          .colorSpan {font-weight: 700; font-size: 1.2em;}
       }
@@ -114,6 +114,7 @@
 
 // 반응형 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @media (max-width: 768px) {
+   .title_bg {font-size: min(calc(150 / 769 * 100vw), 150px);}
    .canvas_wrapper {
       --canvas-H: max(500px, min(calc(800 / 769 * 100vw), 800px));
 
@@ -130,4 +131,26 @@
 
       .titleBox {padding: 0 15px;}
    }
+
+   // 스크롤 애니메이션
+   .scAni.canvas_wrapper {
+
+      .Broken_bg {opacity: 0; transform: scale(1.5);}
+      .titleBox {opacity: 0; transform: translate(-50%, -15%);}
+   }
+
+   .scAni.canvas_wrapper.animate[data-scroll="in"] {
+
+      .Broken_bg {
+         opacity: 1; transform: scale(1);
+         transition: 0.2s 0.5s;
+      }
+
+      .titleBox {
+         opacity: 1; transform: translate(-50%, 0);
+         transition: 0.5s 0.5s;
+      }
+   }
+
+   
 }

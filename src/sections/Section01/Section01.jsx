@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef, Suspense, useLayoutEffect } from 'react'
+import { useEffect, useRef, Suspense, useLayoutEffect } from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
-import {motion, useMotionValue, useTransform} from 'framer-motion';
+// import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './Section01.module.css'
 import ImgTag from '../../components/ImgTag/ImgTag'
 import ScrollOut from 'scroll-out';
@@ -10,7 +10,8 @@ import Broken_bg from '../../img/Sec1/sec1_broken_bg.png';
 
 // js 라이브러리
 import { Scene, PerspectiveCamera, WebGLRenderer } from 'three';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
+// useThree
 import { useGLTF, Environment, OrbitControls } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
@@ -148,7 +149,9 @@ function Model({ url, sectionRef, BrokenRef, titleBoxRef }) {
 
 function Section01() {
 
+  const sec01Ref = useRef(null);
   const sectionRef = useRef(null);
+  const titleBgRef = useRef(null);
   const BrokenRef = useRef(null);
   const titleBoxRef = useRef(null);
 
@@ -195,6 +198,19 @@ function Section01() {
           // scrub: true, // 필요하면 부드럽게 고정 (주로 애니메이션용)
           // markers: true,
         });
+
+        gsap.to(titleBgRef.current, {
+          y: -400,
+          scrollTrigger: {
+            trigger: sec01Ref.current,
+            start: 'top+=10% 30%',
+            end: `bottom-=30% 50%`,
+            scrub: 2,
+            markers: true,
+          },
+        });
+
+
       }, sectionRef);
 
       return () => ctx.revert(); // ✅ 미디어 해제 시 정리
@@ -213,10 +229,10 @@ function Section01() {
   }, []);
 
   return (
-    <section id={styles.Section01}>
-      <h2 className={`${styles.title_bg} HemiHead`}>DYNAMIC</h2>
+    <section id={styles.Section01} ref={sec01Ref}>
+      <h2 className={`${styles.title_bg} HemiHead`} ref={titleBgRef}>DYNAMIC</h2>
 
-      <section className='containerV1'>
+      <section className={`${styles.title_container} containerV1`}>
   
         <div className={`${styles.titleBox} ${styles.scAni}`}>
           <h3 data-splitting>더욱 강력해져 돌아온</h3>
@@ -224,8 +240,8 @@ function Section01() {
         </div>
       </section>
 
-      <div className={styles.canvas_wrapper} ref={sectionRef}>
-        <div className={styles.Broken_bg} ref={BrokenRef}></div>
+      <div className={`${styles.canvas_wrapper} ${styles.scAni}`} ref={sectionRef}>
+        <div className={`${styles.Broken_bg}`} ref={BrokenRef}></div>
 
         <div className={styles.mob_touch_clear}></div>
         <Canvas
@@ -259,10 +275,10 @@ function Section01() {
           <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
         </Canvas>
 
-        <div className={styles.titleBox} ref={titleBoxRef}>
-          <h3>
+        <div className={`${styles.titleBox} ${styles.scAni}`} ref={titleBoxRef}>
+          <h3 className='Gmarket'>
             업계 10년 경력의 베테랑들이 <br />
-            만들어낸 새로운 <span className={`${styles.colorSpan}`}>패러다임</span>을 확인하세요!
+            만들어낸 새로운 <span className={`${styles.colorSpan} Gmarket`}>패러다임</span>을 확인하세요!
           </h3>
         </div>
       </div>
