@@ -1,7 +1,7 @@
 #Section02 {
   position: relative;
   background: #131212;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .pin_wrapper {
@@ -103,18 +103,6 @@
    p {transform: translateY(0%); opacity: 1; transition-delay: 0.1s;}
 }
 
-// .scAni.itemBox {
-
-//    article {opacity: 0; transform: translateY(15%); transition: 0.3s;}
-// }
-
-// .scAni.itemBox.animate[data-scroll="in"] {
-
-//    article {opacity: 1; transform: translateY(0);}
-//    article:nth-child(1) {transition-delay: 0.1s;}
-//    article:nth-child(2) {transition-delay: 0.3s;}
-// }
-
 
 
 @media (max-width: 1230px) {
@@ -129,9 +117,8 @@
   }
 }
 
-@media (max-width: 769px) {
+@media (max-width: 768px) {
   .product {
-    transform: translateX(-22%);
     
     img {width: min(calc(860 / 769 * 100vw), 860px); position: relative; z-index: 1;}
 
@@ -149,6 +136,32 @@
       p {flex: 1;}
     }
 
+  }
+
+
+  // scroll anmation
+  .scAni.product {
+    transform: translateX(-50%);
+
+    .scroll_unit {opacity: 1;}
+  }
+
+  .scAni.product.animate[data-scroll="in"] {
+    transform: translateX(-22%); transition: 1s 0.2s;
+
+    .scroll_unit {opacity: 0; transition: 0.5s 0.4s;}
+  }
+
+  .scAni.itemBox {
+
+    article {opacity: 0; transform: translateY(15%); transition: 0.3s;}
+  }
+
+  .scAni.itemBox.animate[data-scroll="in"] {
+
+    article {opacity: 1; transform: translateY(0);}
+    article:nth-child(1) {transition-delay: 0.5s;}
+    article:nth-child(2) {transition-delay: 0.6s;}
   }
 }
 

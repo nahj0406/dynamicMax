@@ -2,7 +2,7 @@
   position: relative;
   background: #201E1F;
   padding: 12.7rem 0 12.9rem;
-  overflow: hidden;
+  overflow: hidden; z-index: 2;
 
   :global(.containerV1) {position: relative; z-index: 2;}
 }

@@ -55,6 +55,9 @@
   .containerV1 {
     padding: 0 15px;
   }
+  .titleBox h2 {
+    left: 0;
+  }
 }
 @media (max-width: 680px) {
   .titleBox h2 {

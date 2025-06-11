@@ -62,9 +62,12 @@ function Section02() {
   useLayoutEffect(() => {
     const mm = gsap.matchMedia();
 
+    const viewportHeight = window.innerHeight;
+
     mm.add("(min-width: 769px)", () => {
       const startData = `top+=100 top-=3%`;
-      const endData = `bottom-=15% 50%`;
+      const endData = `+=${viewportHeight}`;
+      // const endData = `bottom-=15% 50%`;
 
       const ctx = gsap.context(() => {
         ScrollTrigger.create({
@@ -96,35 +99,9 @@ function Section02() {
     });
 
     mm.add("(max-width: 768px)", () => {
-      const startData = `top+=100 top-=3%`;
-      const endData = `bottom-=15% top`;
-
       const ctx = gsap.context(() => {
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: startData,
-          end: endData,
-          pin: true,
-          scrub: 1,
-        });
 
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: startData,
-            end: endData,
-            scrub: true,
-            markers: true,
-          },
-        });
-
-        tl.fromTo(productRef.current, {x: '-66%',}, {x: '-22%',});
-        tl.fromTo(unitRef.current, {opacity: 1,}, { opacity: 0}, '+=0.5');
-        tl.fromTo(item01Ref.current, {opacity: 0, y: 100,}, { opacity: 1, y: 0,});
-        tl.fromTo(item02Ref.current, {opacity: 0, y: 100,}, { opacity: 1, y: 0,});
-
-      }, containerRef);
-
+      });
       return () => ctx.revert(); // ✅ 미디어 해제 시 정리
     });
 
@@ -145,15 +122,15 @@ function Section02() {
             <h2 data-splitting className='HemiHead'>VISIBILITY</h2>
           </div>
   
-          <figure className={styles.product} ref={productRef}>
+          <figure className={`${styles.product} ${styles.scAni}`} ref={productRef}>
             <ImgTag clsName={styles.img} src={Product01} alt={'다이나믹 맥스 충전량 표시'} />
-            <div className={styles.scroll_unit} ref={unitRef}></div>
+            <div className={`${styles.scroll_unit}`} ref={unitRef}></div>
           </figure>
   
   
     
           <div className={`${styles.itemBox} ${styles.scAni}`}>
-            <article ref={item01Ref}>
+            <article ref={item01Ref} className={`${styles.scAni}`}>
               <ImgTag clsName={styles.icon} src={icon01} alt={'잔량 표시'} />
               <p>
                 액상 부족 시 필터에서 올라오는 불편한 미각적
@@ -162,7 +139,7 @@ function Section02() {
               </p>
             </article>
   
-            <article ref={item02Ref}>
+            <article ref={item02Ref} className={`${styles.scAni}`}>
               <ImgTag clsName={styles.icon} src={icon02} alt={'배터리 표시'} />
               <p>
                 다이나믹 맥스는 <span>배터리 상태를 수치화</span>하여 사용자가

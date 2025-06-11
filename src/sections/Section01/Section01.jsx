@@ -23,7 +23,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-function Model({ url, sectionRef, BrokenRef, titleBoxRef }) {
+function Model({ url, sectionRef, BrokenRef, titleBoxRef, viewportHeight }) {
 
   const group = useRef();
   const { scene, animations } = useGLTF(url);
@@ -81,7 +81,7 @@ function Model({ url, sectionRef, BrokenRef, titleBoxRef }) {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: 'top+=15% 20%',
-              end: `bottom+=50% 30%`,
+              end: `+=${(viewportHeight * 1.4)}`,
               scrub: true,
               // markers: true,
             },
@@ -92,7 +92,7 @@ function Model({ url, sectionRef, BrokenRef, titleBoxRef }) {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: 'top+=15% 20%',
-              end: `bottom+=50% 30%`,
+              end: `+=${(viewportHeight * 1.4)}`,
               scrub: true,
             },
           });
@@ -101,7 +101,8 @@ function Model({ url, sectionRef, BrokenRef, titleBoxRef }) {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: 'top+=15% 20%',
-              end: `bottom+=50% 30%`,
+              end: `+=${(viewportHeight * 1.4)}`,
+              // end: `bottom+=50% 30%`,
               scrub: true,
               // markers: true,
             },
@@ -155,6 +156,8 @@ function Section01() {
   const BrokenRef = useRef(null);
   const titleBoxRef = useRef(null);
 
+  const viewportHeight = window.innerHeight;
+
   useEffect(() => {
     Splitting();
 
@@ -193,7 +196,8 @@ function Section01() {
         ScrollTrigger.create({
           trigger: sectionRef.current,   // 캔버스를 감싼 div
           start: 'top+=15% 20%',   // 스크롤 시작 지점
-          end: `bottom+=50% 30%`,     // 고정 유지 거리
+          end: `+=${(viewportHeight * 1.4)}`,     // 고정 유지 거리
+          // end: `bottom+=50% 30%`,     // 고정 유지 거리
           pin: true,
           // scrub: true, // 필요하면 부드럽게 고정 (주로 애니메이션용)
           // markers: true,
@@ -204,7 +208,7 @@ function Section01() {
           scrollTrigger: {
             trigger: sec01Ref.current,
             start: 'top+=10% 30%',
-            end: `bottom-=30% 50%`,
+            end: `+=${(viewportHeight * 1.4)}`,
             scrub: 2,
             // markers: true,
           },
@@ -270,7 +274,7 @@ function Section01() {
           <hemisphereLight intensity={0.5} groundColor={0x444444} position={[0, 10, 0]} />
           <Environment preset="city" background={false} /> {/* 비취지는 배경 city는 도시 */}
           <Suspense fallback={null}>
-            <Model sectionRef={sectionRef} BrokenRef={BrokenRef} titleBoxRef={titleBoxRef} url="/3d/dynamic_3d.glb" />
+            <Model viewportHeight={viewportHeight} sectionRef={sectionRef} BrokenRef={BrokenRef} titleBoxRef={titleBoxRef} url="/3d/dynamic_3d.glb" />
           </Suspense>
           <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
         </Canvas>
