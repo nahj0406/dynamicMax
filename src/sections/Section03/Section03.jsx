@@ -74,72 +74,68 @@ function Section03() {
   useLayoutEffect(() => {
 
     const mm = gsap.matchMedia();
-
-    // const contentHeight = containerV1Ref.current.offsetHeight;
-    // const containerRefHeight = containerRef.current.offsetHeight;
     const triggerTop = triggerRef.current.getBoundingClientRect().top;
     const triggerHeight = triggerRef.current.offsetHeight;
     const viewportHeight = window.innerHeight;
+    const viewportWidth = window.innerWidth;
 
-    const centerY = (viewportHeight / 2);
-    // const centerY = (viewportHeight / 2) - (triggerHeight / 2);
+    console.log(viewportHeight);
 
-    // const totalHeight = contentHeight + triggerHeight;
-    // containerRef.current.style.height = `${totalHeight}px`;
+    const centerY = (viewportHeight);
 
     mm.add("(min-width: 769px)", () => {
       const ctx = gsap.context(() => {
         // pin 설정
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: "top+=100 top-=3%",
-          // end: `+=${triggerHeight}`,
-          // end: `bottom top`,
-          end: `+=4000`,
-          pin: true,
-          // markers: true,
-          invalidateOnRefresh: true,
-        });
+        // ScrollTrigger.create({
+        //   trigger: containerRef.current,
+        //   start: "top+=100 top-=3%",
+        //   // end: `+=${triggerHeight}`,
+        //   // end: `bottom top`,
+        //   end: `+=${(viewportWidth * 2)}`,
+        //   pin: true,
+        //   // markers: true,
+        //   invalidateOnRefresh: true,
+        // });
 
-        gsap.to(triggerBgRef.current, {
-          backgroundColor: "rgba(0,0,0,0.8)", // 원하는 색상으로 변경
-          duration: 1, // 스크롤에 의해 자동 조절되므로 이 값은 참고용
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top top",
-            end: "top+=10% top",
-            scrub: 1,
-            markers: true, 
-          },
-        });
+        // gsap.to(triggerBgRef.current, {
+        //   backgroundColor: "rgba(0,0,0,0.8)", // 원하는 색상으로 변경
+        //   duration: 1, // 스크롤에 의해 자동 조절되므로 이 값은 참고용
+        //   scrollTrigger: {
+        //     trigger: containerRef.current,
+        //     start: "top top",
+        //     end: "top+=10% top",
+        //     scrub: 1,
+        //     markers: true, 
+        //   },
+        // });
 
-        // timeline 생성
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top+=100 top-=3%",
-            // end: `bottom top`,
-            end: `+=4000`,  
-            scrub: 1,
-            // markers: true,
-            invalidateOnRefresh: true,
-          },
-        });
+        // // timeline 생성
+        // const tl = gsap.timeline({
+        //   scrollTrigger: {
+        //     trigger: containerRef.current,
+        //     start: "top+=100 top-=3%",
+        //     // end: `bottom top`,
+        //     end: `+=${(viewportWidth * 2)}`,  
+        //     scrub: 1,
+        //     // markers: true,
+        //     invalidateOnRefresh: true,
+        //   },
+        // });
 
-        // 요소 위치 초기화 → 자연스럽게 시작
-        tl.fromTo(triggerRef.current,
-          // { y: triggerHeight },
-          { y: (triggerHeight) },
-          { y: -(viewportHeight + 100)},
-          // { y: -(triggerHeight * 1.7)}
-        );
+        // // 요소 위치 초기화 → 자연스럽게 시작
+        // tl.fromTo(triggerRef.current,
+        //   // { y: triggerHeight },
+        //   { y: (triggerHeight) },
+        //   { y: -centerY},
+        //   // { y: -(triggerHeight * 1.7)}
+        // );
 
-        // slideRef 슬라이드 애니메이션
-        tl.fromTo(slideRef.current,
-          { xPercent: 50 },
-          { xPercent: -20 },
-          ">" // 이전 애니메이션과 동시에 시작하려면 "<", 그 이후에 하려면 ">"
-        );
+        // // slideRef 슬라이드 애니메이션
+        // tl.fromTo(slideRef.current,
+        //   { xPercent: 50 },
+        //   { xPercent: -20 },
+        //   ">" // 이전 애니메이션과 동시에 시작하려면 "<", 그 이후에 하려면 ">"
+        // );
       }, containerRef);
 
       return () => ctx.revert(); // ✅ 미디어 해제 시 정리
