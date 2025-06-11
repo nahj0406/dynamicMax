@@ -1,10 +1,8 @@
 import { useState, useEffect, useRef, Suspense, useLayoutEffect } from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
-import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './Section03.module.css'
 import ImgTag from '../../components/ImgTag/ImgTag'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import ScrollOut from 'scroll-out';
+import useScrollOut from '../../customHook/useScrollOut'
 
 
 // img
@@ -45,45 +43,18 @@ function Section03() {
 
   useEffect(() => {
     Splitting();
-
-    const elements = Array.from(document.querySelectorAll(`.${styles.scAni}`));
-
-    const scrollOutInstance = ScrollOut({
-        targets: `.${styles.scAni}`,
-        threshold: 0.5,
-        once: true, // 요소가 한 번만 감지되도록 설정
-        onShown: function (el) {
-          // 요소가 뷰포트에 들어왔을 때 실행
-          const index = elements.indexOf(el);
-
-          const isWideScreen = window.innerWidth <= 1920 && window.innerWidth >= 768;
-          const delay = isWideScreen
-          ? (index >= 4 ? 100 : index * 700)
-          : index * 200;
-
-          setTimeout(() => {
-            el.classList.add(`${styles.animate}`); // 순차적으로 animate 클래스 추가
-          }, delay);
-        },
-    });
-
-    return () => {
-        scrollOutInstance.teardown(); // ScrollOut 인스턴스 정리
-    };
   }, []);
+
+  useScrollOut({
+    targetClass: styles.scAni,
+    animateCalss: styles.animate,
+  });
 
 
   useLayoutEffect(() => {
 
     const mm = gsap.matchMedia();
-    const triggerTop = triggerRef.current.getBoundingClientRect().top;
-    const triggerHeight = triggerRef.current.offsetHeight;
-    const viewportHeight = window.innerHeight;
     const viewportWidth = window.innerWidth;
-
-    console.log(viewportHeight);
-
-    const centerY = (viewportHeight);
 
     mm.add("(min-width: 769px)", () => {
       const ctx = gsap.context(() => {
@@ -91,23 +62,19 @@ function Section03() {
         ScrollTrigger.create({
           trigger: containerRef.current,
           start: "top+=100 top-=3%",
-          // end: `+=${triggerHeight}`,
-          // end: `bottom top`,
           end: `+=${(viewportWidth * 2)}`,
           pin: true,
-          // markers: true,
           invalidateOnRefresh: true,
         });
 
         gsap.to(triggerBgRef.current, {
-          backgroundColor: "rgba(0,0,0,0.8)", // 원하는 색상으로 변경
-          duration: 1, // 스크롤에 의해 자동 조절되므로 이 값은 참고용
+          backgroundColor: "rgba(0,0,0,0.8)",
+          duration: 1,
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top top",
             end: "top+=10% top",
             scrub: 1,
-            // markers: true, 
           },
         });
 
@@ -116,7 +83,6 @@ function Section03() {
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top+=100 top-=3%",
-            // end: `bottom top`,
             end: `+=${(viewportWidth * 2)}`,
             scrub: 1,
             markers: true,
@@ -137,33 +103,6 @@ function Section03() {
         tl.to(content02Ref.current, {opacity: 1, y: 0,},);
         tl.to(content02Ref.current, {opacity: 0, y: 0,},);
         tl.to(slideRef.current, {xPercent: -80, duration: 8,},);
-
-      }, containerRef);
-
-      return () => ctx.revert(); // ✅ 미디어 해제 시 정리
-    });
-
-    // 모바일 
-    mm.add("(max-width: 768px)", () => {
-      const ctx = gsap.context(() => {
-        // ScrollTrigger.create({
-        //   trigger: containerRef.current,
-        //   start: "top+=100 top-=3%",
-        //   end: `+=2000`,
-        //   pin: true,
-        //   invalidateOnRefresh: true,
-        // });
-
-        gsap.to(triggerBgRef.current, {
-          backgroundColor: "rgba(0,0,0,0.8)", // 원하는 색상으로 변경
-          duration: 1, // 스크롤에 의해 자동 조절되므로 이 값은 참고용
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top top",
-            end: "top+=10% top",
-            scrub: 1,
-          },
-        });
 
       }, containerRef);
 

@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef, Suspense } from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
-import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './Section04.module.css'
 import ImgTag from '../../components/ImgTag/ImgTag'
-import ScrollOut from 'scroll-out';
+import useScrollOut from '../../customHook/useScrollOut'
 
 
 // img
@@ -42,32 +41,12 @@ function Section04() {
 
   useEffect(() => {
     Splitting();
-
-    const elements = Array.from(document.querySelectorAll(`.${styles.scAni}`));
-
-    const scrollOutInstance = ScrollOut({
-        targets: `.${styles.scAni}`,
-        threshold: 0.5,
-        once: true, // 요소가 한 번만 감지되도록 설정
-        onShown: function (el) {
-          // 요소가 뷰포트에 들어왔을 때 실행
-          const index = elements.indexOf(el);
-
-          const isWideScreen = window.innerWidth <= 1920 && window.innerWidth >= 768;
-          const delay = isWideScreen
-          ? (index >= 4 ? 100 : index * 700)
-          : index * 200;
-
-          setTimeout(() => {
-            el.classList.add(`${styles.animate}`); // 순차적으로 animate 클래스 추가
-          }, delay);
-        },
-    });
-
-    return () => {
-        scrollOutInstance.teardown(); // ScrollOut 인스턴스 정리
-    };
   }, []);
+
+  useScrollOut({
+    targetClass: styles.scAni,
+    animateCalss: styles.animate,
+  });
 
 
   const slideData = [
@@ -164,7 +143,7 @@ function Section04() {
     loop: true,
     modules: [Autoplay],
     autoplay: {
-      delay: 30000,
+      delay: 3000,
       disableOnInteraction: false,
       pauseOnMouseEnter: true,
     },
@@ -205,7 +184,6 @@ function Section04() {
       <div className={styles.bg_bar}></div>
 
       <section className='containerV1'>
-
         <div className={`${styles.titleBox} ${styles.scAni} titleBox`}>
           <p>11가지 종류의 다양한 맛</p>
           <h2 data-splitting className='HemiHead'>MODELS</h2>
@@ -213,10 +191,7 @@ function Section04() {
       </section>
 
       <section className={styles.slideContainer}>
-        <Swiper
-          {...SwiperOptions}
-          className={styles.sec04_swiper}
-        >
+        <Swiper {...SwiperOptions} className={styles.sec04_swiper} >
           {
             slideData.map((item, index) => {
               return(

@@ -3,19 +3,17 @@ import { Route, Routes, Link } from 'react-router-dom'
 // import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './Section01.module.css'
 import ImgTag from '../../components/ImgTag/ImgTag'
-import ScrollOut from 'scroll-out';
+import useScrollOut from '../../customHook/useScrollOut'
 
-// img
-import Broken_bg from '../../img/Sec1/sec1_broken_bg.png';
 
 // js 라이브러리
-import { Scene, PerspectiveCamera, WebGLRenderer } from 'three';
+// import { Scene, PerspectiveCamera, WebGLRenderer } from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
 // useThree
 import { useGLTF, Environment, OrbitControls } from '@react-three/drei';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
-import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
+// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+// import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+// import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 
 import * as THREE from 'three';
 import Splitting from 'splitting';
@@ -23,129 +21,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-function Model({ url, sectionRef, BrokenRef, titleBoxRef, viewportHeight }) {
 
-  const group = useRef();
-  const { scene, animations } = useGLTF(url);
-  const mixer = useRef();
-  const clock = new THREE.Clock();
-  
-
-  useLayoutEffect(() => {
-    if (!group.current) return;
-
-    group.current.add(scene);
-
-    scene.traverse((child) => {
-      if (child.isMesh && child.material instanceof THREE.MeshStandardMaterial) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-        child.material.metalness = 0.5;
-        child.material.roughness = 0.4;
-        // child.material.metalness = 0.5;
-        // child.material.roughness = 2;
-      }
-      // console.log(child.name);
-      // if (child.isMesh && child.name === 'P407200_16') {
-      //   child.material = new THREE.MeshStandardMaterial({
-      //     color: 0xffd700, // 금색
-      //     metalness: 1,
-      //     roughness: 0.2,
-      //   });
-      // }
-    });
-
-    if (animations.length > 0) {
-      mixer.current = new THREE.AnimationMixer(scene);
-      animations.forEach((clip) => mixer.current.clipAction(clip).play());
-    }
-
-    const mm = gsap.matchMedia();
-
-    requestAnimationFrame(() => {
-
-      mm.add("(min-width: 769px)", () => {
-        const ctx = gsap.context(() => {
-          scene.scale.set(7, 7, 7);
-          scene.position.y = -0.3;
-          group.current.rotation.y = Math.PI / 6;
-
-          // gsap
-          gsap.set(BrokenRef.current, { opacity: 0, scale: 0.9 });
-          gsap.set(titleBoxRef.current, { opacity: 0, y: 50 });
-
-          gsap.to(scene.scale, {
-            x: 6,
-            y: 6,
-            z: 6,
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top+=15% 20%',
-              end: `+=${(viewportHeight * 1.4)}`,
-              scrub: true,
-              // markers: true,
-            },
-          });
-
-          gsap.to(scene.position, {
-            y: -0.2,
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top+=15% 20%',
-              end: `+=${(viewportHeight * 1.4)}`,
-              scrub: true,
-            },
-          });
-
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top+=15% 20%',
-              end: `+=${(viewportHeight * 1.4)}`,
-              // end: `bottom+=50% 30%`,
-              scrub: true,
-              // markers: true,
-            },
-          });
-
-          tl.to(group.current.rotation, { y: -Math.PI * 1.9, duration: 2 });
-          tl.to(scene.rotation, { x: -Math.PI / 8, duration: 1 });
-          tl.to(BrokenRef.current, { opacity: 1, scale: 0.98});
-          tl.to(titleBoxRef.current, { opacity: 1, y: 0});
-        }, sectionRef);
-
-        return () => ctx.revert();
-      });
-
-      mm.add("(max-width: 768px)", () => {
-        const ctx = gsap.context(() => {
-          // ✅ 모바일 초기 설정
-          scene.scale.set(7, 7, 7);
-          scene.position.y = -0.3;
-          group.current.rotation.y = Math.PI / 4;
-
-          gsap.to(group.current.rotation, {
-            y: '+=6.28319', // 2 * Math.PI (360도 회전)
-            duration: 7,     // 5초에 한 바퀴
-            repeat: -1,      // 무한 반복
-            ease: 'none',     // 일정한 속도
-          });
-
-        }, sectionRef);
-
-        return () => ctx.revert();
-      });
-      
-      return () => mm.revert(); 
-    });
-  }, [scene, animations]);
-
-  useFrame(() => {
-    if (mixer.current) mixer.current.update(clock.getDelta());
-  });
-
-  return <group ref={group} />;
-}
 
 
 function Section01() {
@@ -155,40 +31,18 @@ function Section01() {
   const titleBgRef = useRef(null);
   const BrokenRef = useRef(null);
   const titleBoxRef = useRef(null);
-
   const viewportHeight = window.innerHeight;
 
   useEffect(() => {
     Splitting();
+  })
 
-    const elements = Array.from(document.querySelectorAll(`.${styles.scAni}`));
+  useScrollOut({
+    targetClass: styles.scAni,
+    animateCalss: styles.animate,
+  });
 
-    const scrollOutInstance = ScrollOut({
-        targets: `.${styles.scAni}`,
-        threshold: 0.5,
-        once: true, // 요소가 한 번만 감지되도록 설정
-        onShown: function (el) {
-          // 요소가 뷰포트에 들어왔을 때 실행
-          const index = elements.indexOf(el);
-
-          const isWideScreen = window.innerWidth <= 1920 && window.innerWidth >= 768;
-          const delay = isWideScreen
-          ? (index >= 4 ? 100 : index * 700)
-          : index * 200;
-
-          setTimeout(() => {
-            el.classList.add(`${styles.animate}`); // 순차적으로 animate 클래스 추가
-          }, delay);
-        },
-    });
-
-    return () => {
-        scrollOutInstance.teardown(); // ScrollOut 인스턴스 정리
-    };
-  }, []);
-
-  useLayoutEffect(() => {
-    // const offset = window.innerWidth >= 1200 ? -100 : -50;
+  useLayoutEffect(() => { // gsap 하단 model 안에는 model 조작용 gsap 코드 들어 있음.
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 769px)", () => {
@@ -197,10 +51,7 @@ function Section01() {
           trigger: sectionRef.current,   // 캔버스를 감싼 div
           start: 'top+=15% 20%',   // 스크롤 시작 지점
           end: `+=${(viewportHeight * 1.4)}`,     // 고정 유지 거리
-          // end: `bottom+=50% 30%`,     // 고정 유지 거리
           pin: true,
-          // scrub: true, // 필요하면 부드럽게 고정 (주로 애니메이션용)
-          // markers: true,
         });
 
         gsap.to(titleBgRef.current, {
@@ -219,15 +70,6 @@ function Section01() {
 
       return () => ctx.revert(); // ✅ 미디어 해제 시 정리
     });
-
-    mm.add("(max-width: 768px)", () => { // 모바일용 ScrollTrigger 설정 (필요 시)
-      const ctx = gsap.context(() => {
-        
-      }, sectionRef);
-
-      return () => ctx.revert(); // ✅ 미디어 해제 시 정리
-    });
-
     return () => mm.revert(); 
 
   }, []);
@@ -246,8 +88,8 @@ function Section01() {
 
       <div className={`${styles.canvas_wrapper} ${styles.scAni}`} ref={sectionRef}>
         <div className={`${styles.Broken_bg}`} ref={BrokenRef}></div>
-
         <div className={styles.mob_touch_clear}></div>
+
         <Canvas
           shadows
           camera={{ position: [0, 0.1, 1], fov: 60 }}
@@ -289,6 +131,120 @@ function Section01() {
 
     </section>
   )
+}
+
+
+
+// 3d 모델링 설정
+function Model({ url, sectionRef, BrokenRef, titleBoxRef, viewportHeight }) {
+
+  const group = useRef();
+  const { scene, animations } = useGLTF(url);
+  const mixer = useRef();
+  const clock = new THREE.Clock();
+  
+
+  useLayoutEffect(() => {
+    if (!group.current) return;
+
+    group.current.add(scene);
+
+    scene.traverse((child) => {
+      if (child.isMesh && child.material instanceof THREE.MeshStandardMaterial) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+        child.material.metalness = 0.5;
+        child.material.roughness = 0.4;
+      }
+    });
+
+    if (animations.length > 0) {
+      mixer.current = new THREE.AnimationMixer(scene);
+      animations.forEach((clip) => mixer.current.clipAction(clip).play());
+    }
+
+    const mm = gsap.matchMedia();
+
+    requestAnimationFrame(() => {
+
+      mm.add("(min-width: 769px)", () => {
+        const ctx = gsap.context(() => {
+          scene.scale.set(7, 7, 7);
+          scene.position.y = -0.3;
+          group.current.rotation.y = Math.PI / 6;
+
+          // gsap
+          gsap.set(BrokenRef.current, { opacity: 0, scale: 0.9 });
+          gsap.set(titleBoxRef.current, { opacity: 0, y: 50 });
+
+          gsap.to(scene.scale, {
+            x: 6,
+            y: 6,
+            z: 6,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top+=15% 20%',
+              end: `+=${(viewportHeight * 1.4)}`,
+              scrub: true,
+            },
+          });
+
+          gsap.to(scene.position, {
+            y: -0.2,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top+=15% 20%',
+              end: `+=${(viewportHeight * 1.4)}`,
+              scrub: true,
+            },
+          });
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top+=15% 20%',
+              end: `+=${(viewportHeight * 1.4)}`,
+              scrub: true,
+            },
+          });
+
+          tl.to(group.current.rotation, { y: -Math.PI * 1.9, duration: 2 });
+          tl.to(scene.rotation, { x: -Math.PI / 8, duration: 1 });
+          tl.to(BrokenRef.current, { opacity: 1, scale: 0.98});
+          tl.to(titleBoxRef.current, { opacity: 1, y: 0});
+        }, sectionRef);
+
+        return () => ctx.revert();
+      });
+
+      mm.add("(max-width: 768px)", () => { // ✅ 모바일 설정
+        const ctx = gsap.context(() => {
+
+          scene.scale.set(7, 7, 7);
+          scene.position.y = -0.3;
+          group.current.rotation.y = Math.PI / 4;
+
+          gsap.to(group.current.rotation, {
+            y: '+=6.28319', // 2 * Math.PI (360도 회전)
+            duration: 7,     // 5초에 한 바퀴
+            repeat: -1,      // 무한 반복
+            ease: 'none',     // 일정한 속도
+          });
+
+        }, sectionRef);
+
+        return () => ctx.revert();
+      });
+      
+      return () => mm.revert(); 
+    });
+  }, [scene, animations]);
+
+  useFrame(() => {
+    if (mixer.current) mixer.current.update(clock.getDelta());
+  });
+
+  return <group ref={group} />;
 }
 
 export default Section01

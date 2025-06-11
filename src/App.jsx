@@ -1,13 +1,9 @@
-import { useEffect, Suspense, useRef } from 'react'
+import {useState, useEffect, Suspense, useRef } from 'react'
 import './css/App.css'
 import './css/style.css'
 import { Route, Routes, Link } from 'react-router-dom'
-// import {motion, useMotionValue, useTransform} from 'framer-motion';
-import Lenis from '@studio-freight/lenis';
-
-// 커스텀 컴포넌트
-import SplitMotion from './Flamer_Element/SplitMotion';
-import InViewMotion from './Flamer_Element/InViewMotion';
+import useInitialLenis from './customHook/useInitialLenis'
+import useIsMobile from './customHook/useIsMobile'
 
 // 페이지
 import Header from './components/Header/Header';
@@ -29,31 +25,37 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
 
-  const prevIsMobile = useRef(window.innerWidth <= 768);
+  const prevIsMobile = useRef(window.visualViewport?.width <= 768);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    Splitting();
   }, []);
 
-  useEffect(() => {
+  useInitialLenis();
 
+
+  // pc 모바일 구간 바뀔때마다 새로고침 ----------------------------------
+  useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth <= 768;
+      const reloadSize = window.visualViewport?.width <= 768;
 
       // 현재 상태와 이전 상태가 다르면 새로고침
-      if (isMobile !== prevIsMobile.current) {
+      if (reloadSize !== prevIsMobile.current) {
         window.location.reload();
       }
 
       // 현재 상태 저장
-      prevIsMobile.current = isMobile;
+      prevIsMobile.current = reloadSize;
     };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => { // gsap 업데이트
+  // gsap 업데이트 -------------------------------------------------
+  useEffect(() => {
     let resizeTimeout;
     const onResize = () => {
       clearTimeout(resizeTimeout);
@@ -62,44 +64,6 @@ function App() {
 
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-  }, []);
-
-  useEffect(() => { // lenis 적용, 첫화면에서 스크롤 제어
-    let lenis;
-
-    // document.body.style.overflowY = 'hidden'; // 초기에 스크롤 차단
-
-    // // 3초 후 스크롤 허용
-    // const enableScrollTimeout = setTimeout(() => {
-    //   document.body.style.overflow = '';
-    // }, 3500);
-
-    // const timeout = setTimeout(() => {
-      lenis = new Lenis({
-        smoothWheel: true,
-        smoothTouch: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 0.2,
-        // touchMultiplier: 0.5,
-      });
-
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-
-      requestAnimationFrame(raf);
-    // }, 2000); // 2초 뒤에 실행
-
-    return () => {
-      // clearTimeout(enableScrollTimeout);
-      // clearTimeout(timeout); // 컴포넌트 언마운트 시 타이머 제거
-      if (lenis) lenis.destroy(); // Lenis가 존재할 때만 destroy
-    };
-  }, []);
-
-  useEffect(() => {
-     Splitting();
   }, []);
 
   return (

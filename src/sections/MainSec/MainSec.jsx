@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef, Suspense } from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
-// import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './MainSec.module.css'
 
 
 // 컴포넌트
-import SplitMotion from '../../Flamer_Element/SplitMotion'
 import ImgTag from '../../components/ImgTag/ImgTag'
 import Section01 from '../Section01/Section01'
 
@@ -32,7 +30,7 @@ function MainSec() {
 
     const bannerTimerAni = setTimeout(() => {
       bannerSet('true');
-    }, 1000);
+    }, 3000);
 
     return () => clearTimeout(bannerTimerAni);
 
@@ -47,8 +45,8 @@ function MainSec() {
           <h1 className={`${styles.banner_title_txt1} ${styles.banner_title} HemiHead`}>DYNAMIC</h1>
 
           <div className={styles.unit_box}>
-            <h1 className={`${styles.banner_title_txt2} ${styles.scale_txt} HemiHead`}>max</h1> {/* flamer-motion 처리하기 */}
-            <h1 className={`${styles.banner_title_txt2} HemiHead`}>max</h1> {/* flamer-motion 처리하기 */}
+            <h1 className={`${styles.banner_title_txt2} ${styles.scale_txt} HemiHead`}>max</h1>
+            <h1 className={`${styles.banner_title_txt2} HemiHead`}>max</h1>
           </div>
         </div>
   
@@ -81,10 +79,6 @@ function StartBanner() {
           )
         })
       }
-      {/* <SplitMotion>
-        <h1 className={`${styles.banner_title} HemiHead`}>DYNAMIC</h1>
-      </SplitMotion> */}
-     
     </div>
   )
 }
