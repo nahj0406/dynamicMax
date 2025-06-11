@@ -5,7 +5,6 @@ import styles from './MainSec.module.css'
 
 // 컴포넌트
 import ImgTag from '../../components/ImgTag/ImgTag'
-import Section01 from '../Section01/Section01'
 
 
 // img
@@ -30,41 +29,37 @@ function MainSec() {
 
     const bannerTimerAni = setTimeout(() => {
       bannerSet('true');
-    }, 3000);
+    }, 1500);
 
     return () => clearTimeout(bannerTimerAni);
 
   }, []);
 
   return (
-    <section className={styles.bg_container}>
-      <section id={styles.main_Section} className={`${banner === 'true' ? styles.bannerStart : ''}`} ref={containerRef}>
-        <StartBanner />
-  
-        <div className={styles.banner_txtBox}>
-          <h1 className={`${styles.banner_title_txt1} ${styles.banner_title} HemiHead`}>DYNAMIC</h1>
+    <section id={styles.main_Section} className={`${banner === 'true' ? styles.bannerStart : ''}`} ref={containerRef}>
+      <StartBanner />
 
-          <div className={styles.unit_box}>
-            <h1 className={`${styles.banner_title_txt2} ${styles.scale_txt} HemiHead`}>max</h1>
-            <h1 className={`${styles.banner_title_txt2} HemiHead`}>max</h1>
-          </div>
-        </div>
-  
-        <div className={styles.sub_txtBox}>
-          <h4 className={styles.sub_txt}>만족의 기준을 바꾸다</h4>
-        </div>
-  
-        <figure className={styles.product}>
-          <ImgTag src={mainProduct} alt={'다이나믹 맥스 제품 이미지'} />
-        </figure>
+      <div className={styles.banner_txtBox}>
+        <h1 className={`${styles.banner_title_txt1} ${styles.banner_title} HemiHead`}>DYNAMIC</h1>
 
-        <div className={styles.scroll_down}>
-          <p>SCROLL DOWN</p>
-          <div className={styles.line}></div>
+        <div className={styles.unit_box}>
+          <h1 className={`${styles.banner_title_txt2} ${styles.scale_txt} HemiHead`}>max</h1>
+          <h1 className={`${styles.banner_title_txt2} HemiHead`}>max</h1>
         </div>
-      </section>
+      </div>
 
-      <Section01 />
+      <div className={styles.sub_txtBox}>
+        <h4 className={styles.sub_txt}>만족의 기준을 바꾸다</h4>
+      </div>
+
+      <figure className={styles.product}>
+        <ImgTag src={mainProduct} alt={'다이나믹 맥스 제품 이미지'} />
+      </figure>
+
+      <div className={styles.scroll_down}>
+        <p>SCROLL DOWN</p>
+        <div className={styles.line}></div>
+      </div>
     </section>
   )
 }

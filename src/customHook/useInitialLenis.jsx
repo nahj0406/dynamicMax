@@ -1,10 +1,14 @@
 import { useEffect } from 'react';
-
+import useIsMobile from './useIsMobile';
 import Lenis from '@studio-freight/lenis';
 
 
 function useInitialLenis() {
+   const isMobile = useIsMobile();
+
    useEffect(() => { // lenis 적용, 첫화면에서 스크롤 제어
+      if (isMobile) return;
+
       let lenis;
 
       document.body.style.overflowY = 'hidden'; // 초기에 스크롤 차단
@@ -37,7 +41,7 @@ function useInitialLenis() {
       if (lenis) lenis.destroy(); // Lenis가 존재할 때만 destroy
       };
 
-  }, []);
+  }, [isMobile]);
 }
 
 

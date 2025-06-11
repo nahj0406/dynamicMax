@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 function useIsMobile(breakpoint = 768) {
   const getWidth = () =>
-    window.visualViewport?.width || window.innerWidth;
+    window.innerWidth;
 
   const [isMobile, setIsMobile] = useState(getWidth() <= breakpoint);
 

@@ -8,6 +8,7 @@ import useIsMobile from './customHook/useIsMobile'
 // 페이지
 import Header from './components/Header/Header';
 import MainSec from './sections/MainSec/MainSec'
+import Section01 from './sections/Section01/Section01'
 import Section02 from './sections/Section02/Section02'
 import Section03 from './sections/Section03/Section03'
 import Section04 from './sections/Section04/Section04'
@@ -17,6 +18,7 @@ import Footer from './components/Footer/Footer';
 import Splitting from 'splitting';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -25,21 +27,37 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
 
-  const prevIsMobile = useRef(window.visualViewport?.width <= 768);
+  const prevIsMobile = useRef(window.innerWidth <= 768);
   const isMobile = useIsMobile();
 
+  useInitialLenis();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
     Splitting();
+    window.scrollTo(0, 0);
   }, []);
 
-  useInitialLenis();
+
+  // gsap 업데이트 -------------------------------------------------
+  useEffect(() => {
+    let resizeTimeout;
+    const onResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => ScrollTrigger.update(), 200);
+    };
+
+    window.addEventListener("resize", onResize);
+
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  
+  
 
 
   // pc 모바일 구간 바뀔때마다 새로고침 ----------------------------------
   useEffect(() => {
     const handleResize = () => {
-      const reloadSize = window.visualViewport?.width <= 768;
+      const reloadSize = window.innerWidth <= 768;
 
       // 현재 상태와 이전 상태가 다르면 새로고침
       if (reloadSize !== prevIsMobile.current) {
@@ -54,36 +72,49 @@ function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // gsap 업데이트 -------------------------------------------------
-  useEffect(() => {
-    let resizeTimeout;
-    const onResize = () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => ScrollTrigger.update(), 200);
-    };
+  const components = [
+    <MainSec />,
+    <Section01 />,
+    <Section02 />,
+    <Section03 />,
+    <Section04 />,
+  ]
 
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
 
   return (
     <div id='App'>
-      {/* <Suspense fallback={<Fallback />}></Suspense> */}
-      {/* <Routes>
-        <Route path='/' element={<MainSec />} />
-      </Routes> */}
-
       {/* 헤더 */}
       <Header/>
       
       {/* 메인 */}
-      <MainSec />
-      <Section02 />
-      <Section03 />
-      <Section04 />
 
-      {/* 푸터 */}
-      <Footer/>
+      {
+        !isMobile ? (
+          <>
+            <section className='bg_container'>
+              <MainSec />
+              <Section01 />
+            </section>
+            <Section02 />
+            <Section03 />
+            <Section04 />
+            <Footer/>
+          </>
+        ) : (
+          <>
+            {/* {
+              components.map((item, i) => {
+                return (
+                  <FullpageSection key={i} style={{ minHeight: '100dvh',}}>
+                    {item}
+                  </FullpageSection>
+                )
+              })
+            } */}
+          </>
+        )
+      }
+      
     </div>
   )
 }
