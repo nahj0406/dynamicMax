@@ -220,6 +220,16 @@
    }
    .sub_txtBox {display: none;}
 
+   .bannerStart .product img {
+      position: relative;
+      animation: imgmove 1s infinite alternate;
+   }
+
+   @keyframes imgmove {
+      from {transform: translateY(-2%)};
+      to {transform: translateY(0)};
+   }
+
 
    .scroll_down {
       > p {font-size: 12px;}
@@ -242,7 +252,7 @@
 }
 
 @keyframes mobtxtBox {
-   to {top: 88%; z-index: 11;}
+   to {top: 88%;}
 }
 
 

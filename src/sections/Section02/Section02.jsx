@@ -18,7 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-function Section02() {
+function Section02({slideActive}) {
 
   const containerRef = useRef(null);
   const productRef = useRef(null);
@@ -37,7 +37,6 @@ function Section02() {
 
   useLayoutEffect(() => {
     const mm = gsap.matchMedia();
-
     const viewportHeight = window.innerHeight;
 
     mm.add("(min-width: 769px)", () => {
@@ -78,7 +77,7 @@ function Section02() {
 
 
   return (
-    <section id={styles.Section02}>
+    <section id={styles.Section02} className={`${slideActive ? styles.slideActive : ''}`}>
 
       <div className={styles.pin_wrapper} ref={containerRef}>
         <div className={`${styles.scrollout_bg} ${styles.scAni}`}></div>
@@ -102,8 +101,7 @@ function Section02() {
               <ImgTag clsName={styles.icon} src={icon01} alt={'잔량 표시'} />
               <p>
                 액상 부족 시 필터에서 올라오는 불편한 미각적
-                경험을 해소하기 위해 다이나믹 맥스는 <span>직관
-                적인 용량 표시</span>로 잔량 확인이 가능합니다.
+                경험을 해소하기 위해 다이나믹 맥스는 <span>직관적인 용량 표시</span>로 잔량 확인이 가능합니다.
               </p>
             </article>
   

@@ -3,6 +3,7 @@ import { Route, Routes, Link } from 'react-router-dom'
 // import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './Section01.module.css'
 import useScrollOut from '@/customHook/useScrollOut'
+import useIsMobile from '@/customHook/useIsMobile'
 
 
 // js 라이브러리
@@ -23,8 +24,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-function Section01() {
-
+function Section01({ slideActive }) {
+  const isMobile = useIsMobile();
   const sec01Ref = useRef(null);
   const sectionRef = useRef(null);
   const titleBgRef = useRef(null);
@@ -74,7 +75,7 @@ function Section01() {
   }, []);
 
   return (
-    <section id={styles.Section01} ref={sec01Ref}>
+    <section id={styles.Section01} className={`${slideActive ? styles.slideActive : ''}`} ref={sec01Ref}>
       <h2 className={`${styles.title_bg} HemiHead`} ref={titleBgRef}>DYNAMIC</h2>
 
       <section className={`${styles.title_container} containerV1`}>
@@ -121,10 +122,24 @@ function Section01() {
         </Canvas>
 
         <div className={`${styles.titleBox} ${styles.scAni}`} ref={titleBoxRef}>
-          <h3 className='Gmarket'>
-            업계 10년 경력의 베테랑들이 <br />
-            만들어낸 새로운 <span className={`${styles.colorSpan} Gmarket`}>패러다임</span>을 확인하세요!
-          </h3>
+
+          {
+            !isMobile ? (
+              <h3>
+                업계 10년 경력의 베테랑들이 <br />
+                만들어낸 새로운 <span className={`${styles.colorSpan} Gmarket`}>패러다임</span>을 확인하세요!
+              </h3>
+            ) : (
+              <>
+                <h3>
+                  <p>업계 10년 경력의 베테랑들이</p>
+                </h3>
+                <h3>
+                  <p>만들어낸 새로운 <span className={`${styles.colorSpan} Gmarket`}>패러다임</span>을 확인하세요!</p>
+                </h3>
+              </>
+            )
+          }
         </div>
       </div>
 

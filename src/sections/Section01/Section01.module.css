@@ -1,44 +1,3 @@
-.title_container .scAni.titleBox h3 :global(.char) {
-  opacity: 0;
-  display: inline-block;
-  transform: scale(2);
-}
-.title_container .scAni.titleBox .tagSecd span {
-  display: inline-block;
-  opacity: 0;
-  transition: 0.5s;
-}
-.title_container .scAni.titleBox .tagSecd span:nth-child(1) {
-  transform: translateY(-10%);
-}
-.title_container .scAni.titleBox .tagSecd span:nth-child(2) {
-  transform: scale(1);
-  transition: 1s;
-}
-.title_container .scAni.titleBox .tagSecd span:nth-child(3) {
-  transform: translateY(-10%);
-}
-.title_container .scAni.titleBox.animate[data-scroll=in] h3 :global(.char) {
-  opacity: 1;
-  transition: 0.5s calc(var(--char-index) * 0.1s);
-  transform: scale(1);
-}
-.title_container .scAni.titleBox.animate[data-scroll=in] .tagSecd span {
-  opacity: 1;
-}
-.title_container .scAni.titleBox.animate[data-scroll=in] .tagSecd span:nth-child(1) {
-  transform: translateY(0%);
-  transition-delay: 1s;
-}
-.title_container .scAni.titleBox.animate[data-scroll=in] .tagSecd span:nth-child(2) {
-  transform: scale(1);
-  transition-delay: 1.5s;
-}
-.title_container .scAni.titleBox.animate[data-scroll=in] .tagSecd span:nth-child(3) {
-  transform: translateY(0%);
-  transition-delay: 1.3s;
-}
-
 #Section01 {
   position: relative;
   padding: 30rem 0 20rem;
@@ -74,6 +33,7 @@
 .titleBox > h3 span {
   font-size: inherit;
   font-weight: inherit;
+  will-change: transform;
 }
 .titleBox > h3 > .colorSpan {
   font-size: inherit;
@@ -121,12 +81,150 @@
   font-size: 1.2em;
 }
 
+@media (min-width: 769px) {
+  .title_container .scAni.titleBox h3 :global(.char) {
+    opacity: 0;
+    display: inline-block;
+    transform: scale(2);
+  }
+  .title_container .scAni.titleBox .tagSecd span {
+    display: inline-block;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  .title_container .scAni.titleBox .tagSecd span:nth-child(1) {
+    transform: translateY(-10%);
+  }
+  .title_container .scAni.titleBox .tagSecd span:nth-child(2) {
+    transform: scale(1.8);
+    transition: 0.2s;
+  }
+  .title_container .scAni.titleBox .tagSecd span:nth-child(3) {
+    transform: translateY(-10%);
+  }
+  .title_container .scAni.titleBox.animate[data-scroll=in] h3 :global(.char) {
+    opacity: 1;
+    transition: 0.5s calc(var(--char-index) * 0.1s);
+    transform: scale(1);
+  }
+  .title_container .scAni.titleBox.animate[data-scroll=in] .tagSecd span {
+    opacity: 1;
+  }
+  .title_container .scAni.titleBox.animate[data-scroll=in] .tagSecd span:nth-child(1) {
+    transform: translateY(0%);
+    transition-delay: 1s;
+  }
+  .title_container .scAni.titleBox.animate[data-scroll=in] .tagSecd span:nth-child(2) {
+    transform: scale(1);
+    transition-delay: 1.5s;
+  }
+  .title_container .scAni.titleBox.animate[data-scroll=in] .tagSecd span:nth-child(3) {
+    transform: translateY(0%);
+    transition-delay: 1.3s;
+  }
+}
 @media (max-width: 768px) {
+  #Section01 {
+    background: #111;
+    padding: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .title_bg {
     font-size: min(19.5058517555vw, 150px);
+    top: 30%;
+  }
+  .title_container {
+    position: absolute;
+    z-index: 3;
+    top: var(--head-margin);
+    left: 0;
+  }
+  .canvas_wrapper .titleBox > h3 {
+    font-weight: 700;
+    overflow: hidden;
+  }
+  .canvas_wrapper .titleBox > h3 p {
+    font-size: inherit;
+    font-weight: inherit;
+    will-change: transform;
+  }
+  .canvas_wrapper .titleBox > h3 .colorSpan {
+    font-weight: 700;
+    font-size: 1.2em;
+    color: var(--main-color);
+  }
+  .title_container .titleBox h3 :global(.char) {
+    opacity: 0;
+    display: inline-block;
+    transform: scale(2);
+  }
+  .title_container .titleBox .tagSecd span {
+    display: inline-block;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  .title_container .titleBox .tagSecd span:nth-child(1) {
+    transform: translateY(-10%);
+  }
+  .title_container .titleBox .tagSecd span:nth-child(2) {
+    transform: scale(1.8);
+    transition: 0.2s;
+  }
+  .title_container .titleBox .tagSecd span:nth-child(3) {
+    transform: translateY(-10%);
+  }
+  .canvas_wrapper .titleBox > h3 p {
+    transform: translateY(100%);
+  }
+  .Broken_bg {
+    opacity: 0;
+    transform: scale(0.9);
+    will-change: transform;
+    transition: 0.2s;
+  }
+  .slideActive .title_container .titleBox h3 :global(.char) {
+    opacity: 1;
+    transition: 0.5s calc(var(--char-index) * 0.08s);
+    transform: scale(1);
+  }
+  .slideActive .title_container .titleBox .tagSecd span {
+    opacity: 1;
+  }
+  .slideActive .title_container .titleBox .tagSecd span:nth-child(1) {
+    transform: translateY(0%);
+    transition-delay: 1s;
+  }
+  .slideActive .title_container .titleBox .tagSecd span:nth-child(2) {
+    transform: scale(1);
+    transition-delay: 1.5s;
+  }
+  .slideActive .title_container .titleBox .tagSecd span:nth-child(3) {
+    transform: translateY(0%);
+    transition-delay: 1.3s;
+  }
+  .slideActive .canvas_wrapper .titleBox > h3 p {
+    transform: translateY(0);
+    transition: 1s;
+  }
+  .slideActive .canvas_wrapper .titleBox > h3:nth-child(1) p {
+    transition-delay: 1.8s;
+  }
+  .slideActive .canvas_wrapper .titleBox > h3:nth-child(2) p {
+    transition-delay: 2s;
+  }
+  .slideActive .Broken_bg {
+    opacity: 1;
+    transform: scale(1);
+    transition: 0.4s 1.5s;
   }
   .canvas_wrapper {
     --canvas-H: max(500px, min(calc(800 / 769 * 100vw), 800px));
+    position: relative;
+    z-index: 2;
+    align-self: end;
     height: var(--canvas-H);
   }
   .canvas_wrapper .mob_touch_clear {
@@ -143,22 +241,9 @@
   .canvas_wrapper .titleBox {
     padding: 0 15px;
   }
-  .scAni.canvas_wrapper .Broken_bg {
-    opacity: 0;
-    transform: scale(1.5);
-  }
-  .scAni.canvas_wrapper .titleBox {
-    opacity: 0;
-    transform: translate(-50%, -15%);
-  }
-  .scAni.canvas_wrapper.animate[data-scroll=in] .Broken_bg {
-    opacity: 1;
-    transform: scale(1);
-    transition: 0.2s 0.5s;
-  }
-  .scAni.canvas_wrapper.animate[data-scroll=in] .titleBox {
-    opacity: 1;
-    transform: translate(-50%, 0);
-    transition: 0.5s 0.5s;
+}
+@media (max-width: 768px) and (max-height: 700px) {
+  .canvas_wrapper {
+    --canvas-H: 500px;
   }
 }/*# sourceMappingURL=Section01.module.css.map */

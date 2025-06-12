@@ -1,4 +1,4 @@
-import {useState, useEffect, Suspense, useRef } from 'react'
+import React, {useState, useEffect, Suspense, useRef } from 'react'
 import '@/css/App.css'
 import '@/css/style.css'
 import { Route, Routes, Link } from 'react-router-dom'
@@ -76,6 +76,8 @@ function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+
+  const [slideActiveIndex, setActiveIndex] = useState(0);
   const components = [ // 모바일용 fullpage 배열
     <MainSec />,
     <Section01 />,
@@ -113,20 +115,21 @@ function App() {
             <Swiper
               direction={'vertical'}
               slidesPerView={1}
-              spaceBetween={30}
+              spaceBetween={0}
               mousewheel={true}
               // pagination={{
               //   clickable: true,
               // }}
               modules={[Mousewheel]}
+              onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
               // Pagination
               className="mobSwiper"
             >
               {
                 components.map((item, i) => {
                   return (
-                    <SwiperSlide key={i}>
-                      {item}
+                    <SwiperSlide key={i} className={`swiper_0${i}`}>
+                      {React.cloneElement(item, { slideActive: slideActiveIndex === i })}
                     </SwiperSlide>
                   )
                 })

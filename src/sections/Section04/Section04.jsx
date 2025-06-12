@@ -37,7 +37,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-function Section04() {
+function Section04({slideActive}) {
 
   useEffect(() => {
     Splitting();
@@ -136,7 +136,7 @@ function Section04() {
   ]
 
   const SwiperOptions = {
-    slidesPerView: 1.8,
+    slidesPerView: 1.6,
     spaceBetween: 15,
     centeredSlides: true,
     speed: 500,
@@ -149,15 +149,15 @@ function Section04() {
     },
     breakpoints: {
       480: {
-        slidesPerView: 2.4,
+        slidesPerView: 2.2,
         spaceBetween: 15,
       },
       560: {
-        slidesPerView: 2.8,
+        slidesPerView: 2.4,
         spaceBetween: 15,
       },
       680: {
-        slidesPerView: 3.4,
+        slidesPerView: 2.6,
         spaceBetween: 15,
       },
       769: {
@@ -179,7 +179,7 @@ function Section04() {
   }
 
   return (
-    <section id={styles.Section04}>
+    <section id={styles.Section04} className={`${slideActive ? styles.slideActive : ''}`}>
 
       <div className={styles.bg_bar}></div>
 
