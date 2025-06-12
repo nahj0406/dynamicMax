@@ -120,7 +120,7 @@
 
 .scroll_down {
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -128,14 +128,14 @@
 }
 .scroll_down > p {
   font-size: clamp(14px, 1.4rem, 16px);
-  color: #fff;
+  color: #a5a5a5;
   font-weight: 300;
   letter-spacing: 2px;
 }
 .scroll_down .line {
   position: relative;
   width: 1px;
-  height: clamp(50px, 8rem, 120px);
+  height: clamp(50px, 7rem, 120px);
   margin: 5px auto 0;
   overflow: hidden;
   background: #333;
@@ -177,11 +177,6 @@
   animation: piece_move 0.2s calc(var(--i-delay) * 0.1s) forwards;
 }
 
-@media (min-width: 769px) {
-  .bannerStart .banner_txtBox {
-    animation: zIndex 0.2s 1.6s forwards;
-  }
-}
 .bannerStart .banner_txtBox .banner_title_txt1 {
   animation: banner_title_text1 0.5s forwards ease;
 }
@@ -206,11 +201,6 @@
   animation: scroll_down_opacity 1.5s 2.8s forwards;
 }
 
-@keyframes main_bg_move {
-  to {
-    transform: translateX(-49%);
-  }
-}
 @keyframes zIndex {
   to {
     z-index: 9;
@@ -263,6 +253,16 @@
     opacity: 1;
   }
 }
+@media (min-width: 769px) {
+  .bannerStart .banner_txtBox {
+    animation: zIndex 0.2s 1.6s forwards;
+  }
+  @keyframes main_bg_move {
+    to {
+      transform: translateX(-49%);
+    }
+  }
+}
 @media (max-width: 1200px) {
   .sub_txtBox {
     max-width: 100%;
@@ -272,6 +272,12 @@
   }
 }
 @media (max-width: 768px) {
+  #main_Section {
+    background: url("../../img/MainSec/main_sec_bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+  }
   .banner_txtBox {
     top: 50%;
     animation: mobtxtBox 0.5s 1.6s forwards;
@@ -283,9 +289,31 @@
   .sub_txtBox {
     display: none;
   }
+  .scroll_down > p {
+    font-size: 12px;
+  }
+  .scroll_down .line {
+    position: relative;
+    width: 1px;
+    height: 30px;
+    margin: 5px auto 0;
+    overflow: hidden;
+    background: #333;
+  }
+  .scroll_down .line::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent, #fff, #fff, transparent);
+    animation: downLine 2s linear infinite;
+  }
 }
 @keyframes mobtxtBox {
   to {
     top: 88%;
+    z-index: 11;
   }
 }/*# sourceMappingURL=MainSec.module.css.map */

@@ -46,26 +46,27 @@
   font-family: "HemiHead" !important;
 }
 
-.bg_container {
-  position: relative;
-  background: #000002;
+@media (min-width: 769px) {
+  .bg_container {
+    position: relative;
+    background: #000002;
+  }
+  .bg_container::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 50%;
+    width: 110%;
+    height: 100%;
+    transform: translateX(-50%);
+    background: url("../img/MainSec/main_sec_bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    animation: main_bg_move 3s infinite alternate ease-in-out;
+  }
 }
-.bg_container::before {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 50%;
-  width: 110%;
-  height: 100%;
-  transform: translateX(-50%);
-  background: url("../img/MainSec/main_sec_bg.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center top;
-  animation: main_bg_move 3s infinite alternate ease-in-out;
-}
-
 @media (min-width: 2000px) {
   .containerV1 {
     max-width: 1600px;
@@ -87,6 +88,12 @@
   html {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge */
+  }
+  .mobSwiper {
+    height: 100dvh;
+  }
+  .mobSwiper .swiper-slide {
+    height: 100dvh !important;
   }
 }
 @media (max-width: 680px) {

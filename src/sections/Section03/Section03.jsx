@@ -1,26 +1,26 @@
 import { useState, useEffect, useRef, Suspense, useLayoutEffect } from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
 import styles from './Section03.module.css'
-import ImgTag from '../../components/ImgTag/ImgTag'
-import useScrollOut from '../../customHook/useScrollOut'
+import ImgTag from '@/components/ImgTag/ImgTag'
+import useScrollOut from '@/customHook/useScrollOut'
 
 
 // img
-import Product01 from '../../img/Sec3/sec3_product01.png';
-import Product02 from '../../img/Sec3/sec3_product02.png';
-import Product03 from '../../img/Sec3/sec3_product03.png';
+import Product01 from '@/img/Sec3/sec3_product01.png';
+import Product02 from '@/img/Sec3/sec3_product02.png';
+import Product03 from '@/img/Sec3/sec3_product03.png';
 
-import coilIcon from '../../img/Sec3/sec3_coil.png';
-import plusIcon from '../../img/plus_icon.png';
-import cottonIcon from '../../img/Sec3/sec3_cotton.png';
+import coilIcon from '@/img/Sec3/sec3_coil.png';
+import plusIcon from '@/img/plus_icon.png';
+import cottonIcon from '@/img/Sec3/sec3_cotton.png';
 
-import worldImg from '../../img/Sec3/sec3_world.png';
+import worldImg from '@/img/Sec3/sec3_world.png';
 
-import slide01  from '../../img/Sec3/sec3_slide01.png';
-import slide02  from '../../img/Sec3/sec3_slide02.png';
-import slide03  from '../../img/Sec3/sec3_slide03.png';
-import slide04  from '../../img/Sec3/sec3_slide04.png';
-import slide05  from '../../img/Sec3/sec3_slide05.png';
+import slide01  from '@/img/Sec3/sec3_slide01.png';
+import slide02  from '@/img/Sec3/sec3_slide02.png';
+import slide03  from '@/img/Sec3/sec3_slide03.png';
+import slide04  from '@/img/Sec3/sec3_slide04.png';
+import slide05  from '@/img/Sec3/sec3_slide05.png';
 
 
 // js 라이브러리

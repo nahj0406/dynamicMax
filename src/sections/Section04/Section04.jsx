@@ -1,30 +1,30 @@
 import { useState, useEffect, useRef, Suspense } from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
 import styles from './Section04.module.css'
-import ImgTag from '../../components/ImgTag/ImgTag'
-import useScrollOut from '../../customHook/useScrollOut'
+import ImgTag from '@/components/ImgTag/ImgTag'
+import useScrollOut from '@/customHook/useScrollOut'
 
 
 // img
-import starwBg from '../../img/Sec4/sec4_straw_bg.png';
-import mangoBg from '../../img/Sec4/sec4_mango_bg.png';
-import aloeBg from '../../img/Sec4/sec4_aloe_bg.png';
-import blueberryBg from '../../img/Sec4/sec4_blueberry_bg.png';
-import melonBg from '../../img/Sec4/sec4_melon_bg.png';
-import mentholBg from '../../img/Sec4/sec4_menthol_bg.png';
-import oakBg from '../../img/Sec4/sec4_oak_bg.png';
-import orangeBg from '../../img/Sec4/sec4_orange_bg.png';
-import plumcotBg from '../../img/Sec4/sec4_plumcot_bg.png';
+import starwBg from '@/img/Sec4/sec4_straw_bg.png';
+import mangoBg from '@/img/Sec4/sec4_mango_bg.png';
+import aloeBg from '@/img/Sec4/sec4_aloe_bg.png';
+import blueberryBg from '@/img/Sec4/sec4_blueberry_bg.png';
+import melonBg from '@/img/Sec4/sec4_melon_bg.png';
+import mentholBg from '@/img/Sec4/sec4_menthol_bg.png';
+import oakBg from '@/img/Sec4/sec4_oak_bg.png';
+import orangeBg from '@/img/Sec4/sec4_orange_bg.png';
+import plumcotBg from '@/img/Sec4/sec4_plumcot_bg.png';
 
-import starw from '../../img/Sec4/sec4_slide_straw.png';
-import mango from '../../img/Sec4/sec4_slide_mango.png';
-import aloe from '../../img/Sec4/sec4_slide_aloe.png';
-import blueberry from '../../img/Sec4/sec4_slide_blueberry.png';
-import melon from '../../img/Sec4/sec4_slide_melon.png';
-import menthol from '../../img/Sec4/sec4_slide_menthol.png';
-import oak from '../../img/Sec4/sec4_slide_oak.png';
-import orange from '../../img/Sec4/sec4_slide_orange.png';
-import plumcot from '../../img/Sec4/sec4_slide_plumcot.png';
+import starw from '@/img/Sec4/sec4_slide_straw.png';
+import mango from '@/img/Sec4/sec4_slide_mango.png';
+import aloe from '@/img/Sec4/sec4_slide_aloe.png';
+import blueberry from '@/img/Sec4/sec4_slide_blueberry.png';
+import melon from '@/img/Sec4/sec4_slide_melon.png';
+import menthol from '@/img/Sec4/sec4_slide_menthol.png';
+import oak from '@/img/Sec4/sec4_slide_oak.png';
+import orange from '@/img/Sec4/sec4_slide_orange.png';
+import plumcot from '@/img/Sec4/sec4_slide_plumcot.png';
 
 // js 라이브러리
 import "swiper/css";

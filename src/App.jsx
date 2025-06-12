@@ -1,23 +1,28 @@
 import {useState, useEffect, Suspense, useRef } from 'react'
-import './css/App.css'
-import './css/style.css'
+import '@/css/App.css'
+import '@/css/style.css'
 import { Route, Routes, Link } from 'react-router-dom'
-import useInitialLenis from './customHook/useInitialLenis'
-import useIsMobile from './customHook/useIsMobile'
+import useInitialLenis from '@/customHook/useInitialLenis'
+import useIsMobile from '@/customHook/useIsMobile'
 
 // 페이지
-import Header from './components/Header/Header';
-import MainSec from './sections/MainSec/MainSec'
-import Section01 from './sections/Section01/Section01'
-import Section02 from './sections/Section02/Section02'
-import Section03 from './sections/Section03/Section03'
-import Section04 from './sections/Section04/Section04'
-import Footer from './components/Footer/Footer';
+import Header from '@/components/Header/Header';
+import MainSec from '@/sections/MainSec/MainSec'
+import Section01 from '@/sections/Section01/Section01'
+import Section02 from '@/sections/Section02/Section02'
+import Section03 from '@/sections/Section03/Section03'
+import Section04 from '@/sections/Section04/Section04'
+import Footer from '@/components/Footer/Footer';
 
 // js 라이브러리
 import Splitting from 'splitting';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Mousewheel, Pagination } from 'swiper/modules';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,12 +30,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-function App() {
-
-  const prevIsMobile = useRef(window.innerWidth <= 768);
+function App() {  
   const isMobile = useIsMobile();
 
-  useInitialLenis();
+  useInitialLenis(); //leins 라이브러리
 
   useEffect(() => {
     Splitting();
@@ -55,6 +58,7 @@ function App() {
 
 
   // pc 모바일 구간 바뀔때마다 새로고침 ----------------------------------
+  const prevIsMobile = useRef(window.innerWidth <= 768);
   useEffect(() => {
     const handleResize = () => {
       const reloadSize = window.innerWidth <= 768;
@@ -72,12 +76,13 @@ function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const components = [
+  const components = [ // 모바일용 fullpage 배열
     <MainSec />,
     <Section01 />,
     <Section02 />,
     <Section03 />,
     <Section04 />,
+    <Footer/>
   ]
 
 
@@ -85,11 +90,10 @@ function App() {
     <div id='App'>
       {/* 헤더 */}
       <Header/>
-      
-      {/* 메인 */}
 
-      {
-        !isMobile ? (
+      {/* 메인 */}
+      { 
+        !isMobile ? ( // desktop -------------------------------------------------------------------------
           <>
             <section className='bg_container'>
               <MainSec />
@@ -100,17 +104,34 @@ function App() {
             <Section04 />
             <Footer/>
           </>
-        ) : (
+        ) : ( // mobile -------------------------------------------------------------------------
           <>
-            {/* {
-              components.map((item, i) => {
-                return (
-                  <FullpageSection key={i} style={{ minHeight: '100dvh',}}>
-                    {item}
-                  </FullpageSection>
-                )
-              })
-            } */}
+          {/* <Suspense fallback={<Fallback />}></Suspense> */}
+      {/* <Routes>
+        <Route path='/' element={<MainSec />} />
+      </Routes> */}
+            <Swiper
+              direction={'vertical'}
+              slidesPerView={1}
+              spaceBetween={30}
+              mousewheel={true}
+              // pagination={{
+              //   clickable: true,
+              // }}
+              modules={[Mousewheel]}
+              // Pagination
+              className="mobSwiper"
+            >
+              {
+                components.map((item, i) => {
+                  return (
+                    <SwiperSlide key={i}>
+                      {item}
+                    </SwiperSlide>
+                  )
+                })
+              }
+            </Swiper>
           </>
         )
       }

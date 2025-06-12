@@ -2,8 +2,7 @@ import { useEffect, useRef, Suspense, useLayoutEffect } from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
 // import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './Section01.module.css'
-import ImgTag from '../../components/ImgTag/ImgTag'
-import useScrollOut from '../../customHook/useScrollOut'
+import useScrollOut from '@/customHook/useScrollOut'
 
 
 // js 라이브러리

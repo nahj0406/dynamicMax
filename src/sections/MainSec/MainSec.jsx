@@ -1,14 +1,15 @@
 import { useState, useEffect, useRef, Suspense } from 'react'
 import { Route, Routes, Link } from 'react-router-dom'
 import styles from './MainSec.module.css'
+import useIsMobile from '@/customHook/useIsMobile'
 
 
 // 컴포넌트
-import ImgTag from '../../components/ImgTag/ImgTag'
+import ImgTag from '@/components/ImgTag/ImgTag'
 
 
 // img
-import mainProduct from '../../img/MainSec/main_product 1.png';
+import mainProduct from '@/img/MainSec/main_product 1.png';
 
 // js 라이브러리
 import Splitting from 'splitting';
@@ -19,17 +20,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 function MainSec() {
-
+  const isMobile = useIsMobile();
   const containerRef = useRef(null);
   const [banner, bannerSet] = useState('');
   
 
   useEffect(() => {
     Splitting();
-
     const bannerTimerAni = setTimeout(() => {
       bannerSet('true');
-    }, 1500);
+    }, (!isMobile ? 1500 : 1000));
 
     return () => clearTimeout(bannerTimerAni);
 
@@ -37,6 +37,7 @@ function MainSec() {
 
   return (
     <section id={styles.main_Section} className={`${banner === 'true' ? styles.bannerStart : ''}`} ref={containerRef}>
+      {/* { !isMobile && <StartBanner />} */}
       <StartBanner />
 
       <div className={styles.banner_txtBox}>
