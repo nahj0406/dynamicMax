@@ -6,116 +6,100 @@
 }
 
 
-#Section03 {
+#Section03_2 {
   position: relative;
   background: #101010;
+  padding: var(--head-margin) 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  :global(.containerV1) {position: relative; z-index: 2; width: 100%; height: auto;}
+  :global(.containerV1) {
+    position: relative; z-index: 2; width: 100%;
+    height: auto;
+  }
 
-  .pin_wrapper {padding: 19rem 0; position: relative; z-index: 2;}
+  .pin_wrapper { position: relative; z-index: 2;}
 
   #bgVideo {
     position: absolute; z-index: 1;
-    top: 0; left: 50%; transform: translateX(-50%);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
     width: 100%; min-width: clamp(2000px, 140vw, 3000px);
   }
-}
-.titleBox {position: relative; z-index: 2;}
-.titleBox p > span {color: var(--main-color3);}
 
-
-.product {
-  display: flex; justify-content: center;
-  align-items: center; position: relative; z-index: 1;
-
-  > img {position: relative; width: clamp(150px, 20rem, 320px);}
-
-  .img3 { z-index: 1; transform: translateX(30%); }
-  .img1 { z-index: 2; transform: translateY(10%); }
-  .img2 { z-index: 1; transform: translate(-30%, 20%); }
+  .titleBox {position: relative; z-index: 2;}
+  .titleBox p > span {color: var(--main-color2);}
 }
 
-.triggerBg {position: absolute; z-index: 2; top: 0; left: 0; width: 100%; height: 150dvh;}
 
-
-.triggerBox {
-  width: 100%; height: 100%;
-  @include flexColum; 
-  gap: 40rem; z-index: 3;
-
-  > * {
-    width: fit-content; text-align: center;
-
-    p {font-size: clamp(18px, 2rem, 23px,); font-weight: 500; color: #fff; line-height: 1.5;}
-    p span {font-size: inherit; font-weight: inherit; line-height: inherit;}
-  }
-
-  .content01 {
+.slideContainer {
+  width: 100%;
+  .item {
     @include flexColum;
-    gap: max(20px, 5rem);
+    gap: 20px;
 
-    .iconBox {
-      display: flex; gap: 2.5rem;
-      align-items: center;
+    .img {width: 100%;}
 
-      img:nth-child(1) {width: clamp(60px, 12rem, 120px);}
-      img:nth-child(2) {width: clamp(20px, 4rem, 40px);}
-      img:nth-child(3) {width: clamp(60px, 12rem, 120px);}
-    }
-  }
+    .textBox {
+      text-align: center; color: #fff;
+      padding: 0 5px; width: 100%;
 
-  .content02 {
-    @include flexColum;
-    gap: 3rem;
-
-    .iconBox {
-      img {width: clamp(250px, 33.5rem, 335px);}
-    }
-  }
-
-  .content_Slide {
-    display: flex; gap: max(15px, 3rem);
-
-
-    .item {
-      @include flexColum;
-      gap: 20px;
-
-      .img {width: clamp(250px, 27.2rem, 280px);}
-
-      .textBox {
-        text-align: center; color: #fff;
-        padding: 0 5px; width: 100%; max-width: clamp(200px, 27.2rem, 280px);
-
-        h5 {
-          font-size: max(18px, 2.5rem); font-weight: 600; line-height: 1.2; margin-bottom: 15px;
-          text-transform: uppercase;
-        }
-        figcaption {font-size: clamp(14px, 1.8rem, 18px);}
+      h5 {
+        font-size: 20px; font-weight: 600; line-height: 1.2; margin-bottom: 15px;
+        text-transform: uppercase;
       }
-
+      figcaption {font-size: 18px;}
     }
+
   }
 }
 
-@media (min-width: 769px) { // pc에서만 적용
 
-  // 스크롤 애니메이션
-  .scAni.titleBox {
+// 애니메이션
+.titleBox {
 
-    h2 {
-        :global(.char) {
-          opacity: 0;
-          display: inline-block;
-          transform: scale(1.2);
-        }
-    }
-
-    p {transform: translateY(-10%); opacity: 0; transition: 0.5s;}
+  h2 {
+      :global(.char) {
+        opacity: 0;
+        display: inline-block;
+        transform: scale(1.2);
+        will-change: transform;
+      }
   }
 
-  .scAni.titleBox.animate[data-scroll="in"] {
+  p {transform: translateY(-10%); opacity: 0; transition: 0.2s 0.2s;}
+}
+
+.slideContainer .item_slide .item {
+  .img {
+    transform: translateY(15%);
+    transition: 0.2s;
+  }
+   .textBox {
+    > * {opacity: 0; transform: translateY(15%); transition: 0.2s;}
+  }
+}
+
+.slideContainer .item_slide.item_active .item {
+
+  .img {
+    transform: translateY(0);
+    transition: 0.5s;
+  }
+  
+  .textBox {
+    > * {opacity: 1; transform: translateY(0%);}
+    
+    h5 {transition: 0.5s 0.2s;}
+    figcaption {transition: 0.5s 0.4s;}
+  }
+}
+
+.slideActive { //active
+
+  .titleBox {
 
     h2 {
         :global(.char) {
@@ -125,183 +109,10 @@
         }
     }
 
-    p {transform: translateY(0%); opacity: 1; transition-delay: 0.1s;}
-  }
-
-  .triggerBox {
-    position: absolute;
-    top: 50%; left: 50%; transform: translate(-50%, -50%);
-
-    > * {position: absolute;}
-
-    .content01 {
-      top: 55%; left: 50%; z-index: 3;
-      transform: translate(-50%, -50%);
-      width: 100%; max-width: 350px;
-    }
-
-    .content02 {
-      z-index: 2;
-      top: 55%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%; max-width: 390px;
-    }
-
-    .content_Slide {
-      top: 55%; left: 50%; z-index: 1;
-      transform: translate3d(0, -50%, 0);
-    }
+    p {transform: translateY(0%); opacity: 1; transition: 0.5s 0.3s;}
   }
 }
 
-
-@media (min-width: 2000px) {
-  .triggerBox {
-    .content_Slide {
-      .item {
-        .img {width: clamp(250px, 37.2rem, 372px);}
-
-        .textBox {max-width: clamp(200px, 37.2rem, 380px);}
-      }
-    }
-  }
-}
-
-// 모바일 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-// 높이가 850 이상일 때
-@media (max-width: 768px) {
-  #Section03 {
-    :global(.containerV1) {position: absolute; top: var(--head-margin); left: 0; z-index: 2;}
-
-    .pin_wrapper {
-      height: 100%;
-      padding: var(--head-margin) 15px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-
-  .triggerBg {height: 100%; background: rgba(0,0,0,0.8); z-index: 1;}
-
-  .product {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    > img {width: clamp(150px, 20rem, 320px);}
-  }
-
-  .triggerBox {
-    position: relative;
-    gap: 10rem; padding-top: 25rem;
-
-    article {width: 100%; max-width: 290px;}
-    p {font-size: clamp(15px, 2rem, 23px,);}
-  }
-
-  // 애니메이션
-  .titleBox {
-
-    h2 {
-        :global(.char) {
-          opacity: 0;
-          display: inline-block;
-          transform: scale(1.2);
-          will-change: transform;
-        }
-    }
-
-    p {transform: translateY(-10%); opacity: 0; transition: 0.2s 0.2s;}
-  }
-
-  .content01 {
-      .iconBox img { opacity: 0; transition: 0.2s 0.2s; will-change: transform;}
-      .iconBox img:nth-child(1) {transform: scale(1.5);}
-      .iconBox img:nth-child(3) {transform: scale(1.5);}
-
-      p {
-        :global(.char) {
-          --char-delay-base : 1.7s;
-          opacity: 0;
-          display: inline-block;
-          transform: translateY(20%);
-          will-change: transform;
-        }
-      }
-  }
-
-  .content02 {
-      .iconBox img { opacity: 0; transition: 0.2s 0.2s; will-change: transform; transform: scale(1.3);}
-
-      p {
-        :global(.char) {
-          --char-delay-base : 2.3s;
-          opacity: 0;
-          display: inline-block;
-          transform: translateY(20%);
-          will-change: transform;
-        }
-      }
-  }
-
-  .triggerBg {opacity: 0; transition: 0.2s 0.2s;}
-  .product {filter: brightness(1); transition: 0.2s 0.2s;}
-
-
-
-  .slideActive { //active
-
-    .titleBox {
-
-      h2 {
-          :global(.char) {
-            opacity: 1;
-            transition: 0.5s calc(var(--char-index) * 0.1s);
-            transform: scale(1);
-          }
-      }
-
-      p {transform: translateY(0%); opacity: 1; transition: 0.5s 0.3s;}
-    }
-
-    .content01 {
-      .iconBox img { opacity: 1;}
-      .iconBox img:nth-child(1) {transform: scale(1); transition: 0.4s 1s;}
-      .iconBox img:nth-child(2) {transition: 0.4s 1.7s;}
-      .iconBox img:nth-child(3) {transform: scale(1); transition: 0.4s 1.3s;}
-
-      p {
-        :global(.char) {
-          opacity: 1;
-          transition: 0.5s calc(var(--char-delay-base, 0s) + var(--char-index) * 0.02s);
-          transform: translateY(0);
-        }
-      }
-    }
-
-    .content02 {
-      .iconBox img { opacity: 1; transform: scale(1); transition: 0.4s 2s;}
-
-      p {
-        :global(.char) {
-          opacity: 1;
-          transition: 0.5s calc(var(--char-delay-base, 0s) + var(--char-index) * 0.02s);
-          transform: translateY(0);
-        }
-      }
-    }
-
-    .triggerBg {opacity: 1; transition: 1s 0.5s;}
-    .product {filter: brightness(0.3); transition: 1s 0.5s;}
-
-  }
-
-
-}
 
 // 높이가 더 낮을 때 대응
 @media (max-width: 768px) and (max-height: 850px) {

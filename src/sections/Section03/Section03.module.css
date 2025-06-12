@@ -17,9 +17,9 @@
 #Section03 #bgVideo {
   position: absolute;
   z-index: 1;
-  top: 0;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   width: 100%;
   min-width: clamp(2000px, 140vw, 3000px);
 }
@@ -364,5 +364,16 @@
   }
   .triggerBox .content02 .iconBox img {
     width: 135px;
+  }
+}
+@media (max-width: 1550px) and (max-height: 690px) {
+  .triggerBox .content01 {
+    top: 45%;
+  }
+  .triggerBox .content02 {
+    top: 45%;
+  }
+  .triggerBox .content_Slide {
+    top: 45%;
   }
 }/*# sourceMappingURL=Section03.module.css.map */

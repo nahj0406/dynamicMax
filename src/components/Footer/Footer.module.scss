@@ -53,9 +53,13 @@
    .topbutton.active {opacity: 1; visibility: visible;}  
 }
 
+
+
+// 모바일 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 @media (max-width: 768px) {
    #footer {
-      background: #111;
+      background: url("../../img/mob_footer_bg.jpg") no-repeat right center / cover;
       padding: var(--head-margin) 0 30px;
       height: 100%;
       display: flex;

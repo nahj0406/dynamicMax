@@ -1,355 +1,117 @@
-#Section03 {
+#Section03_2 {
   position: relative;
   background: #101010;
+  padding: var(--head-margin) 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-#Section03 :global(.containerV1) {
+#Section03_2 :global(.containerV1) {
   position: relative;
   z-index: 2;
   width: 100%;
   height: auto;
 }
-#Section03 .pin_wrapper {
-  padding: 19rem 0;
+#Section03_2 .pin_wrapper {
   position: relative;
   z-index: 2;
 }
-#Section03 #bgVideo {
+#Section03_2 #bgVideo {
   position: absolute;
   z-index: 1;
-  top: 0;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   width: 100%;
   min-width: clamp(2000px, 140vw, 3000px);
 }
-
-.titleBox {
+#Section03_2 .titleBox {
   position: relative;
   z-index: 2;
 }
-
-.titleBox p > span {
-  color: var(--main-color3);
+#Section03_2 .titleBox p > span {
+  color: var(--main-color2);
 }
 
-.product {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-}
-.product > img {
-  position: relative;
-  width: clamp(150px, 20rem, 320px);
-}
-.product .img3 {
-  z-index: 1;
-  transform: translateX(30%);
-}
-.product .img1 {
-  z-index: 2;
-  transform: translateY(10%);
-}
-.product .img2 {
-  z-index: 1;
-  transform: translate(-30%, 20%);
-}
-
-.triggerBg {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  left: 0;
+.slideContainer {
   width: 100%;
-  height: 150dvh;
 }
-
-.triggerBox {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40rem;
-  z-index: 3;
-}
-.triggerBox > * {
-  width: -moz-fit-content;
-  width: fit-content;
-  text-align: center;
-}
-.triggerBox > * p {
-  font-size: clamp(18px, 2rem, 23px);
-  font-weight: 500;
-  color: #fff;
-  line-height: 1.5;
-}
-.triggerBox > * p span {
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-}
-.triggerBox .content01 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: max(20px, 5rem);
-}
-.triggerBox .content01 .iconBox {
-  display: flex;
-  gap: 2.5rem;
-  align-items: center;
-}
-.triggerBox .content01 .iconBox img:nth-child(1) {
-  width: clamp(60px, 12rem, 120px);
-}
-.triggerBox .content01 .iconBox img:nth-child(2) {
-  width: clamp(20px, 4rem, 40px);
-}
-.triggerBox .content01 .iconBox img:nth-child(3) {
-  width: clamp(60px, 12rem, 120px);
-}
-.triggerBox .content02 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3rem;
-}
-.triggerBox .content02 .iconBox img {
-  width: clamp(250px, 33.5rem, 335px);
-}
-.triggerBox .content_Slide {
-  display: flex;
-  gap: max(15px, 3rem);
-}
-.triggerBox .content_Slide .item {
+.slideContainer .item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
-.triggerBox .content_Slide .item .img {
-  width: clamp(250px, 27.2rem, 280px);
+.slideContainer .item .img {
+  width: 100%;
 }
-.triggerBox .content_Slide .item .textBox {
+.slideContainer .item .textBox {
   text-align: center;
   color: #fff;
   padding: 0 5px;
   width: 100%;
-  max-width: clamp(200px, 27.2rem, 280px);
 }
-.triggerBox .content_Slide .item .textBox h5 {
-  font-size: max(18px, 2.5rem);
+.slideContainer .item .textBox h5 {
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 15px;
   text-transform: uppercase;
 }
-.triggerBox .content_Slide .item .textBox figcaption {
-  font-size: clamp(14px, 1.8rem, 18px);
+.slideContainer .item .textBox figcaption {
+  font-size: 18px;
 }
 
-@media (min-width: 769px) {
-  .scAni.titleBox h2 :global(.char) {
-    opacity: 0;
-    display: inline-block;
-    transform: scale(1.2);
-  }
-  .scAni.titleBox p {
-    transform: translateY(-10%);
-    opacity: 0;
-    transition: 0.5s;
-  }
-  .scAni.titleBox.animate[data-scroll=in] h2 :global(.char) {
-    opacity: 1;
-    transition: 0.5s calc(var(--char-index) * 0.1s);
-    transform: scale(1);
-  }
-  .scAni.titleBox.animate[data-scroll=in] p {
-    transform: translateY(0%);
-    opacity: 1;
-    transition-delay: 0.1s;
-  }
-  .triggerBox {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .triggerBox > * {
-    position: absolute;
-  }
-  .triggerBox .content01 {
-    top: 55%;
-    left: 50%;
-    z-index: 3;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    max-width: 350px;
-  }
-  .triggerBox .content02 {
-    z-index: 2;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    max-width: 390px;
-  }
-  .triggerBox .content_Slide {
-    top: 55%;
-    left: 50%;
-    z-index: 1;
-    transform: translate3d(0, -50%, 0);
-  }
+.titleBox h2 :global(.char) {
+  opacity: 0;
+  display: inline-block;
+  transform: scale(1.2);
+  will-change: transform;
 }
-@media (min-width: 2000px) {
-  .triggerBox .content_Slide .item .img {
-    width: clamp(250px, 37.2rem, 372px);
-  }
-  .triggerBox .content_Slide .item .textBox {
-    max-width: clamp(200px, 37.2rem, 380px);
-  }
+.titleBox p {
+  transform: translateY(-10%);
+  opacity: 0;
+  transition: 0.2s 0.2s;
 }
-@media (max-width: 768px) {
-  #Section03 :global(.containerV1) {
-    position: absolute;
-    top: var(--head-margin);
-    left: 0;
-    z-index: 2;
-  }
-  #Section03 .pin_wrapper {
-    height: 100%;
-    padding: var(--head-margin) 15px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .triggerBg {
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1;
-  }
-  .product {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .product > img {
-    width: clamp(150px, 20rem, 320px);
-  }
-  .triggerBox {
-    position: relative;
-    gap: 10rem;
-    padding-top: 25rem;
-  }
-  .triggerBox article {
-    width: 100%;
-    max-width: 290px;
-  }
-  .triggerBox p {
-    font-size: clamp(15px, 2rem, 23px);
-  }
-  .titleBox h2 :global(.char) {
-    opacity: 0;
-    display: inline-block;
-    transform: scale(1.2);
-    will-change: transform;
-  }
-  .titleBox p {
-    transform: translateY(-10%);
-    opacity: 0;
-    transition: 0.2s 0.2s;
-  }
-  .content01 .iconBox img {
-    opacity: 0;
-    transition: 0.2s 0.2s;
-    will-change: transform;
-  }
-  .content01 .iconBox img:nth-child(1) {
-    transform: scale(1.5);
-  }
-  .content01 .iconBox img:nth-child(3) {
-    transform: scale(1.5);
-  }
-  .content01 p :global(.char) {
-    --char-delay-base: 1.7s;
-    opacity: 0;
-    display: inline-block;
-    transform: translateY(20%);
-    will-change: transform;
-  }
-  .content02 .iconBox img {
-    opacity: 0;
-    transition: 0.2s 0.2s;
-    will-change: transform;
-    transform: scale(1.3);
-  }
-  .content02 p :global(.char) {
-    --char-delay-base: 2.3s;
-    opacity: 0;
-    display: inline-block;
-    transform: translateY(20%);
-    will-change: transform;
-  }
-  .triggerBg {
-    opacity: 0;
-    transition: 0.2s 0.2s;
-  }
-  .product {
-    filter: brightness(1);
-    transition: 0.2s 0.2s;
-  }
-  .slideActive .titleBox h2 :global(.char) {
-    opacity: 1;
-    transition: 0.5s calc(var(--char-index) * 0.1s);
-    transform: scale(1);
-  }
-  .slideActive .titleBox p {
-    transform: translateY(0%);
-    opacity: 1;
-    transition: 0.5s 0.3s;
-  }
-  .slideActive .content01 .iconBox img {
-    opacity: 1;
-  }
-  .slideActive .content01 .iconBox img:nth-child(1) {
-    transform: scale(1);
-    transition: 0.4s 1s;
-  }
-  .slideActive .content01 .iconBox img:nth-child(2) {
-    transition: 0.4s 1.7s;
-  }
-  .slideActive .content01 .iconBox img:nth-child(3) {
-    transform: scale(1);
-    transition: 0.4s 1.3s;
-  }
-  .slideActive .content01 p :global(.char) {
-    opacity: 1;
-    transition: 0.5s calc(var(--char-delay-base, 0s) + var(--char-index) * 0.02s);
-    transform: translateY(0);
-  }
-  .slideActive .content02 .iconBox img {
-    opacity: 1;
-    transform: scale(1);
-    transition: 0.4s 2s;
-  }
-  .slideActive .content02 p :global(.char) {
-    opacity: 1;
-    transition: 0.5s calc(var(--char-delay-base, 0s) + var(--char-index) * 0.02s);
-    transform: translateY(0);
-  }
-  .slideActive .triggerBg {
-    opacity: 1;
-    transition: 1s 0.5s;
-  }
-  .slideActive .product {
-    filter: brightness(0.3);
-    transition: 1s 0.5s;
-  }
+
+.slideContainer .item_slide .item .img {
+  transform: translateY(15%);
+  transition: 0.2s;
 }
+.slideContainer .item_slide .item .textBox > * {
+  opacity: 0;
+  transform: translateY(15%);
+  transition: 0.2s;
+}
+
+.slideContainer .item_slide.item_active .item .img {
+  transform: translateY(0);
+  transition: 0.5s;
+}
+.slideContainer .item_slide.item_active .item .textBox > * {
+  opacity: 1;
+  transform: translateY(0%);
+}
+.slideContainer .item_slide.item_active .item .textBox h5 {
+  transition: 0.5s 0.2s;
+}
+.slideContainer .item_slide.item_active .item .textBox figcaption {
+  transition: 0.5s 0.4s;
+}
+
+.slideActive .titleBox h2 :global(.char) {
+  opacity: 1;
+  transition: 0.5s calc(var(--char-index) * 0.1s);
+  transform: scale(1);
+}
+.slideActive .titleBox p {
+  transform: translateY(0%);
+  opacity: 1;
+  transition: 0.5s 0.3s;
+}
+
 @media (max-width: 768px) and (max-height: 850px) {
   .product > img {
     width: clamp(120px, 20rem, 320px);
@@ -365,4 +127,4 @@
   .triggerBox .content02 .iconBox img {
     width: 135px;
   }
-}/*# sourceMappingURL=Section03.module.css.map */
+}/*# sourceMappingURL=Section03_2.module.css.map */

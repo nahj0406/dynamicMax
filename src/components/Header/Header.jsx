@@ -31,7 +31,9 @@ function Header() {
       <header id={styles.header}>
          <div className={`${styles.headerContainer} containerV1`}>
             <h1 id={styles.logo}>
-               <img src={Logo} alt="다이나믹 맥스 로고" />
+               <a href={`/`} target={'_blank'}>
+                  <img src={Logo} alt="다이나믹 맥스 로고" />
+               </a>
             </h1>
             <nav>
                <ul className={styles.outerMenu}>

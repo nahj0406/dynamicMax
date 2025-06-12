@@ -11,6 +11,7 @@ import MainSec from '@/sections/MainSec/MainSec'
 import Section01 from '@/sections/Section01/Section01'
 import Section02 from '@/sections/Section02/Section02'
 import Section03 from '@/sections/Section03/Section03'
+import Section03_2 from '@/sections/Section03_2/Section03_2'
 import Section04 from '@/sections/Section04/Section04'
 import Footer from '@/components/Footer/Footer';
 
@@ -83,6 +84,7 @@ function App() {
     <Section01 />,
     <Section02 />,
     <Section03 />,
+    <Section03_2 />,
     <Section04 />,
     <Footer/>
   ]

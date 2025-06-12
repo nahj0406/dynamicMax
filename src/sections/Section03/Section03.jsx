@@ -85,7 +85,7 @@ function Section03({slideActive}) {
             start: "top+=100 top-=3%",
             end: `+=${(viewportWidth * 2)}`,
             scrub: 1,
-            markers: true,
+            // markers: true,
             invalidateOnRefresh: true,
           },
         });
@@ -108,6 +108,59 @@ function Section03({slideActive}) {
 
       return () => ctx.revert(); // ✅ 미디어 해제 시 정리
     });
+
+    // mm.add("(max-width: 1550px) and (max-height: 695px)", () => {
+    //   const ctx = gsap.context(() => {
+    //     // pin 설정
+    //     ScrollTrigger.create({
+    //       trigger: containerRef.current,
+    //       start: "top+=100 top-=3%",
+    //       end: `+=${(viewportWidth * 2)}`,
+    //       pin: true,
+    //       invalidateOnRefresh: true,
+    //     });
+
+    //     gsap.to(triggerBgRef.current, {
+    //       backgroundColor: "rgba(0,0,0,0.8)",
+    //       duration: 1,
+    //       scrollTrigger: {
+    //         trigger: containerRef.current,
+    //         start: "top top",
+    //         end: "top+=10% top",
+    //         scrub: 1,
+    //       },
+    //     });
+
+    //     // timeline 생성
+    //     const tl = gsap.timeline({
+    //       scrollTrigger: {
+    //         trigger: containerRef.current,
+    //         start: "top+=100 top-=3%",
+    //         end: `+=${(viewportWidth * 2)}`,
+    //         scrub: 1,
+    //         // markers: true,
+    //         invalidateOnRefresh: true,
+    //       },
+    //     });
+
+    //     // 요소 위치 세팅
+    //     gsap.set(content01Ref.current, {opacity: 0, y: content01Ref.current.offsetHeight});
+    //     gsap.set(content02Ref.current, {opacity: 0, y: content01Ref.current.offsetHeight});
+    //     gsap.set(slideRef.current, {xPercent: 65});
+
+    //     tl.to(content01Ref.current, {opacity: 1,},);
+    //     tl.to(content01Ref.current, {opacity: 1, y: 0,},);
+    //     tl.to(content01Ref.current, {opacity: 0, y: 0,},);
+
+    //     tl.to(content02Ref.current, {opacity: 1,},);
+    //     tl.to(content02Ref.current, {opacity: 1, y: 0,},);
+    //     tl.to(content02Ref.current, {opacity: 0, y: 0,},);
+    //     tl.to(slideRef.current, {xPercent: -80, duration: 8,},);
+
+    //   }, containerRef);
+
+    //   return () => ctx.revert(); // ✅ 미디어 해제 시 정리
+    // });
 
     return () => mm.revert();
   }, []);

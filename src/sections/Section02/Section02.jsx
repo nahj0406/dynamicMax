@@ -58,7 +58,7 @@ function Section02({slideActive}) {
             start: startData,
             end: endData,
             scrub: true,
-            markers: true,
+            // markers: true,
           },
         });
 

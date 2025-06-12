@@ -125,7 +125,7 @@
 }
 @media (max-width: 768px) {
   #Section01 {
-    background: #111;
+    background: url("../../img/Sec1/mob_sec1_bg.jpg") no-repeat right center/cover;
     padding: 0;
     position: relative;
     display: flex;
