@@ -53,11 +53,10 @@ function Section03({slideActive}) {
   useLayoutEffect(() => {
 
     const mm = gsap.matchMedia();
-    const viewportWidth = window.innerWidth;
     const content01Height = content01Ref.current.offsetHeight;
     const content02Height = content02Ref.current.offsetHeight;
+    const viewportWidth = window.innerWidth;
 
-    // requestAnimationFrame(() => {
         mm.add("(min-width: 769px)", () => {
           const ctx = gsap.context(() => {
             // pin 설정
@@ -67,7 +66,7 @@ function Section03({slideActive}) {
               end: `+=${(viewportWidth * 2)}`,
               pin: true,
               invalidateOnRefresh: true,
-              markers: true,
+              // markers: true,
             });
 
             gsap.to(triggerBgRef.current, {
@@ -110,8 +109,7 @@ function Section03({slideActive}) {
           }, containerRef);
 
           return () => ctx.revert(); // ✅ 미디어 해제 시 정리
-        });      
-    // })
+        });
 
     return () => mm.revert();
   }, []);
