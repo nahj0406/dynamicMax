@@ -11,7 +11,11 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <Routes>
+          
+          <Route path='/' element={<App />} /> {/* 다이나믹 맥스 */}
+          <Route path='/Dynamic01' element={<Dynamic01 />} /> {/* 다이나믹1 */}
+        </Routes>
       </BrowserRouter>
     </Provider>
   </StrictMode>,

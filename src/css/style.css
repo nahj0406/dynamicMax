@@ -67,6 +67,11 @@
     background-position: center top;
     animation: main_bg_move 3s infinite alternate ease-in-out;
   }
+  @keyframes main_bg_move {
+    to {
+      transform: translateX(-49%);
+    }
+  }
 }
 @media (min-width: 2000px) {
   .containerV1 {
