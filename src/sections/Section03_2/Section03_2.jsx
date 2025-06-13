@@ -27,26 +27,22 @@ function Section03_2({slideActive}) {
     loop: false,
     modules: [Autoplay],
     autoplay: {
-      delay: 3000,
+      delay: 2000,
       disableOnInteraction: false,
       pauseOnMouseEnter: true,
     },
     breakpoints: {
       480: {
         slidesPerView: 2.2,
-        // spaceBetween: 15,
       },
       560: {
         slidesPerView: 2.4,
-        // spaceBetween: 15,
       },
       680: {
         slidesPerView: 2.6,
-        // spaceBetween: 15,
       },
       768: {
         slidesPerView: 3.8,
-        // spaceBetween: 15,
       },
     },
   }

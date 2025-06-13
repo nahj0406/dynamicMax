@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Suspense, useRef } from 'react'
+import React, {useState, useEffect, useRef } from 'react'
 import '@/css/App.css'
 import '@/css/style.css'
 import useInitialLenis from '@/customHook/useInitialLenis'
@@ -32,13 +32,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {  
   const isMobile = useIsMobile();
-  const [fontsLoaded, setFontsLoaded] = useState(false);
-
-  useEffect(() => {
-    document.fonts.ready.then(() => {
-      setFontsLoaded(true);
-    });
-  }, []);
+  const swiperRef = useRef(null);
 
   useInitialLenis(); //leins 라이브러리
 
@@ -48,7 +42,7 @@ function App() {
   }, []);
 
 
-  // gsap 업데이트 -------------------------------------------------
+  // gsap 사이즈 변경때마다 2초 지연후 재업데이트 -------------------------------------------------
   useEffect(() => {
     let resizeTimeout;
     const onResize = () => {
@@ -60,6 +54,22 @@ function App() {
 
     return () => window.removeEventListener("resize", onResize);
   }, []);
+
+
+  const SlideVideoSttart = (swiper) => {
+    const slides = swiper.slides;
+
+    slides.forEach((slide, index) => {
+      const video = slide.querySelector('video');
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+        if (index === swiper.activeIndex) {
+          video.play();
+        }
+      }
+    });
+  };
   
   
 
@@ -121,11 +131,15 @@ function App() {
               slidesPerView={1}
               spaceBetween={0}
               mousewheel={true}
+              onSwiper={(swiper) => (swiperRef.current = swiper)}
               // pagination={{
               //   clickable: true,
               // }}
               modules={[Mousewheel]}
-              onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+              onSlideChange={(swiper) => {
+                setActiveIndex(swiper.activeIndex)
+                SlideVideoSttart(swiper);
+              }}
               // Pagination
               className="mobSwiper"
             >
