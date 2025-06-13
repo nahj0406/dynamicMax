@@ -10,7 +10,7 @@ function Header() {
 
    const linkAdd = [
       {
-         url: 'https://dynamic.worldintl.co.kr/',
+         url: '/Dynamic01',
          name: 'DYNAMIC I',
       },
       {

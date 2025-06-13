@@ -257,11 +257,6 @@
   .bannerStart .banner_txtBox {
     animation: zIndex 0.2s 1.6s forwards;
   }
-  @keyframes main_bg_move {
-    to {
-      transform: translateX(-49%);
-    }
-  }
 }
 @media (max-width: 1200px) {
   .sub_txtBox {
