@@ -33,6 +33,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {  
   const isMobile = useIsMobile();
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    document.fonts.ready.then(() => {
+      setFontsLoaded(true);
+    });
+  }, []);
 
   useInitialLenis(); //leins 라이브러리
 
