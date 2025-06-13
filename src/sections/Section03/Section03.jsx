@@ -67,7 +67,7 @@ function Section03({slideActive}) {
               end: `+=${(viewportWidth * 2)}`,
               pin: true,
               invalidateOnRefresh: true,
-              markers: true,
+              // markers: true,
             });
 
             gsap.to(triggerBgRef.current, {
