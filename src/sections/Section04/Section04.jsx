@@ -223,7 +223,7 @@ function Section04({slideActive}) {
       </section>
 
       <div className={styles.buttonBox}>
-        <a href="/" target={'_blank'} rel="noopener noreferrer">제품 구매하기</a>
+        <a href="https://www.worldvape.co.kr/" target={'_blank'} rel="noopener noreferrer">제품 구매하기</a>
       </div>
 
     </section>

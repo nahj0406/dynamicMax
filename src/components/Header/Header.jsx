@@ -18,7 +18,7 @@ function Header() {
          name: 'DYNAMIC max',
       },
       {
-         url: '/',
+         url: '',
          name: 'DYNAMIC III',
       },
    ]
@@ -39,9 +39,18 @@ function Header() {
                <ul className={styles.outerMenu}>
                   {
                      linkAdd.map((item, index) => {
+                        const isComingSoon = !item.url || item.url === '/';
+
+                        const handleClick = (e) => {
+                          if (isComingSoon && index === 2) { // 🔥 세 번째 항목만 체크
+                            e.preventDefault();
+                            alert('출시 준비 중입니다!');
+                          }
+                        };
+
                         return (
                            <li key={index}>
-                              <Link to={item.url} target='_blank'>
+                              <Link to={item.url} target={'_blank'} onClick={handleClick}>
                                  <h5 data-splitting className={`HemiHead`}>{item.name}</h5>
                               </Link>
                            </li>
