@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import store from './store'
 
-import Dynamic01 from './Dynamic01/Dynaimic01.jsx'
+import Dynamic01 from './Dynamic01/Dynamic01.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -14,7 +14,6 @@ createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          
           <Route path='/' element={<App />} /> {/* 다이나믹 맥스 */}
           <Route path='/Dynamic01' element={<Dynamic01 />} /> {/* 다이나믹1 */}
         </Routes>

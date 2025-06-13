@@ -166,8 +166,14 @@ function Model({ url, sectionRef, BrokenRef, titleBoxRef, viewportHeight }) {
       if (child.isMesh && child.material instanceof THREE.MeshStandardMaterial) {
         child.castShadow = true;
         child.receiveShadow = true;
-        child.material.metalness = 0.5;
-        child.material.roughness = 0.4;
+        child.material.metalness = 0.8;
+        child.material.roughness = 0.9;
+        child.material.side = THREE.FrontSide;
+      }
+
+      if (child.isMesh && child.name === "00_13_1") {
+        child.material.metalness = 0.2;
+        child.material.roughness = 0.2;
       }
     });
 
