@@ -114,6 +114,8 @@
       transition: 0.2s 0.2s;
    }
 
+   .topbutton {opacity: 0; visibility: hidden; transition: 0.2s 0.2s;} 
+
    #footer.slideActive {
       .mob_container {
    
@@ -134,5 +136,11 @@
          opacity: 1;
          transition: 1s 1.5s;
       }
+
+      .topbutton {opacity: 1; visibility: visible; transition: 0.5s 1.7s;} 
    }
+}
+
+@media (min-width: 381px) {
+   .br {display: none;}
 }

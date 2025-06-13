@@ -119,6 +119,11 @@
     opacity: 0;
     transition: 0.2s 0.2s;
   }
+  .topbutton {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s 0.2s;
+  }
   #footer.slideActive .mob_container #logo img {
     opacity: 1;
     transform: translateY(0);
@@ -132,5 +137,15 @@
   #footer.slideActive .footer_container {
     opacity: 1;
     transition: 1s 1.5s;
+  }
+  #footer.slideActive .topbutton {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.5s 1.7s;
+  }
+}
+@media (min-width: 381px) {
+  .br {
+    display: none;
   }
 }/*# sourceMappingURL=Footer.module.css.map */

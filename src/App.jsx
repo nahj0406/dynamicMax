@@ -147,7 +147,7 @@ function App() {
                 components.map((item, i) => {
                   return (
                     <SwiperSlide key={i} className={`swiper_0${i}`}>
-                      {React.cloneElement(item, { slideActive: slideActiveIndex === i })}
+                      {React.cloneElement(item, { slideActive: slideActiveIndex === i, swiperRef: swiperRef, })}
                     </SwiperSlide>
                   )
                 })

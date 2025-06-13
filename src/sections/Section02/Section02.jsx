@@ -2,6 +2,7 @@ import { useEffect, useRef, useLayoutEffect, Suspense } from 'react'
 import styles from './Section02.module.css'
 import ImgTag from '@/components/ImgTag/ImgTag'
 import useScrollOut from '@/customHook/useScrollOut'
+import useIsMobile from '@/customHook/useIsMobile'
 
 
 // img
@@ -19,6 +20,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Section02({slideActive}) {
 
+  const isMobile = useIsMobile();
   const containerRef = useRef(null);
   const productRef = useRef(null);
   const unitRef = useRef(null);
@@ -84,7 +86,7 @@ function Section02({slideActive}) {
         <section className='containerV1'>
   
           <div className={`${styles.titleBox} ${styles.scAni} titleBox`}>
-            <p>차별화된 배터리 및 액상 <span>잔량 확인 시스템</span></p>
+            <p>차별화된 배터리 및 액상 <br className={styles.br}/> <span>잔량 확인 시스템</span></p>
             <h2 data-splitting className='HemiHead'>VISIBILITY</h2>
           </div>
   
@@ -98,19 +100,26 @@ function Section02({slideActive}) {
           <div className={`${styles.itemBox} ${styles.scAni}`}>
             <article ref={item01Ref} className={`${styles.scAni}`}>
               <ImgTag clsName={styles.icon} src={icon01} alt={'잔량 표시'} />
-              <p>
-                액상 부족 시 필터에서 올라오는 불편한 미각적
-                경험을 해소하기 위해 다이나믹 맥스는 <span>직관적인 용량 표시</span>로 잔량 확인이 가능합니다.
-              </p>
+                <p className={styles.content_pc}>
+                  액상 부족 시 필터에서 올라오는 불편한 미각적
+                  경험을 해소하기 위해 다이나믹 맥스는 <span>직관적인 용량 표시</span>로 잔량 확인이 가능합니다.
+                </p>
+                <p className={styles.content_mob}>
+                  다이나믹 맥스는 <span>직관적인 용량 표시</span>로 잔량 확인이 가능합니다.
+                </p>
             </article>
   
             <article ref={item02Ref} className={`${styles.scAni}`}>
               <ImgTag clsName={styles.icon} src={icon02} alt={'배터리 표시'} />
-              <p>
-                다이나믹 맥스는 <span>배터리 상태를 수치화</span>하여 사용자가
-                보다 편리하고 효율적으로 사용할 수 있도록 사용자 
-                경험을 획기적으로 향상시켰습니다.
-              </p>
+                <p className={styles.content_pc}>
+                  다이나믹 맥스는 <span>배터리 상태를 수치화</span>하여 사용자가
+                  보다 편리하고 효율적으로 사용할 수 있도록 사용자 
+                  경험을 획기적으로 향상시켰습니다.
+                </p>
+                <p className={styles.content_mob}>
+                  <span>배터리 상태를 수치화</span>하여 사용자 
+                  경험을 획기적으로 향상시켰습니다.
+                </p>
             </article>
           </div>
     

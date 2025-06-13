@@ -6,14 +6,13 @@ import MobLogo from '@/img/mob_footer_logo.png';
 import useIsMobile from '@/customHook/useIsMobile'
 
 
-function Footer({slideActive}) {
+function Footer({slideActive, swiperRef}) {
    const isMobile = useIsMobile();
    const tel = '+82 010-2349-8677';
    const [showTopButton, setShowTopButton] = useState(false);
 
    useEffect(() => {
       if(isMobile) return;
-
       const scrollEnd = () => {
          const scrollTop = window.scrollY;
          const windowHeight = window.innerHeight;
@@ -25,11 +24,17 @@ function Footer({slideActive}) {
       }
 
       window.addEventListener('scroll', scrollEnd);
-      return () => window.removeEventListener('scroll', scrollEnd);
+      return () => window.removeEventListener('scroll', scrollEnd);  
    }, []);
 
    const clickTop = () => {
-      window.scrollTo({top: 0, behavior: 'smooth'});
+      if(!isMobile) {
+         window.scrollTo({top: 0, behavior: 'smooth'});
+      } else {
+         if(swiperRef.current) {
+            swiperRef.current.slideTo(0);
+         }
+      }
    }
 
    return (
@@ -44,7 +49,7 @@ function Footer({slideActive}) {
                            <img src={MobLogo} alt="월드인터네셔널 로고" />
                         </a>
                      </h1>
-                     <p>10년간의 노하우가 담긴 최상급의 품질을 제공합니다.</p>
+                     <p>10년간의 노하우가 담긴 <br className={styles.br}/> 최상급의 품질을 제공합니다.</p>
                   </div>
                )
             }
@@ -57,11 +62,11 @@ function Footer({slideActive}) {
                <p>월드 다이나믹 맥스 일회용 전자담배</p>
                <p className={styles.copy}>COPYRIGHT. WORLD INTERNATIONAL. All Rights Reserved.</p>
             </div>
+
+            <div className={`${styles.topbutton} ${showTopButton ? styles.active : ''}`} onClick={clickTop}>
+               <span>TOP</span>
+            </div>
          </footer>
-   
-         <div className={`${styles.topbutton} ${showTopButton ? styles.active : ''}`} onClick={clickTop}>
-            <span>TOP</span>
-         </div>
       </>
    )
 }
