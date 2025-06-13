@@ -1,5 +1,4 @@
 import { useEffect, useRef, Suspense, useLayoutEffect } from 'react'
-import { Route, Routes, Link } from 'react-router-dom'
 // import {motion, useMotionValue, useTransform} from 'framer-motion';
 import styles from './Section01.module.css'
 import useScrollOut from '@/customHook/useScrollOut'

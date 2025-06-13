@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, Suspense, useLayoutEffect } from 'react'
+import { useState, useEffect} from 'react'
 import styles from './Section03_2.module.css'
 import ImgTag from '@/components/ImgTag/ImgTag'
 import { useSelector } from 'react-redux';

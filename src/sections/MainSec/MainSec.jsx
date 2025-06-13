@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef, Suspense } from 'react'
-import { Route, Routes, Link } from 'react-router-dom'
+import { useState, useEffect, useRef} from 'react'
 import styles from './MainSec.module.css'
 import useIsMobile from '@/customHook/useIsMobile'
 

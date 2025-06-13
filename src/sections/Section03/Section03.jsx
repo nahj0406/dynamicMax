@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, Suspense, useLayoutEffect } from 'react'
-import { Route, Routes, Link } from 'react-router-dom'
 import styles from './Section03.module.css'
 import ImgTag from '@/components/ImgTag/ImgTag'
 import useScrollOut from '@/customHook/useScrollOut'

@@ -1,7 +1,6 @@
 import React, {useState, useEffect, Suspense, useRef } from 'react'
 import '@/css/App.css'
 import '@/css/style.css'
-import { Route, Routes, Link } from 'react-router-dom'
 import useInitialLenis from '@/customHook/useInitialLenis'
 import useIsMobile from '@/customHook/useIsMobile'
 
@@ -117,10 +116,6 @@ function App() {
           </>
         ) : ( // mobile -------------------------------------------------------------------------
           <>
-          {/* <Suspense fallback={<Fallback />}></Suspense> */}
-      {/* <Routes>
-        <Route path='/' element={<MainSec />} />
-      </Routes> */}
             <Swiper
               direction={'vertical'}
               slidesPerView={1}
