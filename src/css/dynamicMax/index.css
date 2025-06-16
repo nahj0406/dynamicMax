@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'PretendardVariable';
+    src: url('../../font/PretendardVariable.woff2') format('woff2');
+    /* font-weight: 400; */
+    font-style: normal;
+}
+
 :root {
   /* color-scheme: light dark; */
   /* color: rgba(255, 255, 255, 0.87); */
@@ -38,15 +45,34 @@ button:focus-visible {
   outline: none;
 }
 
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #686868;
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-track {
+	background: #333;
+}
+
+/* 전역 폰트사이즈 -------------------*/
+html {
+  --min-font: 10px;
+  --max-font: 15px;
+  font-size: clamp(var(--min-font), 0.52vw, var(--max-font));
+}
+
+@media (max-width: 1300px) {
+  html {--min-font: 8px;}
+}
+
+@media (max-width: 769px) {
+  html {--min-font: 7px;}
+}
+
+@media (max-width: 680px) {
+  html {--min-font: 5px;}
+}

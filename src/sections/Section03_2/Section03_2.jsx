@@ -52,7 +52,7 @@ function Section03_2({slideActive}) {
   return (
     <section id={styles.Section03_2} className={`${slideActive ? styles.slideActive : ''}`}>
       <video autoPlay muted loop playsInline preload="auto" id={styles.bgVideo}>
-        <source src={'/video/sec3_video.mp4'} type="video/mp4" />
+        <source src={'/video/dynamicMax/sec3_video.mp4'} type="video/mp4" />
       </video>
 
       <section className='containerV1'>

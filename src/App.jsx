@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef } from 'react'
-import '@/css/App.css'
-import '@/css/style.css'
+import '@/css/dynamicMax/App.css'
+import '@/css/dynamicMax/style.css'
 import useInitialLenis from '@/customHook/useInitialLenis'
 import useIsMobile from '@/customHook/useIsMobile'
 

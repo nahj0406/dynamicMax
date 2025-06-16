@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'HemiHead';
-    src: url('../font/hemi-head-bd.woff2') format('woff2'),
-         url('../font/hemi-head-bd.woff') format('woff'),
+    src: url('../../font/hemi-head-bd.woff2') format('woff2'),
+         url('../../font/hemi-head-bd.woff') format('woff'),
          url('fonts/hemi-head-bd.ttf') format('truetype');
     font-weight: 400;
     font-display: block;
@@ -43,7 +43,7 @@
         position: absolute; z-index: 1;
         top: 0; left: 50%; width: 110%; height: 100%;
         transform: translateX(-50%);
-        background: url('../img/dynamicMax/MainSec/main_sec_bg.jpg');
+        background: url('../../img/dynamicMax/MainSec/main_sec_bg.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center top;
