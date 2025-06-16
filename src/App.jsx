@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef } from 'react'
-import '@/css/dynamicMax/App.css'
 import '@/css/dynamicMax/style.css'
+import '@/css/dynamicMax/index.css'
 import useInitialLenis from '@/customHook/useInitialLenis'
 import useIsMobile from '@/customHook/useIsMobile'
 
@@ -22,7 +22,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Mousewheel, Pagination } from 'swiper/modules';
+import { Mousewheel } from 'swiper/modules';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,6 +33,13 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {  
   const isMobile = useIsMobile();
   const swiperRef = useRef(null);
+
+  // useEffect(() => {
+  //   if(location.pathname == '/') { // css 전역 스타일이 겹칠 수 있기에 해당 컴포넌트일때만 import 처리
+  //     import('@/css/dynamicMax/style.css');
+  //     import('@/css/dynamicMax/index.css');
+  //   }
+  // }, [location.pathname]);
 
   useInitialLenis(); //leins 라이브러리
 

@@ -67,7 +67,7 @@
 }
 @media (max-width: 768px) {
   #footer {
-    background: url("../../img/mob_footer_bg.jpg") no-repeat right center/cover;
+    background: url("../../img/dynamicMax/mob_footer_bg.jpg") no-repeat right center/cover;
     padding: var(--head-margin) 0 30px;
     height: 100%;
     display: flex;

@@ -1,10 +1,18 @@
+
+
+
+export function Dynamic01Script() {
+
 // 미디어쿼리 설정
 const mediaQueryTablet = window.matchMedia("(max-width: 1280px)");
 const mediaQueryMobile = window.matchMedia("(max-width: 640px)");
+let initialAnimationCompleted = false;
 
+
+window.Swiper.use && window.Swiper.use([window.Swiper.Mousewheel]);
 
 // 전체 페이지 슬라이드 Swiper 설정
-const swiper = new Swiper('.view.swiper', {
+const swiper = new window.Swiper('.view.swiper', {
   direction: 'vertical',
   // autoplay: {
   //   delay: 5000,
@@ -15,8 +23,19 @@ const swiper = new Swiper('.view.swiper', {
   mousewheel: {
     enabled: false, // 초기에는 Swiper 스크롤 비활성화
   },
+  // mousewheel: {
+  //   enabled: true,
+  //   sensitivity: 0.5,
+  //   thresholdDelta: 50,
+  //   thresholdTime: 300,
+  //   releaseOnEdges: false,
+  // },
   on: {
+    init() {
+      console.log("Swiper initialized");
+    },
     slideChangeTransitionStart: function () {
+      // console.log("Slide changed to:", this.activeIndex);
       const activeSection = document.querySelector('.swiper-slide-active section');
 
       // 1번 슬라이드 활성화 설정
@@ -59,8 +78,8 @@ const swiper = new Swiper('.view.swiper', {
         activateEighthSlide(); // 8번 슬라이드 설정 함수 호출
       }
 
-        // 9번 슬라이드 활성화 설정
-        if (activeSection.classList.contains('section9')) {
+      // 9번 슬라이드 활성화 설정
+      if (activeSection.classList.contains('section9')) {
         activateNinthSlide(); // 9번 슬라이드 설정 함수 호출
       }
 
@@ -68,26 +87,27 @@ const swiper = new Swiper('.view.swiper', {
       
 
 
-      // 마우스 스크롤 방향에 따른 nav 유무 설정
-      const currentIndex = this.activeIndex; // 현재 슬라이드 인덱스
-      if (currentIndex > previousIndex) {
-        // 아래로 넘길 때: nav 숨김
-        nav.classList.add("nav-hidden");
-      } else {
-        // 위로 넘길 때: 화면 너비가 640px 이하인지 확인
-        if (window.innerWidth <= 640) {
-          // 640px 이하일 때 flavor 페이지(7번 슬라이드) 제외하고 nav 나타나도록 설정
-          currentIndex !== 7 && nav.classList.remove("nav-hidden");
-        } else {
-          // 640px 초과일 때는 무조건 nav 나타나도록 설정
-          nav.classList.remove("nav-hidden");
-        }
-      }
-      previousIndex = currentIndex; // 이전 인덱스 업데이트
+      // // 마우스 스크롤 방향에 따른 nav 유무 설정
+      // const currentIndex = this.activeIndex; // 현재 슬라이드 인덱스
+      // if (currentIndex > previousIndex) {
+      //   // 아래로 넘길 때: nav 숨김
+      //   nav.classList.add("nav-hidden");
+      // } else {
+      //   // 위로 넘길 때: 화면 너비가 640px 이하인지 확인
+      //   if (window.innerWidth <= 640) {
+      //     // 640px 이하일 때 flavor 페이지(7번 슬라이드) 제외하고 nav 나타나도록 설정
+      //     currentIndex !== 7 && nav.classList.remove("nav-hidden");
+      //   } else {
+      //     // 640px 초과일 때는 무조건 nav 나타나도록 설정
+      //     nav.classList.remove("nav-hidden");
+      //   }
+      // }
+      // previousIndex = currentIndex; // 이전 인덱스 업데이트
 
     },
   },
 });
+
 // 마우스 스크롤 방향에 따른 nav 유무 설정 (Swiper1 설정 내부와 연결)
 const nav = document.querySelector("header nav"); // nav 요소 선택
 let previousIndex = 0; // 이전 슬라이드 인덱스 초기화
@@ -100,8 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
     nav.classList.remove("nav-hidden");
   });
 });
-
-
 
 
 // 첫 번째 슬라이드 애니메이션 (기존 initialAnimation과 firstScrollAnimation 통합)
@@ -221,6 +239,10 @@ const activateFirstSlide = () => {
     , "<");
     
 };
+
+// 초기 애니메이션 자동 실행
+activateFirstSlide();
+
 
 // 2번 슬라이드 애니메이션 설정 함수
 const activateSecondSlide = () => {
@@ -758,23 +780,7 @@ gsap.timeline()
   { opacity: 1, duration: 1 }
 , "<")
 
-
-
-
-
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -795,21 +801,6 @@ window.addEventListener(
   { passive: false }
 );
 
-// 초기 애니메이션 자동 실행
-document.addEventListener("DOMContentLoaded", () => {
-  activateFirstSlide();
-});
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -817,25 +808,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // Flavor swiper 설정
-document.addEventListener("DOMContentLoaded", () => {
   // swiper 설정
-  const swiper2 = new Swiper('.swiper.flavor', {
+  const swiper2 = new window.Swiper('.swiper.flavor', {
       // Optional parameters
       direction: 'horizontal',
       slidesPerView: 3,
       spaceBetween: 0,
+      nested: true,
       loop: true,
       autoplay: {
           delay: 3000,
           disableOnInteraction: false,
       },
       pagination: {
-        el: '.swiper-pagination',
+        el: '#Dynamic01 .swiper-pagination',
         clickable: true,
       },
       navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+        nextEl: "#Dynamic01 .swiper-button-next",
+        prevEl: "#Dynamic01 .swiper-button-prev",
       },
       mouseWheel: true,
       breakpoints: {
@@ -927,40 +918,31 @@ document.addEventListener("DOMContentLoaded", () => {
           updateDescription(clickedFlavor);
       });
   });
-});
 
 
 
-
-// 첫 화면의 scrollDownCircle 클릭 시 두 번째 슬라이드로 이동
-document.addEventListener("DOMContentLoaded", () => {
+  // 첫 화면의 scrollDownCircle 클릭 시 두 번째 슬라이드로 이동
   const scrollDownCircle = document.querySelector(".conMain-scrollDownCircle");
+
   scrollDownCircle.addEventListener("click", () => {
     swiper.slideTo(1, 1000, false);
     activateSecondSlide();
     // nav 숨김
     nav.classList.add("nav-hidden");
   });
-});
-// 첫 화면의 scrollDown 클릭 시 두 번째 슬라이드로 이동
-document.addEventListener("DOMContentLoaded", () => {
+
+  // 첫 화면의 scrollDown 클릭 시 두 번째 슬라이드로 이동
   const scrollDown = document.querySelector(".conMain-scrollDown");
+
   scrollDown.addEventListener("click", () => {
     swiper.slideTo(1, 1000, false);
     activateSecondSlide();
     // nav 숨김
     nav.classList.add("nav-hidden");
   });
-});
 
 
-
-
-
-// top 버튼 클릭 시 상단 이동
-
-document.addEventListener("DOMContentLoaded", () => {
-
+  // top 버튼 클릭 시 상단 이동
   const topBtn = document.querySelector(".conAboutUs .topBtn");
 
   const navigateToSlide = (index) => {
@@ -995,83 +977,9 @@ document.addEventListener("DOMContentLoaded", () => {
       activateFirstSlide();
     }, 500);
   });
-});
 
 
-
-
-
-
-// 메뉴클릭과 페이지 전환 설정
-document.addEventListener("DOMContentLoaded", () => {
-  let menuItems = document.querySelectorAll("header nav ul li");
-  const dynamic1Page = document.querySelector(".dynamic1");
-  const dynamic2Page = document.querySelector(".dynamic2");
-  const dynamic3Page = document.querySelector(".dynamic3");
-
-  // 메뉴 스타일 변화
-  menuItems.forEach((menu, index) => {
-    menu.addEventListener("click", () => {
-      // 모든 메뉴에서 'on' 클래스 제거
-      menuItems.forEach(item => item.classList.remove("on"));
-      // 클릭된 메뉴에만 'on' 클래스 추가
-      menu.classList.add("on");
-
-      // 화면 전환
-      switch (index) {
-        case 0: // 첫 번째 메뉴 (DYNAMIC I)
-          dynamic1Page.classList.add("on");
-          dynamic2Page.classList.remove("on");
-          dynamic3Page.classList.remove("on");
-          // 스크롤 상단으로 이동
-          swiper.slideTo(0, 1000, true);
-          // 첫 슬라이드 애니메이션 작동
-          activateFirstSlide();
-
-          // swiper autoplay 켜기
-          // swiper.autoplay.start();
-          break;
-        case 1: // 두 번째 메뉴 (DYNAMIC II)
-          dynamic1Page.classList.remove("on");
-          window.location.href = "/";
-          // dynamic2Page.classList.add("on");
-          // dynamic3Page.classList.remove("on");
-
-          // gsap.fromTo('.dynamic2 .txtBox .title', 
-          //   { opacity: 0, y: 20 },
-          //   { opacity: 1, y: 0, duration: 0.6 }
-          // )
-          // gsap.fromTo('.dynamic2 .txtBox .commingSoon', 
-          //   { opacity: 0, y: 20 },
-          //   { opacity: 1, y: 0, delay: 0.2, duration: 0.6 }
-          // )
-
-          // swiper autoplay 끄기
-          // swiper.autoplay.stop();
-          break;
-        case 2: // 세 번째 메뉴 (DYNAMIC III)
-          dynamic1Page.classList.remove("on");
-          dynamic2Page.classList.remove("on");
-          dynamic3Page.classList.add("on");
-
-          gsap.fromTo('.dynamic3 .txtBox .title', 
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.6 }
-          )
-          gsap.fromTo('.dynamic3 .txtBox .commingSoon', 
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, delay: 0.2, duration: 0.6 }
-          )
-          // swiper autoplay 끄기
-          // swiper.autoplay.stop();
-          break;
-      }
-    });
-  });
-});
-
-
-
+}
 
 
 

@@ -1,9 +1,7 @@
 import React, {useState, useEffect, useRef } from 'react'
-import '@/css/dynamic1/style.css'
-
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import '@/js/dynamic1/script.js';
+import { useLocation } from 'react-router-dom';
+import {Dynamic01Script} from '@/js/dynamic1/script.js';
+import '@/css/dynamic1/dynamic1.css';
 
 
 // sec1
@@ -19,6 +17,8 @@ import product02 from '@/img/dynamic1/product-02.png'
 
 // sec3
 import product_detail_bottom from '@/img/dynamic1/product-detail-bottom.png'
+import batterRed from '@/img/dynamic1/batterRed.png'
+import batteryBlue from '@/img/dynamic1/batteryBlue.png'
 import batteryGreen from '@/img/dynamic1/batteryGreen.png'
 
 // sec4
@@ -55,15 +55,37 @@ import img_flavor_peachWave from '@/img/dynamic1/img-flavor-peachWave.png'
 import img_flavor_snowSoda from '@/img/dynamic1/img-flavor-snowSoda.png'
 import img_flavor_summerPocari from '@/img/dynamic1/img-flavor-summerPocari.png'
 
+// sec9
+import world_international_logo from '@/img/dynamic1/world-international-logo.png'
+import icon_phone from '@/img/dynamic1/icon-phone.png'
+import topBtn from '@/img/dynamic1/topBtn.png'
 
 
 
-function Dynamic01() {  
 
+function Dynamic01() {
+  const swiperRef = useRef();
+  const location = useLocation();
+
+  // useEffect(() => {
+  //   if(location.pathname == '/Dynamic01') {
+  //     import('@/css/dynamic1/dynamic1.css').then(() => {
+  //       requestAnimationFrame(() => {
+  //         Dynamic01Script();
+  //       });
+  //     });
+  //   }
+  // }, [location.pathname]);
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      Dynamic01Script();
+    });
+  })
 
   return (
     <div id='Dynamic01'>
-      <div className="dynamic1 view swiper on">
+      <div className="dynamic1 view swiper on" ref={swiperRef}>
         <div className="swiper-wrapper">
 
           <div className="swiper-slide">
@@ -92,7 +114,7 @@ function Dynamic01() {
           <div className="swiper-slide">
             <section className="section2">
               <h2 className="heading">컴팩트한 사이즈와 10ML 대용량 기기 다이나믹</h2>
-              <video className="conQuality-bg-vape" autoplay loop muted>
+              <video className="conQuality-bg-vape" autoPlay loop muted>
                 <source src={vape2_3} type="video/mp4"/>
               </video>
               <div className="conQuality-bg-vape-mobile">
@@ -124,7 +146,7 @@ function Dynamic01() {
           <div className="swiper-slide">
             <section className="section3">
               <h2 className="heading">C 타입(C-type) 충전방식 지원</h2>
-              <video className="conQuality-bg-vape index1" autoplay loop muted>
+              <video className="conQuality-bg-vape index1" autoPlay loop muted>
                 <source src={vape2_3} type="video/mp4"/>
               </video>
               <div className="conQuality-bg-vape-mobile index1">
@@ -148,15 +170,15 @@ function Dynamic01() {
                   <h3 className="title">배터리 표시</h3>
                   <ul className="batteryDetailBox">
                     <li className="detail">
-                      <img src="src/batterRed.png" alt="배터리 부족"/>
+                      <img src={batterRed} alt="배터리 부족"/>
                       배터리 부족
                     </li>
                     <li className="detail">
-                      <img src="src/batteryBlue.png" alt="중간" />
+                      <img src={batteryBlue} alt="중간" />
                       중간
                     </li>
                     <li className="detail">
-                      <img src="src/batteryGreen.png" alt="완충" />
+                      <img src={batteryGreen} alt="완충" />
                       완충
                     </li>
                   </ul>
@@ -261,451 +283,451 @@ function Dynamic01() {
             </section>
           </div>
 
-          <div class="swiper-slide">
-            <section class="section8">
-              <h2 class="heading">10가지 다양한 맛을 경험해보세요</h2>
-              <div class="linkGuide">
+          <div className="swiper-slide">
+            <section className="section8">
+              <h2 className="heading">10가지 다양한 맛을 경험해보세요</h2>
+              <div className="linkGuide">
                 {/* <!-- <img src="src/purchaseBtn.png" alt="제품 이미지를 클릭하면 구매 페이지로 이동합니다"> --> */}
                   <p>
                     <a href="https://dynamicstore.shop/" target="_blank">제품 구매하기</a>
                   </p>
               </div>
-              <div class="conFlavor">
-                <div class="conFlavor-bg">
-                  <div class="conFlavorWrapper">
-                    <div class="conFlavor-title">Flavor</div>
-                    <div class="conFlavor-description">
-                      <div class="list" data-flavor="floridaCigar">
-                        <h3>Florida Cigar <span class="titleKo">플로리다시가</span></h3>
+              <div className="conFlavor">
+                <div className="conFlavor-bg">
+                  <div className="conFlavorWrapper">
+                    <div className="conFlavor-title">Flavor</div>
+                    <div className="conFlavor-description">
+                      <div className="list" data-flavor="floridaCigar">
+                        <h3>Florida Cigar <span className="titleKo">플로리다시가</span></h3>
                         <p>
                           묵직한 시가 특유의 향과 깊이있는 풍미로
                           텁텁함 없이 깔끔한 베이핑 경험을 느낄 수 있는 맛
                         </p>
                         <ul>
-                          <li class="sweetness">
+                          <li className="sweetness">
                             <span>달콤함</span>
-                            <div class="bar">
-                              <div class="value" data-value="0"></div>
+                            <div className="bar">
+                              <div className="value" data-value="0"></div>
                             </div>
                           </li>
-                          <li class="cooling">
+                          <li className="cooling">
                             <span>쿨링감</span>
-                            <div class="bar">
-                              <div class="value" data-value="0"></div>
+                            <div className="bar">
+                              <div className="value" data-value="0"></div>
                             </div>
                           </li>
-                          <li class="sour">
+                          <li className="sour">
                             <span>상큼함</span>
-                            <div class="bar">
-                              <div class="value" data-value="0"></div>
+                            <div className="bar">
+                              <div className="value" data-value="0"></div>
                             </div>
                           </li>
-                          <li class="neck">
+                          <li className="neck">
                             <span>목넘김</span>
-                            <div class="bar">
-                              <div class="value" data-value="8"></div>
+                            <div className="bar">
+                              <div className="value" data-value="8"></div>
                             </div>
                           </li>
-                          <li class="weight">
+                          <li className="weight">
                             <span>무게감</span>
-                            <div class="bar">
-                              <div class="value" data-value="8"></div>
+                            <div className="bar">
+                              <div className="value" data-value="8"></div>
                             </div>
                           </li>
                         </ul>
                       </div>
-                      <div class="list" data-flavor="mentholBomb">
-                        <h3>Menthol Bomb <span class="titleKo">멘솔밤</span></h3>
+                      <div className="list" data-flavor="mentholBomb">
+                        <h3>Menthol Bomb <span className="titleKo">멘솔밤</span></h3>
                         <p>들숨에 개운한 멘솔향과 날숨에 시원한 쿨링으로
                           강력하고 신선한 맛
                         </p>
                         <ul>
-                          <li class="sweetness">
+                          <li className="sweetness">
                             <span>달콤함</span>
-                            <div class="bar">
-                              <div class="value" data-value="1"></div>
+                            <div className="bar">
+                              <div className="value" data-value="1"></div>
                             </div>
                           </li>
-                          <li class="cooling">
+                          <li className="cooling">
                             <span>쿨링감</span>
-                            <div class="bar">
-                              <div class="value" data-value="6"></div>
+                            <div className="bar">
+                              <div className="value" data-value="6"></div>
                             </div>
                           </li>
-                          <li class="sour">
+                          <li className="sour">
                             <span>상큼함</span>
-                            <div class="bar">
-                              <div class="value" data-value="0"></div>
+                            <div className="bar">
+                              <div className="value" data-value="0"></div>
                             </div>
                           </li>
-                          <li class="neck">
+                          <li className="neck">
                             <span>목넘김</span>
-                            <div class="bar">
-                              <div class="value" data-value="7"></div>
+                            <div className="bar">
+                              <div className="value" data-value="7"></div>
                             </div>
                           </li>
-                          <li class="weight">
+                          <li className="weight">
                             <span>무게감</span>
-                            <div class="bar">
-                              <div class="value" data-value="5"></div>
+                            <div className="bar">
+                              <div className="value" data-value="5"></div>
                             </div>
                           </li>
                         </ul>
                       </div>
-                      <div class="list" data-flavor="calime">
-                        <h3>Calime <span class="titleKo">깔라임</span></h3>
+                      <div className="list" data-flavor="calime">
+                        <h3>Calime <span className="titleKo">깔라임</span></h3>
                         <p>깔라만시와 라임을 밸런스 있게 조합한
                           새콤하고 향긋한 시트러스의 향
                         </p>
                         <ul>
-                          <li class="sweetness">
+                          <li className="sweetness">
                             <span>달콤함</span>
-                            <div class="bar">
-                              <div class="value" data-value="4"></div>
+                            <div className="bar">
+                              <div className="value" data-value="4"></div>
                             </div>
                           </li>
-                          <li class="cooling">
+                          <li className="cooling">
                             <span>쿨링감</span>
-                            <div class="bar">
-                              <div class="value" data-value="6"></div>
+                            <div className="bar">
+                              <div className="value" data-value="6"></div>
                             </div>
                           </li>
-                          <li class="sour">
+                          <li className="sour">
                             <span>상큼함</span>
-                            <div class="bar">
-                              <div class="value" data-value="8"></div>
+                            <div className="bar">
+                              <div className="value" data-value="8"></div>
                             </div>
                           </li>
-                          <li class="neck">
+                          <li className="neck">
                             <span>목넘김</span>
-                            <div class="bar">
-                              <div class="value" data-value="4"></div>
+                            <div className="bar">
+                              <div className="value" data-value="4"></div>
                             </div>
                           </li>
-                          <li class="weight">
+                          <li className="weight">
                             <span>무게감</span>
-                            <div class="bar">
-                              <div class="value" data-value="2"></div>
+                            <div className="bar">
+                              <div className="value" data-value="2"></div>
                             </div>
                           </li>
                         </ul>
                       </div>
-                      <div class="list" data-flavor="berryStraw">
-                        <h3>Berry Straw <span class="titleKo">베리스트로</span></h3>
+                      <div className="list" data-flavor="berryStraw">
+                        <h3>Berry Straw <span className="titleKo">베리스트로</span></h3>
                         <p>신선한 딸기의 달콤한 향과 새콤한 맛이 매력적인
                           매일 베이핑하고 싶은 진한 딸기 맛
                         </p>
                         <ul>
-                          <li class="sweetness">
+                          <li className="sweetness">
                             <span>달콤함</span>
-                            <div class="bar">
-                              <div class="value" data-value="6"></div>
+                            <div className="bar">
+                              <div className="value" data-value="6"></div>
                             </div>
                           </li>
-                          <li class="cooling">
+                          <li className="cooling">
                             <span>쿨링감</span>
-                            <div class="bar">
-                              <div class="value" data-value="6"></div>
+                            <div className="bar">
+                              <div className="value" data-value="6"></div>
                             </div>
                           </li>
-                          <li class="sour">
+                          <li className="sour">
                             <span>상큼함</span>
-                            <div class="bar">
-                              <div class="value" data-value="6"></div>
+                            <div className="bar">
+                              <div className="value" data-value="6"></div>
                             </div>
                           </li>
-                          <li class="neck">
+                          <li className="neck">
                             <span>목넘김</span>
-                            <div class="bar">
-                              <div class="value" data-value="4"></div>
+                            <div className="bar">
+                              <div className="value" data-value="4"></div>
                             </div>
                           </li>
-                          <li class="weight">
+                          <li className="weight">
                             <span>무게감</span>
-                            <div class="bar">
-                              <div class="value" data-value="4"></div>
+                            <div className="bar">
+                              <div className="value" data-value="4"></div>
                             </div>
                           </li>
                         </ul>
                       </div>
-                      <div class="list" data-flavor="snowSoda">
-                        <h3>Snow Soda <span class="titleKo">스노우소다</span></h3>
+                      <div className="list" data-flavor="snowSoda">
+                        <h3>Snow Soda <span className="titleKo">스노우소다</span></h3>
                         <p>
                           시원한 쿨링과 소다가 자연스럽게 어우러진
                           모두가 떠올리는 소다 맛의 정석
                         </p>
                         <ul>
-                          <li class="sweetness">
+                          <li className="sweetness">
                             <span>달콤함</span>
-                            <div class="bar">
-                              <div class="value" data-value="7"></div>
+                            <div className="bar">
+                              <div className="value" data-value="7"></div>
                             </div>
                           </li>
-                          <li class="cooling">
+                          <li className="cooling">
                             <span>쿨링감</span>
-                            <div class="bar">
-                              <div class="value" data-value="7"></div>
+                            <div className="bar">
+                              <div className="value" data-value="7"></div>
                             </div>
                           </li>
-                          <li class="sour">
+                          <li className="sour">
                             <span>상큼함</span>
-                            <div class="bar">
-                              <div class="value" data-value="3"></div>
+                            <div className="bar">
+                              <div className="value" data-value="3"></div>
                             </div>
                           </li>
-                          <li class="neck">
+                          <li className="neck">
                             <span>목넘김</span>
-                            <div class="bar">
-                              <div class="value" data-value="4"></div>
+                            <div className="bar">
+                              <div className="value" data-value="4"></div>
                             </div>
                           </li>
-                          <li class="weight">
+                          <li className="weight">
                             <span>무게감</span>
-                            <div class="bar">
-                              <div class="value" data-value="5"></div>
+                            <div className="bar">
+                              <div className="value" data-value="5"></div>
                             </div>
                           </li>
                         </ul>
                       </div>
-                      <div class="list" data-flavor="grapeBear">
-                        <h3>Grape Bear <span class="titleKo">그레이프 베어</span></h3>
+                      <div className="list" data-flavor="grapeBear">
+                        <h3>Grape Bear <span className="titleKo">그레이프 베어</span></h3>
                         <p>
                           달콤하고 기분 좋은 적포도의 풍미를 담아내며
                           누구나 좋아할 호불호 없는 맛
                         </p>
                         <ul>
-                          <li class="sweetness">
+                          <li className="sweetness">
                             <span>달콤함</span>
-                            <div class="bar">
-                              <div class="value" data-value="7"></div>
+                            <div className="bar">
+                              <div className="value" data-value="7"></div>
                             </div>
                           </li>
-                          <li class="cooling">
+                          <li className="cooling">
                             <span>쿨링감</span>
-                            <div class="bar">
-                              <div class="value" data-value="6"></div>
+                            <div className="bar">
+                              <div className="value" data-value="6"></div>
                             </div>
                           </li>
-                          <li class="sour">
+                          <li className="sour">
                             <span>상큼함</span>
-                            <div class="bar">
-                              <div class="value" data-value="4"></div>
+                            <div className="bar">
+                              <div className="value" data-value="4"></div>
                             </div>
                           </li>
-                          <li class="neck">
+                          <li className="neck">
                             <span>목넘김</span>
-                            <div class="bar">
-                              <div class="value" data-value="4"></div>
+                            <div className="bar">
+                              <div className="value" data-value="4"></div>
                             </div>
                           </li>
-                          <li class="weight">
+                          <li className="weight">
                             <span>무게감</span>
-                            <div class="bar">
-                              <div class="value" data-value="5"></div>
+                            <div className="bar">
+                              <div className="value" data-value="5"></div>
                             </div>
                           </li>
                         </ul>
                       </div>
-                      <div class="list" data-flavor="appleRush">
-                        <h3>Apple Rush <span class="titleKo">애플러쉬</span></h3>
+                      <div className="list" data-flavor="appleRush">
+                        <h3>Apple Rush <span className="titleKo">애플러쉬</span></h3>
                         <p>청사과의 청량하고 상큼한 맛이 
                           쿨링과 함께 더해진 깔끔하고 산뜻한 맛
                         </p>
                         <ul>
-                          <li class="sweetness">
+                          <li className="sweetness">
                             <span>달콤함</span>
-                            <div class="bar">
-                              <div class="value" data-value="5"></div>
+                            <div className="bar">
+                              <div className="value" data-value="5"></div>
                             </div>
                           </li>
-                          <li class="cooling">
+                          <li className="cooling">
                             <span>쿨링감</span>
-                            <div class="bar">
-                              <div class="value" data-value="6"></div>
+                            <div className="bar">
+                              <div className="value" data-value="6"></div>
                             </div>
                           </li>
-                          <li class="sour">
+                          <li className="sour">
                             <span>상큼함</span>
-                            <div class="bar">
-                              <div class="value" data-value="6"></div>
+                            <div className="bar">
+                              <div className="value" data-value="6"></div>
                             </div>
                           </li>
-                          <li class="neck">
+                          <li className="neck">
                             <span>목넘김</span>
-                            <div class="bar">
-                              <div class="value" data-value="4"></div>
+                            <div className="bar">
+                              <div className="value" data-value="4"></div>
                             </div>
                           </li>
-                          <li class="weight">
+                          <li className="weight">
                             <span>무게감</span>
-                            <div class="bar">
-                              <div class="value" data-value="3"></div>
+                            <div className="bar">
+                              <div className="value" data-value="3"></div>
                             </div>
                           </li>
                         </ul>
                       </div>
-                      <div class="list" data-flavor="peachWave">
-                        <h3>Peach Wave <span class="titleKo">피치웨이브</span></h3>
+                      <div className="list" data-flavor="peachWave">
+                        <h3>Peach Wave <span className="titleKo">피치웨이브</span></h3>
                         <p>백도의 상큼달콤한 향과 과육의 맛을 섬세하게 재현한
                           누구나 즐길 수 있는 데일리 복숭아 맛
                         </p>
                         <ul>
-                          <li class="sweetness">
+                          <li className="sweetness">
                             <span>달콤함</span>
-                            <div class="bar">
-                              <div class="value" data-value="5"></div>
+                            <div className="bar">
+                              <div className="value" data-value="5"></div>
                             </div>
                           </li>
-                          <li class="cooling">
+                          <li className="cooling">
                             <span>쿨링감</span>
-                            <div class="bar">
-                              <div class="value" data-value="6"></div>
+                            <div className="bar">
+                              <div className="value" data-value="6"></div>
                             </div>
                           </li>
-                          <li class="sour">
+                          <li className="sour">
                             <span>상큼함</span>
-                            <div class="bar">
-                              <div class="value" data-value="3"></div>
+                            <div className="bar">
+                              <div className="value" data-value="3"></div>
                             </div>
                           </li>
-                          <li class="neck">
+                          <li className="neck">
                             <span>목넘김</span>
-                            <div class="bar">
-                              <div class="value" data-value="4"></div>
+                            <div className="bar">
+                              <div className="value" data-value="4"></div>
                             </div>
                           </li>
-                          <li class="weight">
+                          <li className="weight">
                             <span>무게감</span>
-                            <div class="bar">
-                              <div class="value" data-value="5"></div>
+                            <div className="bar">
+                              <div className="value" data-value="5"></div>
                             </div>
                           </li>
                         </ul>
                       </div>
-                      <div class="list" data-flavor="summerPocari">
-                        <h3>Summer Pocari <span class="titleKo">썸머포카리</span></h3>
+                      <div className="list" data-flavor="summerPocari">
+                        <h3>Summer Pocari <span className="titleKo">썸머포카리</span></h3>
                         <p>뜨거운 여름에 마시는 이온음료의 청량함이 담긴
                           시원한 쿨링의 상쾌한 맛
                         </p>
                         <ul>
-                          <li class="sweetness">
+                          <li className="sweetness">
                             <span>달콤함</span>
-                            <div class="bar">
-                              <div class="value" data-value="6"></div>
+                            <div className="bar">
+                              <div className="value" data-value="6"></div>
                             </div>
                           </li>
-                          <li class="cooling">
+                          <li className="cooling">
                             <span>쿨링감</span>
-                            <div class="bar">
-                              <div class="value" data-value="6"></div>
+                            <div className="bar">
+                              <div className="value" data-value="6"></div>
                             </div>
                           </li>
-                          <li class="sour">
+                          <li className="sour">
                             <span>상큼함</span>
-                            <div class="bar">
-                              <div class="value" data-value="3"></div>
+                            <div className="bar">
+                              <div className="value" data-value="3"></div>
                             </div>
                           </li>
-                          <li class="neck">
+                          <li className="neck">
                             <span>목넘김</span>
-                            <div class="bar">
-                              <div class="value" data-value="4"></div>
+                            <div className="bar">
+                              <div className="value" data-value="4"></div>
                             </div>
                           </li>
-                          <li class="weight">
+                          <li className="weight">
                             <span>무게감</span>
-                            <div class="bar">
-                              <div class="value" data-value="3"></div>
+                            <div className="bar">
+                              <div className="value" data-value="3"></div>
                             </div>
                           </li>
                         </ul>
                       </div>
-                      <div class="list" data-flavor="cherryCrumble">
-                        <h3>Cherry Crumble <span class="titleKo">체리크럼블</span></h3>
+                      <div className="list" data-flavor="cherryCrumble">
+                        <h3>Cherry Crumble <span className="titleKo">체리크럼블</span></h3>
                         <p>새콤달콤한 앵두 과육의 맛을 그대로 담아내며
                           중독성을 더한 매력적인 새콤달콤한 맛
                         </p>
                         <ul>
-                          <li class="sweetness">
+                          <li className="sweetness">
                             <span>달콤함</span>
-                            <div class="bar">
-                              <div class="value" data-value="6"></div>
+                            <div className="bar">
+                              <div className="value" data-value="6"></div>
                             </div>
                           </li>
-                          <li class="cooling">
+                          <li className="cooling">
                             <span>쿨링감</span>
-                            <div class="bar">
-                              <div class="value" data-value="6"></div>
+                            <div className="bar">
+                              <div className="value" data-value="6"></div>
                             </div>
                           </li>
-                          <li class="sour">
+                          <li className="sour">
                             <span>상큼함</span>
-                            <div class="bar">
-                              <div class="value" data-value="2"></div>
+                            <div className="bar">
+                              <div className="value" data-value="2"></div>
                             </div>
                           </li>
-                          <li class="neck">
+                          <li className="neck">
                             <span>목넘김</span>
-                            <div class="bar">
-                              <div class="value" data-value="3"></div>
+                            <div className="bar">
+                              <div className="value" data-value="3"></div>
                             </div>
                           </li>
-                          <li class="weight">
+                          <li className="weight">
                             <span>무게감</span>
-                            <div class="bar">
-                              <div class="value" data-value="4"></div>
+                            <div className="bar">
+                              <div className="value" data-value="4"></div>
                             </div>
                           </li>
                         </ul>
                       </div>
                     </div>
-                    <div class="conFlavor-imgs">
-                      <div class="flavor swiper">
-                        <div class="swiper-wrapper">
-                          <div class="swiper-slide" data-flavor="appleRush">
+                    <div className="conFlavor-imgs">
+                      <div className="flavor swiper">
+                        <div className="swiper-wrapper">
+                          <div className="swiper-slide" data-flavor="appleRush">
                             <img src={img_flavor_appleRush} alt="Apple Rush 기기 이미지"/>
-                            <div class="gradientBox"></div>
+                            <div className="gradientBox"></div>
                           </div>
-                          <div class="swiper-slide" data-flavor="berryStraw">
+                          <div className="swiper-slide" data-flavor="berryStraw">
                             <img src={img_flavor_berryStraw} alt="Berry Straw 기기 이미지"/>
-                            <div class="gradientBox"></div>
+                            <div className="gradientBox"></div>
                           </div>
-                          <div class="swiper-slide" data-flavor="calime">
+                          <div className="swiper-slide" data-flavor="calime">
                             <img src={img_flavor_calime} alt="Calime 기기 이미지"/>
-                            <div class="gradientBox"></div>
+                            <div className="gradientBox"></div>
                           </div>
-                          <div class="swiper-slide" data-flavor="cherryCrumble">
+                          <div className="swiper-slide" data-flavor="cherryCrumble">
                             <img src={img_flavor_cherryCrumble} alt="Cherry Crumble 기기 이미지"/>
-                            <div class="gradientBox"></div>
+                            <div className="gradientBox"></div>
                           </div>
-                          <div class="swiper-slide" data-flavor="floridaCigar">
+                          <div className="swiper-slide" data-flavor="floridaCigar">
                             <img src={img_flavor_floridaCigar} alt="Florida Cigar 기기 이미지"/>
-                            <div class="gradientBox"></div>
+                            <div className="gradientBox"></div>
                           </div>
-                          <div class="swiper-slide" data-flavor="grapeBear">
+                          <div className="swiper-slide" data-flavor="grapeBear">
                             <img src={img_flavor_grapeBear} alt="Grape Bear 기기 이미지"/>
-                            <div class="gradientBox"></div>
+                            <div className="gradientBox"></div>
                           </div>
-                          <div class="swiper-slide" data-flavor="mentholBomb">
+                          <div className="swiper-slide" data-flavor="mentholBomb">
                             <img src={img_flavor_mentholBomb} alt="Menthol Bomb 기기 이미지"/>
-                            <div class="gradientBox"></div>
+                            <div className="gradientBox"></div>
                           </div>
-                          <div class="swiper-slide" data-flavor="peachWave">
+                          <div className="swiper-slide" data-flavor="peachWave">
                             <img src={img_flavor_peachWave} alt="Peach Wave 기기 이미지"/>
-                            <div class="gradientBox"></div>
+                            <div className="gradientBox"></div>
                           </div>
-                          <div class="swiper-slide" data-flavor="snowSoda">
+                          <div className="swiper-slide" data-flavor="snowSoda">
                             <img src={img_flavor_snowSoda} alt="Snow Soda 기기 이미지"/>
-                            <div class="gradientBox"></div>
+                            <div className="gradientBox"></div>
                           </div>
-                          <div class="swiper-slide" data-flavor="summerPocari">
+                          <div className="swiper-slide" data-flavor="summerPocari">
                             <img src={img_flavor_summerPocari} alt="Summer Pocari 기기 이미지"/>
-                            <div class="gradientBox"></div>
+                            <div className="gradientBox"></div>
                           </div>
                         </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-pagination"></div>
+                        <div className="swiper-button-next"></div>
+                        <div className="swiper-button-prev"></div>
+                        <div className="swiper-pagination"></div>
                       </div>
                     </div>
                   </div>
@@ -713,6 +735,44 @@ function Dynamic01() {
               </div>
             </section>
           </div>
+
+          <div className="swiper-slide">
+            <section className="section9">
+              <h2 className="heading">월드인터네셔널 기업 소개</h2>
+              <div className="conAboutUs">
+                <div className="blurCircle index0"></div>
+                <div className="blurCircle index1"></div>
+                <div className="conAboutUs-descriptionBox">
+                  <div className="conAboutUs-title">About Us</div>
+                  <img src={world_international_logo} alt="월드인터네셔널 기업 로고"/>
+                  <h3 className="introduce">월드인터네셔널은 <b>10년</b> 경력의 전자담배 기업입니다</h3>
+                  <p className="promise">10년간의 노하우가 담긴 최상급의 품질을 제공해드리겠습니다</p>
+                  <div className="phone">
+                    <img src={icon_phone} alt="전화번호 010-0000-0000"/>
+                    <p>+82 &ensp; 010-2349-8677</p>
+                  </div>
+                </div>
+                <div className="topBtn">
+                  <img src={topBtn} alt="TOP버튼"/>
+                </div>
+                <footer>
+                  <div className="footerInfo">월드 다이나믹 일회용 전자담배 기기 브랜드 페이지</div>
+                  <p>COPYRIGHT. WORLD INTERNATIONAL. All Rights Reserved.</p>
+                  <ul className="heading">
+                    <li>전자담배</li>
+                    <li>일회용 담배</li>
+                    <li>액상 전자담배</li>
+                    <li>베이프</li>
+                    <li>전자담배 추천</li>
+                    <li>전자담배 가격</li>
+                    <li>전자담배 종류</li>
+                    <li>전자담배 사용법</li>
+                  </ul>
+                </footer>
+              </div>
+            </section>
+          </div>
+          
         </div>
       </div>
     </div>

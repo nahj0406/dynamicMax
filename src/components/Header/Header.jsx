@@ -10,7 +10,7 @@ function Header() {
 
    const linkAdd = [
       {
-         url: '/Dynamic1/dynamic1.html',
+         url: '/Dynamic01',
          name: 'DYNAMIC I',
       },
       {
@@ -50,9 +50,9 @@ function Header() {
 
                         return (
                            <li key={index}>
-                              <a href={item.url} onClick={handleClick}>
+                              <Link to={item.url} onClick={handleClick}>
                                  <h5 data-splitting className={`HemiHead`}>{item.name}</h5>
-                              </a>
+                              </Link>
                            </li>
                         )
                      })
