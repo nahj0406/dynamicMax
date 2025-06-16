@@ -6,9 +6,9 @@ import useIsMobile from '@/customHook/useIsMobile'
 
 
 // img
-import Product01 from '@/img/Sec2/sec2_product01.png';
-import icon01 from '@/img/Sec2/sec2_icon01.png';
-import icon02 from '@/img/Sec2/sec2_icon02.png';
+import Product01 from '@/img/dynamicMax/Sec2/sec2_product01.png';
+import icon01 from '@/img/dynamicMax/Sec2/sec2_icon01.png';
+import icon02 from '@/img/dynamicMax/Sec2/sec2_icon02.png';
 
 // js 라이브러리
 import Splitting from 'splitting';

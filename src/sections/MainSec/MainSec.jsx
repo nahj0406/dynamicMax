@@ -8,7 +8,7 @@ import ImgTag from '@/components/ImgTag/ImgTag'
 
 
 // img
-import mainProduct from '@/img/MainSec/main_product 1.png';
+import mainProduct from '@/img/dynamicMax/MainSec/main_product 1.png';
 
 // js 라이브러리
 import Splitting from 'splitting';

@@ -45,6 +45,18 @@ button:focus-visible {
   outline: none;
 }
 
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #686868;
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-track {
+	background: #333;
+}
 
 /* 전역 폰트사이즈 -------------------*/
 html {

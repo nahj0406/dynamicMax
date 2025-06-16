@@ -3,11 +3,11 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 // let count = useSelector((state)=> state.count) // 불러올땐 이렇게.
 
 
-import slide01  from '@/img/Sec3/sec3_slide01.png';
-import slide02  from '@/img/Sec3/sec3_slide02.png';
-import slide03  from '@/img/Sec3/sec3_slide03.png';
-import slide04  from '@/img/Sec3/sec3_slide04.png';
-import slide05  from '@/img/Sec3/sec3_slide05.png';
+import slide01  from '@/img/dynamicMax/Sec3/sec3_slide01.png';
+import slide02  from '@/img/dynamicMax/Sec3/sec3_slide02.png';
+import slide03  from '@/img/dynamicMax/Sec3/sec3_slide03.png';
+import slide04  from '@/img/dynamicMax/Sec3/sec3_slide04.png';
+import slide05  from '@/img/dynamicMax/Sec3/sec3_slide05.png';
 
 let sec3DataSlide = createSlice({
    name: 'sec3Data',

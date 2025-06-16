@@ -42,7 +42,7 @@
 
    .Broken_bg {
       position: absolute; top: 0; left: 0; z-index: 1;
-      background: url('../../img/Sec1/sec1_broken_bg.png') no-repeat center top / cover;
+      background: url('../../img/dynamicMax/Sec1/sec1_broken_bg.png') no-repeat center top / cover;
       width: 100%; height: var(--canvas-H);
    }
 
@@ -115,7 +115,7 @@
 @media (max-width: 768px) {
 
    #Section01 {
-      background: url("../../img/Sec1/mob_sec1_bg.jpg") no-repeat right center / cover;
+      background: url("../../img/dynamicMax/Sec1/mob_sec1_bg.jpg") no-repeat right center / cover;
       padding: 0; position: relative;
       display: flex; justify-content: center;
       align-items: center;

@@ -1,8 +1,8 @@
 import {useState, useRef, useEffect} from 'react'
 import styles from './Footer.module.css'
 import { Link } from 'react-router-dom'
-import Logo from '@/img/footer_logo.png';
-import MobLogo from '@/img/mob_footer_logo.png';
+import Logo from '@/img/dynamicMax/footer_logo.png';
+import MobLogo from '@/img/dynamicMax/mob_footer_logo.png';
 import useIsMobile from '@/customHook/useIsMobile'
 
 

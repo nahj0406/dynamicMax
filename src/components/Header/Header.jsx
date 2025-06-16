@@ -1,7 +1,7 @@
 import {useState, useRef, useEffect} from 'react'
 import styles from './header.module.css'
 import { Link } from 'react-router-dom'
-import Logo from '../../img/logo.png';
+import Logo from '@/img/dynamicMax/logo.png';
 
 import Splitting from 'splitting';
 

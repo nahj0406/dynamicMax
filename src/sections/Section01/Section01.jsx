@@ -171,7 +171,7 @@ function Model({ url, sectionRef, BrokenRef, titleBoxRef, viewportHeight }) {
         child.material.side = THREE.FrontSide;
       }
 
-      if (child.isMesh && child.name === "00_13_1") {
+      if (child.isMesh && child.name === "00_13_1") { // 주둥이 부분만 질감, 반사율 가시성을 위해 다르게 처리
         child.material.metalness = 0.2;
         child.material.roughness = 0.2;
       }

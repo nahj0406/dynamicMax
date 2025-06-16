@@ -5,25 +5,25 @@ import useScrollOut from '@/customHook/useScrollOut'
 
 
 // img
-import starwBg from '@/img/Sec4/sec4_straw_bg.png';
-import mangoBg from '@/img/Sec4/sec4_mango_bg.png';
-import aloeBg from '@/img/Sec4/sec4_aloe_bg.png';
-import blueberryBg from '@/img/Sec4/sec4_blueberry_bg.png';
-import melonBg from '@/img/Sec4/sec4_melon_bg.png';
-import mentholBg from '@/img/Sec4/sec4_menthol_bg.png';
-import oakBg from '@/img/Sec4/sec4_oak_bg.png';
-import orangeBg from '@/img/Sec4/sec4_orange_bg.png';
-import plumcotBg from '@/img/Sec4/sec4_plumcot_bg.png';
+import starwBg from '@/img/dynamicMax/Sec4/sec4_straw_bg.png';
+import mangoBg from '@/img/dynamicMax/Sec4/sec4_mango_bg.png';
+import aloeBg from '@/img/dynamicMax/Sec4/sec4_aloe_bg.png';
+import blueberryBg from '@/img/dynamicMax/Sec4/sec4_blueberry_bg.png';
+import melonBg from '@/img/dynamicMax/Sec4/sec4_melon_bg.png';
+import mentholBg from '@/img/dynamicMax/Sec4/sec4_menthol_bg.png';
+import oakBg from '@/img/dynamicMax/Sec4/sec4_oak_bg.png';
+import orangeBg from '@/img/dynamicMax/Sec4/sec4_orange_bg.png';
+import plumcotBg from '@/img/dynamicMax/Sec4/sec4_plumcot_bg.png';
 
-import starw from '@/img/Sec4/sec4_slide_straw.png';
-import mango from '@/img/Sec4/sec4_slide_mango.png';
-import aloe from '@/img/Sec4/sec4_slide_aloe.png';
-import blueberry from '@/img/Sec4/sec4_slide_blueberry.png';
-import melon from '@/img/Sec4/sec4_slide_melon.png';
-import menthol from '@/img/Sec4/sec4_slide_menthol.png';
-import oak from '@/img/Sec4/sec4_slide_oak.png';
-import orange from '@/img/Sec4/sec4_slide_orange.png';
-import plumcot from '@/img/Sec4/sec4_slide_plumcot.png';
+import starw from '@/img/dynamicMax/Sec4/sec4_slide_straw.png';
+import mango from '@/img/dynamicMax/Sec4/sec4_slide_mango.png';
+import aloe from '@/img/dynamicMax/Sec4/sec4_slide_aloe.png';
+import blueberry from '@/img/dynamicMax/Sec4/sec4_slide_blueberry.png';
+import melon from '@/img/dynamicMax/Sec4/sec4_slide_melon.png';
+import menthol from '@/img/dynamicMax/Sec4/sec4_slide_menthol.png';
+import oak from '@/img/dynamicMax/Sec4/sec4_slide_oak.png';
+import orange from '@/img/dynamicMax/Sec4/sec4_slide_orange.png';
+import plumcot from '@/img/dynamicMax/Sec4/sec4_slide_plumcot.png';
 
 // js 라이브러리
 import "swiper/css";

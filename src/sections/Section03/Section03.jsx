@@ -7,15 +7,15 @@ import useIsMobile from '@/customHook/useIsMobile'
 
 
 // img
-import Product01 from '@/img/Sec3/sec3_product01.png';
-import Product02 from '@/img/Sec3/sec3_product02.png';
-import Product03 from '@/img/Sec3/sec3_product03.png';
+import Product01 from '@/img/dynamicMax/Sec3/sec3_product01.png';
+import Product02 from '@/img/dynamicMax/Sec3/sec3_product02.png';
+import Product03 from '@/img/dynamicMax/Sec3/sec3_product03.png';
 
-import coilIcon from '@/img/Sec3/sec3_coil.png';
-import plusIcon from '@/img/plus_icon.png';
-import cottonIcon from '@/img/Sec3/sec3_cotton.png';
+import coilIcon from '@/img/dynamicMax/Sec3/sec3_coil.png';
+import plusIcon from '@/img/dynamicMax/plus_icon.png';
+import cottonIcon from '@/img/dynamicMax/Sec3/sec3_cotton.png';
 
-import worldImg from '@/img/Sec3/sec3_world.png';
+import worldImg from '@/img/dynamicMax/Sec3/sec3_world.png';
 
 
 

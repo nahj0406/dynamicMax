@@ -48,7 +48,7 @@
   color: #fff;
   background-clip: text;
   -webkit-background-clip: text;
-  background-image: url("../../img/MainSec/main_text_bg2.png");
+  background-image: url("../../img/dynamicMax/MainSec/main_text_bg2.png");
   background-position: center center;
   background-size: min(88.5416666667vw, 1700px);
   background-repeat: no-repeat;
@@ -268,7 +268,7 @@
 }
 @media (max-width: 768px) {
   #main_Section {
-    background: url("../../img/MainSec/main_sec_bg.jpg");
+    background: url("../../img/dynamicMax/MainSec/main_sec_bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;
