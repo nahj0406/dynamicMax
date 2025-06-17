@@ -7,6 +7,8 @@ import Dynamic01 from './Dynamic01/Dynamic01.jsx';
 import Dynamic03 from './Dynamic03/Dynamic03.jsx';
 
 function MainStation() {
+
+  // 슬라이드 이동할때마다 onslidechange 값 header 저장하는 state
   const [slideDirection, setSlideDirection] = useState(null);
   const [isLastSlide, setIsLastSlide] = useState(false);
 

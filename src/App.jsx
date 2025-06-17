@@ -34,13 +34,6 @@ function App({ onSlideChange }) {
   const swiperRef = useRef(null);
   const previousIndex = useRef(0);
 
-  // useEffect(() => {
-  //   if(location.pathname == '/') { // css 전역 스타일이 겹칠 수 있기에 해당 컴포넌트일때만 import 처리
-  //     import('@/css/dynamicMax/style.css');
-  //     import('@/css/dynamicMax/index.css');
-  //   }
-  // }, [location.pathname]);
-
   useInitialLenis(); //leins 라이브러리
 
   useEffect(() => {
@@ -146,7 +139,7 @@ function App({ onSlideChange }) {
                 setActiveIndex(swiper.activeIndex)
                 SlideVideoSttart(swiper);
 
-                if(isMobile) {
+                if(isMobile) { // 슬라이드 이동할때마다 onslidechange 값 header 보내는 코드
                   const current = swiper.activeIndex;
                   const prev = previousIndex.current;
 

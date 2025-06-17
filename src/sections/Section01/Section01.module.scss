@@ -78,6 +78,7 @@
                opacity: 0;
                display: inline-block;
                transform: scale(2);
+               will-change: transform;
             }
          }
 
@@ -145,6 +146,7 @@
             opacity: 0;
             display: inline-block;
             transform: scale(2);
+            will-change: transform;
          }
       }
 

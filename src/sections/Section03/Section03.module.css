@@ -156,6 +156,7 @@
     opacity: 0;
     display: inline-block;
     transform: scale(1.2);
+    will-change: transform;
   }
   .scAni.titleBox p {
     transform: translateY(-10%);

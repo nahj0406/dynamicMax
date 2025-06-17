@@ -86,6 +86,7 @@
     opacity: 0;
     display: inline-block;
     transform: scale(2);
+    will-change: transform;
   }
   .title_container .scAni.titleBox .tagSecd span {
     display: inline-block;
@@ -160,6 +161,7 @@
     opacity: 0;
     display: inline-block;
     transform: scale(2);
+    will-change: transform;
   }
   .title_container .titleBox .tagSecd span {
     display: inline-block;

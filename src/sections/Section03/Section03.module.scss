@@ -111,6 +111,7 @@
           opacity: 0;
           display: inline-block;
           transform: scale(1.2);
+          will-change: transform;
         }
     }
 

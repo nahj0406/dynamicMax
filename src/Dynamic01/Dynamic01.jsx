@@ -60,28 +60,26 @@ import world_international_logo from '@/img/dynamic1/world-international-logo.pn
 import icon_phone from '@/img/dynamic1/icon-phone.png'
 import topBtn from '@/img/dynamic1/topBtn.png'
 
-// useEffect(() => {
-  //   if(location.pathname == '/Dynamic01') {
-  //     import('@/css/dynamic1/dynamic1.css').then(() => {
-  //       requestAnimationFrame(() => {
-  //         Dynamic01Script();
-  //       });
-  //     });
-  //   }
-  // }, [location.pathname]);
-
 
 function Dynamic01( {onSlideChange, onLastSlideChange} ) {
   const swiperRef = useRef();
   const location = useLocation();
 
   useEffect(() => {
+    let cleanup;
+
     requestAnimationFrame(() => {
-      Dynamic01Script();
+      cleanup = Dynamic01Script();
     });
+
+    return () => { // 언마운트시 클린업 처리해서 다른 route해선 만일을 대비해 실행 안되어 있게 처리.
+      if (typeof cleanup === 'function') {
+        cleanup(); // 언마운트 시 cleanup 호출
+      }
+    };
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { // 슬라이드 이동할때마다 onslidechange 값 header 보내는 코드
     const handler = (e) => {
       const {direction, isLast} = e.detail;
       onSlideChange(direction); // ✅ 부모로 전달

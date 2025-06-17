@@ -9,10 +9,13 @@ const mediaQueryMobile = window.matchMedia("(max-width: 640px)");
 let initialAnimationCompleted = false;
 
 
-window.Swiper.use && window.Swiper.use([window.Swiper.Mousewheel]);
+// window.Swiper.use && window.Swiper.use([window.Swiper.Mousewheel]);
 
 // 전체 페이지 슬라이드 Swiper 설정
-const swiper = new window.Swiper('.view.swiper', {
+if (window.swiper && window.swiper.destroy) {
+  window.swiper.destroy(true, true);
+}
+window.swiper = new Swiper('.view.swiper', {
   direction: 'vertical',
   // autoplay: {
   //   delay: 5000,
@@ -82,36 +85,10 @@ const swiper = new window.Swiper('.view.swiper', {
         activateSeventhSlide(); // 7번 슬라이드 설정 함수 호출
       }
 
-      // 8번 슬라이드 활성화 설정
-      if (activeSection.classList.contains('section8')) {
-        activateEighthSlide(); // 8번 슬라이드 설정 함수 호출
-      }
-
       // 9번 슬라이드 활성화 설정
       if (activeSection.classList.contains('section9')) {
         activateNinthSlide(); // 9번 슬라이드 설정 함수 호출
       }
-
-      
-      
-
-
-      // // 마우스 스크롤 방향에 따른 nav 유무 설정
-      // const currentIndex = this.activeIndex; // 현재 슬라이드 인덱스
-      // if (currentIndex > previousIndex) {
-      //   // 아래로 넘길 때: nav 숨김
-      //   nav.classList.add("nav-hidden");
-      // } else {
-      //   // 위로 넘길 때: 화면 너비가 640px 이하인지 확인
-      //   if (window.innerWidth <= 640) {
-      //     // 640px 이하일 때 flavor 페이지(7번 슬라이드) 제외하고 nav 나타나도록 설정
-      //     currentIndex !== 7 && nav.classList.remove("nav-hidden");
-      //   } else {
-      //     // 640px 초과일 때는 무조건 nav 나타나도록 설정
-      //     nav.classList.remove("nav-hidden");
-      //   }
-      // }
-      // previousIndex = currentIndex; // 이전 인덱스 업데이트
 
     },
   },
@@ -136,9 +113,6 @@ const activateFirstSlide = () => {
   // 이전 애니메이션 강제 중단 및 초기화
   gsap.killTweensOf([
     ".conMain-products",
-    "header h1 .black",
-    "header h1 .white",
-    "header nav div",
     ".conMain-ellipseBox",
     ".conMain-text p",
     ".conMain-text.beMore",
@@ -148,9 +122,6 @@ const activateFirstSlide = () => {
 
   // 초기 상태 설정
   gsap.set(".conMain-products", { opacity: 0.4, scale: 0.4 });
-  gsap.set(".header h1 .black", { opacity: 0 });
-  gsap.set(".header h1 .white", { opacity: 1 });
-  gsap.set(".header nav div", { color: "#ffffff" });
   gsap.set(".conMain-ellipseBox", { backgroundColor: "#ffffff" });
 
   // 애니메이션 실행
@@ -259,9 +230,6 @@ const activateSecondSlide = () => {
 
   // 이전 애니메이션 강제 중단 및 초기화
   gsap.killTweensOf([
-    "header h1 .black",
-    "header h1 .white",
-    "header nav div",
     ".conMain-products2",
     ".conMain-text2",
     ".conMain-text3",
@@ -270,9 +238,6 @@ const activateSecondSlide = () => {
   ]);
 
   // 초기 상태 강제 설정
-  gsap.set(".header h1 .black", { opacity: 0 });
-  gsap.set(".header h1 .white", { opacity: 1 });
-  gsap.set(".header nav div", { color: "#ffffff" });
   gsap.set(".conMain-products2", { opacity: 0, scale: 0.9 });
   gsap.set(".conMain-text2", { opacity: 0, y: 50 });
   gsap.set(".conMain-text3", { opacity: 0, y: 50 });
@@ -281,18 +246,6 @@ const activateSecondSlide = () => {
   
   // 애니메이션 실행
   gsap.timeline()
-    .fromTo("header h1 .black",
-    { opacity: 0 },
-    { opacity: 0, duration: 0.8 }
-    )
-    .fromTo("header h1 .white",
-      { opacity: 1 },
-      { opacity: 1, duration: 0.8 }
-    , "<")
-    .fromTo("header nav div", 
-      { color: "#ffffff" },
-      { color: "#ffffff", duration: 0.8 }
-    , "<")
     .fromTo(
       ".conMain-products2",
       { opacity: 0, scale: 0.9 },
@@ -310,21 +263,6 @@ const activateSecondSlide = () => {
       { opacity: 1, y: 0, duration: 2, ease: "power3.out", delay: 0.2 },
       "<"
     )
-    // .fromTo(
-    //   ".conMain-text3 .count b",
-    //   { innerText: 0 },
-    //   {
-    //     innerText: 10000,
-    //     duration: 0.8,
-    //     ease: "linear",
-    //     snap: { innerText: 1 },
-    //     onUpdate: function () {
-    //       const countElement = document.querySelector(".conMain-text3 #count");
-    //       countElement.textContent = Math.floor(this.targets()[0].innerText);
-    //     },
-    //   },
-    //   "<"
-    // )
     .fromTo(
       ".conMain-text4 .detail",
       { opacity: 0, y: 20 },
@@ -337,9 +275,6 @@ const activateSecondSlide = () => {
 const activateThirdSlide = () => {
 // 이전 애니메이션 강제 중단 및 초기화
 gsap.killTweensOf([
-  "header h1 .black",
-  "header h1 .white",
-  "header nav div",
   ".conMain-products3",
   ".conMain-text4-2",
   ".conMain-text5",
@@ -347,9 +282,6 @@ gsap.killTweensOf([
 ]);
 
 // 초기 상태 강제 설정
-gsap.set(".header h1 .black", { opacity: 0 });
-gsap.set(".header h1 .white", { opacity: 1 });
-gsap.set(".header nav div", { color: "#ffffff" });
 gsap.set(".conMain-products3", { opacity: 0, scale: 0.9 });
 gsap.set(".conMain-text4-2", { opacity: 0, y: 50 });
 gsap.set(".conMain-text5", { opacity: 0, y: 50 });
@@ -357,18 +289,6 @@ gsap.set(".conMain-text6", { opacity: 0, y: 50 });
 
 // 애니메이션 실행
 gsap.timeline()
-  .fromTo("header h1 .black",
-    { opacity: 0 },
-    { opacity: 0, duration: 0.8 }
-  )
-  .fromTo("header h1 .white",
-    { opacity: 1 },
-    { opacity: 1, duration: 0.8 }
-  , "<")
-  .fromTo("header nav div", 
-    { color: "#ffffff" },
-    { color: "#ffffff", duration: 0.8 }
-  , "<")
   .fromTo(
     ".conMain-products3",
     { opacity: 0, scale: 0.9 },
@@ -398,9 +318,6 @@ gsap.timeline()
 const activateFourthSlide = () => {
 // 이전 애니메이션 강제 중단 및 초기화
 gsap.killTweensOf([
-  "header h1 .black",
-  "header h1 .white",
-  "header nav div",
   ".conQuality-bestQuality",
   ".conQuality-bestQuality img.afterimage",
   ".conQuality-1-text2",
@@ -410,9 +327,6 @@ gsap.killTweensOf([
 ]);
 
 // 초기 상태 강제 설정
-gsap.set(".header h1 .black", { opacity: 0 });
-gsap.set(".header h1 .white", { opacity: 1 });
-gsap.set(".header nav div", { color: "#ffffff" });
 gsap.set(".conQuality-bestQuality", { opacity: 0.5, transform: "scale(2)" });
 gsap.set(".conQuality-bestQuality img.afterimage", { opacity: 1, transform: "scale(1)" });
 gsap.set(".conQuality-1-text2", { opacity: 0, transform: "scale(2)" });
@@ -422,18 +336,6 @@ gsap.set(".conQuality-1-text3 img.afterimage", { opacity: 1, transform: "scale(1
 
 // 애니메이션 실행
 gsap.timeline()
-  .fromTo("header h1 .black",
-    { opacity: 0 },
-    { opacity: 0, duration: 0.8 }
-  )
-  .fromTo("header h1 .white",
-    { opacity: 1 },
-    { opacity: 1, duration: 0.8 }
-  , "<")
-  .fromTo("header nav div", 
-    { color: "#ffffff" },
-    { color: "#ffffff", duration: 0.8 }
-  , "<")
   .fromTo('.conQuality-bestQuality', 
     { opacity: 0.5, transform: 'scale(2)' },
     { opacity: 1, transform: 'scale(0.8)', duration: 0.3 }
@@ -465,9 +367,6 @@ gsap.timeline()
 const activateFifthSlide = () => {
 // 이전 애니메이션 강제 중단 및 초기화
 gsap.killTweensOf([
-  "header h1 .black",
-  "header h1 .white",
-  "header nav div",
   ".conQuality-text2 .imgBox .txtBox",
   ".conQuality-text2 .imgBox .afterimage",
   ".conQuality-2-text2",
@@ -477,9 +376,6 @@ gsap.killTweensOf([
 ]);
 
 // 초기 상태 강제 설정
-gsap.set(".header h1 .black", { opacity: 0 });
-gsap.set(".header h1 .white", { opacity: 1 });
-gsap.set(".header nav div", { color: "#ffffff" });
 gsap.set(".conQuality-text2 .imgBox .txtBox", { opacity: 0.5, transform: 'scale(2)' });
 gsap.set(".conQuality-text2 .imgBox .afterimage", { opacity: 1, transform: 'scale(1)' });
 gsap.set(".conQuality-2-text2", { opacity: 0, transform: 'scale(2)' });
@@ -489,18 +385,6 @@ gsap.set(".conQuality-2-text3 img.afterimage", {  opacity: 1, transform: 'scale(
 
 // 애니메이션 실행
 gsap.timeline()
-  .fromTo("header h1 .black",
-    { opacity: 0 },
-    { opacity: 0, duration: 0.8 }
-  )
-  .fromTo("header h1 .white",
-    { opacity: 1 },
-    { opacity: 1, duration: 0.8 }
-  , "<")
-  .fromTo("header nav div", 
-  { color: "#ffffff" },
-  { color: "#ffffff", duration: 0.8 }
-  , "<")
   .fromTo('.conQuality-text2 .imgBox .txtBox', 
     { opacity: 0.5, transform: 'scale(2)' },
     { opacity: 1, transform: 'scale(1)', duration: 0.3 }
@@ -531,9 +415,6 @@ gsap.timeline()
 const activateSixthSlide = () => {
 // 이전 애니메이션 강제 중단 및 초기화
 gsap.killTweensOf([
-  "header h1 .black",
-  "header h1 .white",
-  "header nav div",
   ".conQuality-text3 .detail .underline",
   ".conQuality-bg.blue",
   ".conQuality-text3",
@@ -549,9 +430,6 @@ gsap.killTweensOf([
 ]);
 
 // 초기 상태 강제 설정
-gsap.set(".header h1 .black", { opacity: 0 });
-gsap.set(".header h1 .white", { opacity: 1 });
-gsap.set(".header nav div", { color: "#ffffff" });
 gsap.set(".conQuality-bg.blue", { backgroundColor: "#720EFF" });
 gsap.set(".conQuality-text3 .detail .underline", { width: 0 });
 gsap.set(".conQuality-text3", { top: "50%", opacity: 1 });
@@ -593,18 +471,6 @@ const animationY = mediaQueryMobile.matches
 : "150%";
 
 gsap.timeline()
-  .fromTo("header h1 .black",
-    { opacity: 0 },
-    { opacity: 0, duration: 0.8 }
-  )
-  .fromTo("header h1 .white",
-    { opacity: 1 },
-    { opacity: 1, duration: 0.8 }
-  , "<")
-    .fromTo("header nav div", 
-    { color: "#ffffff" },
-    { color: "#ffffff", duration: 0.8 }
-  , "<")
   .fromTo('.conQuality-bg.blue', 
       { backgroundColor: "#720EFF" },
       { backgroundColor: "#0E6EFF", delay: 0.2, duration: 0.4 }
@@ -617,26 +483,6 @@ gsap.timeline()
     { top: "50%" },
     { top: animationTop, duration: 0.4 }
   , "<180%")
-  // .fromTo('.conQuality-text4', 
-  //   { top: "70%", opacity: 0 },
-  //   { top: animationTop2, opacity: 1, duration: 0.4 }
-  // , "<")
-  // .fromTo('.conQuality-text3', 
-  //   { opacity: 1 },
-  //   { opacity: 0, duration: 0.4 }
-  // , "<30%")
-  // .fromTo('.conQuality-text4', 
-  //   { left: 0 },
-  //   { left: animationLeft, duration: 0.4 }
-  // )
-  // .fromTo('.conQuality-text4 .imgBox', 
-  //   { y: "0" },
-  //   { y: animationTop3, duration: 0.4 }
-  // , "<")
-  // .fromTo('.conQuality-text4 .detail span',
-  //   { opacity: 0 },
-  //   { stagger: { each: 0.06 }, opacity: 1, duration: 0.4 }
-  // , "<50%");
   .fromTo('.conQuality-text4-1', 
     { y: animationY, opacity: 0 },
     { y: "0px", opacity: 1, duration: 0.4 }
@@ -672,34 +518,16 @@ gsap.timeline()
 const activateSeventhSlide = () => {
 // 이전 애니메이션 강제 중단 및 초기화
 gsap.killTweensOf([
-  "header h1 .black",
-  "header h1 .white",
-  "header nav div",
   ".conQuality-experts-text .blueCircle",
   ".conQuality-experts-text .detail"
 ]);
 
 // 초기 상태 강제 설정
-gsap.set(".header h1 .black", { opacity: 0 });
-gsap.set(".header h1 .white", { opacity: 1 });
-gsap.set(".header nav div", { color: "#ffffff" });
 gsap.set(".conQuality-experts-text .blueCircle", { scale: 100, left: "50%" });
 gsap.set(".conQuality-experts-text .detail", { x: -100, opacity: 0 });
 
 // 애니메이션 실행
 gsap.timeline()
-.fromTo("header h1 .black",
-  { opacity: 0 },
-  { opacity: 0, duration: 0.8 }
-)
-.fromTo("header h1 .white",
-  { opacity: 1 },
-  { opacity: 1, duration: 0.8 }
-, "<")
-.fromTo("header nav div", 
-  { color: "#ffffff" },
-  { color: "#ffffff", duration: 0.8 }
-, "<")
 .fromTo('.conQuality-experts-text .blueCircle', 
     { scale: 100 },
     { scale: 1, duration: 0.8, ease: "power3.out" }
@@ -714,72 +542,22 @@ gsap.timeline()
 , "<30%")
 };
 
-// 8번 슬라이드 애니메이션 설정 함수
-const activateEighthSlide = () => {
-// 이전 애니메이션 강제 중단 및 초기화
-gsap.killTweensOf([
-  "header h1 .black",
-  "header h1 .white",
-  "header nav div",
-]);
 
-// 초기 상태 강제 설정
-gsap.set(".header h1 .black", { opacity: 0 });
-gsap.set(".header h1 .white", { opacity: 1 });
-gsap.set(".header nav div", { color: "#ffffff" });
-
-// 애니메이션 실행
-gsap.timeline()
-.fromTo("header h1 .black",
-  { opacity: 0 },
-  { opacity: 0, duration: 0.8 }
-)
-.fromTo("header h1 .white",
-  { opacity: 1 },
-  { opacity: 1, duration: 0.8 }
-, "<")
-.fromTo("header nav div", 
-{ color: "#ffffff" },
-{ color: "#ffffff", duration: 0.8 }
-, "<")
-};
 
 // 9번 슬라이드 애니메이션 설정 함수
 const activateNinthSlide = () => {
 // 이전 애니메이션 강제 중단 및 초기화
 gsap.killTweensOf([
-  "header h1 .black",
-  "header h1 .white",
-  "header nav div",
   ".conAboutUs-descriptionBox",
   ".conAboutUs-topBtn"
 ]);
 
 // 초기 상태 강제 설정
-gsap.set(".header h1 .black", { opacity: 0 });
-gsap.set(".header h1 .white", { opacity: 1 });
-gsap.set(".header nav div", { color: "#ffffff" });
 gsap.set(".conAboutUs-descriptionBox", { opacity: 0});
 gsap.set(".conAboutUs-topBtn", { opacity: 0});
 
 // 애니메이션 실행
 gsap.timeline()
-.fromTo("header h1 .black",
-  { opacity: 0 },
-  { opacity: 1, duration: 0.8 }
-)
-.fromTo("header h1 .white",
-  { opacity: 1 },
-  { opacity: 0, duration: 0.8 }
-, "<")
-.fromTo("header nav div", 
-{ color: "#ffffff" },
-{ color: "#0d0d0d", duration: 0.8 }
-, "<")
-.fromTo("header nav div", 
-  { color: "#ffffff" },
-  { color: "#0d0d0d", duration: 0.8 }
-, "<")
 .fromTo(".conAboutUs-descriptionBox", 
   { opacity: 0 },
   { opacity: 1, duration: 1 }
@@ -818,26 +596,34 @@ window.addEventListener(
 
 // Flavor swiper 설정
   // swiper 설정
-  const swiper2 = new window.Swiper('.swiper.flavor', {
+  if (window.swiper2 && window.swiper2.destroy) {
+    window.swiper2.destroy(true, true);
+  }
+  window.swiper2 = new Swiper('.swiper.flavor', {
       // Optional parameters
       direction: 'horizontal',
       slidesPerView: 3,
       spaceBetween: 0,
       nested: true,
       loop: true,
+      observer: true,
+      observeParents: true,
       autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
+        delay: 3000,
+        disableOnInteraction: false,
       },
       pagination: {
-        el: '#Dynamic01 .swiper-pagination',
+        el: '.swiper.flavor .swiper-pagination',
         clickable: true,
       },
       navigation: {
-        nextEl: "#Dynamic01 .swiper-button-next",
-        prevEl: "#Dynamic01 .swiper-button-prev",
+        nextEl: ".swiper.flavor .swiper-button-next",
+        prevEl: ".swiper.flavor .swiper-button-prev",
       },
-      mouseWheel: true,
+      mousewheel: {
+        forceToAxis: true,
+        releaseOnEdges: true,
+      },
       breakpoints: {
         640: {
           slidesPerView: 3,
@@ -856,49 +642,51 @@ window.addEventListener(
     document.querySelectorAll('.conFlavor-description .list').forEach(list => {
       list.classList.remove('active');
     });
+
     // 현재 맛에 해당하는 설명 보이기
     const activeDescription = document.querySelector(`.conFlavor-description .list[data-flavor="${flavor}"]`);
-    if (activeDescription) {
-      activeDescription.classList.add('active');
-    }
+    if (!activeDescription) return;
 
-    // [맛 설명 바 수치 값 적용]
-    let sweetness = document.querySelector(`.conFlavor-description .list[data-flavor="${flavor}"] .sweetness .value`);
-    let sour = document.querySelector(`.conFlavor-description .list[data-flavor="${flavor}"] .sour .value`);
-    let neck = document.querySelector(`.conFlavor-description .list[data-flavor="${flavor}"] .neck .value`);
-    let weight = document.querySelector(`.conFlavor-description .list[data-flavor="${flavor}"] .weight .value`);
-    let cooling = document.querySelector(`.conFlavor-description .list[data-flavor="${flavor}"] .cooling .value`);
-    // 맛 설명 바 의 data-value 값 가져오기
-    let sweetnessValue = sweetness.dataset.value;
-    let sourValue = sour.dataset.value;
-    let neckValue = neck.dataset.value;
-    let weightValue = weight.dataset.value;
-    let coolingValue = cooling.dataset.value;
-    // 맛 설명 바 수치 값 적용
-    // 1.초기화
-      sweetness.style.width = '0%'; 
-      sour.style.width = '0%';
-      neck.style.width = '0%';
-      weight.style.width = '0%';
-      cooling.style.width = '0%';
-    // 2. 브라우저가 스타일 변경을 인지하도록 강제 트리거
-    requestAnimationFrame(() => {
-      sweetness.style.width = `${sweetnessValue * 10}%`;
-      sour.style.width = `${sourValue * 10}%`;
-      neck.style.width = `${neckValue * 10}%`;
-      weight.style.width = `${weightValue * 10}%`;
-      cooling.style.width = `${coolingValue * 10}%`;
-    });
+    activeDescription.classList.add('active');
+
+    const getValue = (selector) => {
+      const el = activeDescription.querySelector(selector);
+      return el?.dataset?.value || 0;
+    };
+
+    const setBar = (selector, value) => {
+      const el = activeDescription.querySelector(selector);
+      if (el) {
+        el.style.width = '0%';
+        requestAnimationFrame(() => {
+          el.style.width = `${value * 10}%`;
+        });
+      }
+    };
+
+    // 바 값들
+    const sweetnessValue = getValue('.sweetness .value');
+    const sourValue = getValue('.sour .value');
+    const neckValue = getValue('.neck .value');
+    const weightValue = getValue('.weight .value');
+    const coolingValue = getValue('.cooling .value');
+
+    // 적용
+    setBar('.sweetness .value', sweetnessValue);
+    setBar('.sour .value', sourValue);
+    setBar('.neck .value', neckValue);
+    setBar('.weight .value', weightValue);
+    setBar('.cooling .value', coolingValue);
   }
 
   // 초기 설명 표시
-  const initialSlide = swiper2.slides[swiper2.activeIndex];
+  const initialSlide = window.swiper2.slides[window.swiper2.activeIndex];
   const initialFlavor = initialSlide.getAttribute('data-flavor');
   updateDescription(initialFlavor);
 
   // 슬라이드 변경 시 설명 업데이트
-  swiper2.on('slideChange', function () {
-    const activeSlide = swiper2.slides[swiper2.activeIndex];
+  window.swiper2.on('slideChange', function () {
+    const activeSlide = window.swiper2.slides[window.swiper2.activeIndex];
     const activeFlavor = activeSlide.getAttribute('data-flavor');
     updateDescription(activeFlavor);
   });
@@ -912,7 +700,7 @@ window.addEventListener(
           const slideIndex = index;
 
           // 해당 슬라이드로 이동
-          swiper2.slideToLoop(slideIndex);
+          window.swiper2.slideToLoop(slideIndex);
 
           // 모든 슬라이드에서 active 클래스 제거
           swiper2Slides.forEach(slide => {
@@ -958,21 +746,6 @@ window.addEventListener(
     // 특정 슬라이드로 이동
     swiper.slideTo(index, 1000, false);
 
-    // 슬라이드에 따라 header 색상 변경
-    const activeSection = document.querySelector(`.swiper-slide:nth-child(${index + 1}) section`);
-
-    if (activeSection.classList.contains('section1') || activeSection.classList.contains('section9')) {
-      // Section 1과 9에서는 header를 밝은 색으로 설정
-      gsap.set("header h1 .black", { opacity: 0 });
-      gsap.set("header h1 .white", { opacity: 1 });
-      gsap.set("header nav div", { color: "#ffffff" });
-    } else {
-      // 다른 섹션에서는 header를 어두운 색으로 설정
-      gsap.set("header h1 .black", { opacity: 1 });
-      gsap.set("header h1 .white", { opacity: 0 });
-      gsap.set("header nav div", { color: "#0d0d0d" });
-    }
-
     // transitionEnd 이벤트가 발생하면 마우스 휠 활성화
     swiper.once("transitionEnd", () => {
       swiper.mousewheel.enable(); // 마우스 휠 활성화
@@ -986,7 +759,6 @@ window.addEventListener(
       activateFirstSlide();
     }, 500);
   });
-
 
 }
 

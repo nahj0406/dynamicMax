@@ -136,19 +136,24 @@
 
 .bannerStart .startBanner {
    animation: startBaaner 0.2s 1.5s forwards;
+   will-change: visibility;
 }
 .bannerStart .startBanner .banner_piece {
    animation: piece_move 0.2s calc(var(--i-delay) * 0.1s) forwards;
+   will-change: transform;
 }
 
 .bannerStart .banner_txtBox .banner_title_txt1 {
    animation: banner_title_text1 0.5s forwards ease;
+   will-change: color;
 }
 .bannerStart .banner_txtBox .banner_title_txt2 {
    animation: banner_title_txt2 0.3s 2.2s forwards ease-out;
+   will-change: transform;
 }
 .bannerStart .banner_txtBox .unit_box .scale_txt {
    animation: banner_title_txt2_scale 0.8s 2.3s forwards;
+   will-change: transform;
 }
 
 .bannerStart .sub_txtBox {
@@ -156,10 +161,12 @@
 }
 .bannerStart .product {
    animation: product 0.3s 1.8s forwards;
+   will-change: transform;
 }
 
 .bannerStart .scroll_down {
    animation: scroll_down_opacity 1.5s 2.8s forwards;
+   will-change: opacity;
 }
 
 @keyframes zIndex {to {z-index: 9;}}
@@ -220,6 +227,7 @@
    .bannerStart .product img {
       position: relative;
       animation: imgmove 1s infinite alternate;
+      will-change: transform;
    }
 
    @keyframes imgmove {
