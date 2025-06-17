@@ -31,8 +31,17 @@ const swiper = new window.Swiper('.view.swiper', {
   //   releaseOnEdges: false,
   // },
   on: {
-    init() {
-      console.log("Swiper initialized");
+    slideChange(swiper) {
+      const current = swiper.activeIndex;
+      const prev = swiper.previousIndex;
+      const direction = current > prev ? 'down' : 'up';
+      const isLast = current === swiper.slides.length - 1;
+
+      const event = new CustomEvent('slideDirectionChange', {
+        detail: {direction, isLast} 
+      });
+
+      window.dispatchEvent(event);
     },
     slideChangeTransitionStart: function () {
       // console.log("Slide changed to:", this.activeIndex);

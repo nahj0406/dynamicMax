@@ -34,7 +34,7 @@ function Section01({ slideActive }) {
 
   useEffect(() => {
     Splitting();
-  })
+  });
 
   useScrollOut({
     targetClass: styles.scAni,
@@ -184,7 +184,7 @@ function Model({ url, sectionRef, BrokenRef, titleBoxRef, viewportHeight }) {
 
     const mm = gsap.matchMedia();
 
-    requestAnimationFrame(() => {
+    // requestAnimationFrame(() => {
 
       mm.add("(min-width: 769px)", () => {
         const ctx = gsap.context(() => {
@@ -256,7 +256,7 @@ function Model({ url, sectionRef, BrokenRef, titleBoxRef, viewportHeight }) {
       });
       
       return () => mm.revert(); 
-    });
+    // });
   }, [scene, animations]);
 
   useFrame(() => {

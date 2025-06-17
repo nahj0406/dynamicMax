@@ -60,14 +60,7 @@ import world_international_logo from '@/img/dynamic1/world-international-logo.pn
 import icon_phone from '@/img/dynamic1/icon-phone.png'
 import topBtn from '@/img/dynamic1/topBtn.png'
 
-
-
-
-function Dynamic01() {
-  const swiperRef = useRef();
-  const location = useLocation();
-
-  // useEffect(() => {
+// useEffect(() => {
   //   if(location.pathname == '/Dynamic01') {
   //     import('@/css/dynamic1/dynamic1.css').then(() => {
   //       requestAnimationFrame(() => {
@@ -77,11 +70,27 @@ function Dynamic01() {
   //   }
   // }, [location.pathname]);
 
+
+function Dynamic01( {onSlideChange, onLastSlideChange} ) {
+  const swiperRef = useRef();
+  const location = useLocation();
+
   useEffect(() => {
     requestAnimationFrame(() => {
       Dynamic01Script();
     });
-  })
+  }, []);
+
+  useEffect(() => {
+    const handler = (e) => {
+      const {direction, isLast} = e.detail;
+      onSlideChange(direction); // ✅ 부모로 전달
+      onLastSlideChange?.(isLast);
+    };
+    window.addEventListener('slideDirectionChange', handler);
+    return () => window.removeEventListener('slideDirectionChange', handler);
+
+  }, [onSlideChange, onLastSlideChange]);
 
   return (
     <div id='Dynamic01'>

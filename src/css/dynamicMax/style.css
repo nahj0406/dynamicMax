@@ -88,7 +88,7 @@
 }
 @media (max-width: 768px) {
   :root {
-    --head-margin: 100px;
+    --head-margin: 120px;
   }
   html::-webkit-scrollbar {
     display: none;

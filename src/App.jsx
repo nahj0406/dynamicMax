@@ -29,9 +29,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-function App() {  
+function App({ onSlideChange }) {  
   const isMobile = useIsMobile();
   const swiperRef = useRef(null);
+  const previousIndex = useRef(0);
 
   // useEffect(() => {
   //   if(location.pathname == '/') { // css 전역 스타일이 겹칠 수 있기에 해당 컴포넌트일때만 import 처리
@@ -62,6 +63,7 @@ function App() {
   }, []);
 
 
+  // 슬라이드안에 비디오 있으면 슬라이드 active 될때 비디오 재생
   const SlideVideoSttart = (swiper) => {
     const slides = swiper.slides;
 
@@ -143,6 +145,19 @@ function App() {
               onSlideChange={(swiper) => {
                 setActiveIndex(swiper.activeIndex)
                 SlideVideoSttart(swiper);
+
+                if(isMobile) {
+                  const current = swiper.activeIndex;
+                  const prev = previousIndex.current;
+
+                  if (current > prev) {
+                    onSlideChange('down');
+                  } else if (current < prev) {
+                    onSlideChange('up');
+                  }
+                  previousIndex.current = current;
+                }
+                
               }}
               // Pagination
               className="mobSwiper"
