@@ -15,7 +15,7 @@ import Logo1 from '@/img/dynamic1/logo.png';
 
 function Header({ direction, isLastSlide }) {
 
-   const [Logo, setLogo] = useState(LogoMax);
+   const [Logo, setLogo] = useState(Logo1);
    const location = useLocation();
    const isMobile = useIsMobile();
    const headerRef = useRef(false);
@@ -99,39 +99,5 @@ function Header({ direction, isLastSlide }) {
       </header>
    )
 }
-
-{/* <header id={styles.header}>
-         <div className={`${styles.headerContainer} containerV1`}>
-            <h1 id={styles.logo} className={`${Logo == Logo1 ? 'logo1' : }`}>
-               <a href={`/`} target={'_blank'}>
-                  <img src={Logo} alt="다이나믹 맥스 로고" />
-               </a>
-            </h1>
-            <nav>
-               <ul className={styles.outerMenu}>
-                  {
-                     linkAdd.map((item, index) => {
-                        const isComingSoon = !item.url || item.url === '/';
-
-                        const handleClick = (e) => {
-                          if (isComingSoon && index === 2) { // 🔥 세 번째 항목만 체크
-                            e.preventDefault();
-                            alert('출시 준비 중입니다!');
-                          }
-                        };
-
-                        return (
-                           <li key={index}>
-                              <Link to={item.url} onClick={handleClick}>
-                                 <h5 data-splitting className={`HemiHead`}>{item.name}</h5>
-                              </Link>
-                           </li>
-                        )
-                     })
-                  }
-               </ul>
-            </nav>
-         </div>
-      </header> */}
 
 export default Header;
