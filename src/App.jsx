@@ -5,7 +5,6 @@ import useInitialLenis from '@/customHook/useInitialLenis'
 import useIsMobile from '@/customHook/useIsMobile'
 
 // 페이지
-import Header from '@/components/Header/Header';
 import MainSec from '@/sections/MainSec/MainSec'
 import Section01 from '@/sections/Section01/Section01'
 import Section02 from '@/sections/Section02/Section02'
@@ -115,8 +114,6 @@ function App() {
 
   return (
     <div id='App'>
-      {/* 헤더 */}
-      <Header/>
 
       {/* 메인 */}
       { 

@@ -1,12 +1,24 @@
 import {useState, useRef, useEffect} from 'react'
 import styles from './header.module.css'
-import { Link } from 'react-router-dom'
-import Logo from '@/img/dynamicMax/logo.png';
+import { Link, useLocation } from 'react-router-dom'
+import LogoMax from '@/img/dynamicMax/logo.png';
+import Logo1 from '@/img/dynamic1/logo.png';
 
 import Splitting from 'splitting';
 
 
 function Header() {
+
+   const [Logo, setLogo] = useState(LogoMax);
+   const location = useLocation();
+
+   useEffect(() => {
+    if(location.pathname == '/Dynamic01') { // css 전역 스타일이 겹칠 수 있기에 해당 컴포넌트일때만 import 처리
+      setLogo(Logo1);
+    } else {
+      setLogo(LogoMax);
+    }
+  }, [location.pathname]);
 
    const linkAdd = [
       {
@@ -30,7 +42,7 @@ function Header() {
    return (
       <header id={styles.header}>
          <div className={`${styles.headerContainer} containerV1`}>
-            <h1 id={styles.logo}>
+            <h1 id={styles.logo} className={`${Logo == Logo1 ? 'logo1' : ''}`}>
                <a href={`/`} target={'_blank'}>
                   <img src={Logo} alt="다이나믹 맥스 로고" />
                </a>
