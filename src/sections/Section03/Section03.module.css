@@ -199,10 +199,10 @@
     max-width: 390px;
   }
   .triggerBox .content_Slide {
-    top: 55%;
+    top: 50%;
     left: 50%;
     z-index: 1;
-    transform: translate3d(0, -50%, 0);
+    transform: translate(0, -50%);
   }
 }
 @media (min-width: 2000px) {

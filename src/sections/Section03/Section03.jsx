@@ -63,7 +63,7 @@ function Section03({slideActive}) {
             // pin 설정
             ScrollTrigger.create({
               trigger: containerRef.current,
-              start: "top+=100 top-=3%",
+              start: "top+=100 top-=10%",
               end: `+=${(viewportWidth * 2)}`,
               pin: true,
               invalidateOnRefresh: true,
@@ -85,10 +85,10 @@ function Section03({slideActive}) {
             const tl = gsap.timeline({
               scrollTrigger: {
                 trigger: containerRef.current,
-                start: "top+=100 top-=3%",
+                start: "top+=100 top-=10%",
                 end: `+=${(viewportWidth * 2)}`,
                 scrub: 1,
-                // markers: true,
+                markers: true,
                 invalidateOnRefresh: true,
               },
             });
