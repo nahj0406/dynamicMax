@@ -2,6 +2,7 @@ import {useEffect} from 'react'
 import styles from './Section04.module.css'
 import ImgTag from '@/components/ImgTag/ImgTag'
 import useScrollOut from '@/customHook/useScrollOut'
+import useIsMobile from '@/customHook/useIsMobile'
 
 
 // img
@@ -37,6 +38,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 function Section04({slideActive}) {
+
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     Splitting();
@@ -185,7 +188,7 @@ function Section04({slideActive}) {
       <section className='containerV1'>
         <div className={`${styles.titleBox} ${styles.scAni} titleBox`}>
           <p>11가지 종류의 다양한 맛</p>
-          <h2 data-splitting className='HemiHead'>MODELS</h2>
+          <h2 {...(!isMobile ? { 'data-splitting': '' } : {})} className='HemiHead'>MODELS</h2>
         </div>
       </section>
 

@@ -282,6 +282,9 @@
     background-size: cover;
     background-position: center top;
   }
+  .startBanner {
+    width: 100%;
+  }
   .banner_txtBox {
     top: 50%;
     animation: mobtxtBox 0.5s 1.6s forwards;

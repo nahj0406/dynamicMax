@@ -127,7 +127,7 @@ function Section03({slideActive}) {
     
             <div className={`${styles.titleBox} ${styles.scAni} titleBox`}>
               <p>다이나믹만이 가진 <span>특별함</span></p>
-              <h2 data-splitting className='HemiHead'>SPECIALITY</h2>
+              <h2 {...(!isMobile ? { 'data-splitting': '' } : {})} className='HemiHead'>SPECIALITY</h2>
             </div>
     
             <figure className={styles.product}>

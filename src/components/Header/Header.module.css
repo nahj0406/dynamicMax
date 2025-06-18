@@ -67,6 +67,7 @@
 #header.scroll_down nav {
   transform: translateY(-100%);
   opacity: 0;
+  visibility: hidden;
 }
 
 #header.logoBlack #logo {

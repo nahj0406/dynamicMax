@@ -167,6 +167,11 @@
     width: 100%;
     transition: 0.2s 0.2s;
   }
+  .titleBox h2 {
+    opacity: 0;
+    transform: translateY(-10%);
+    transition: 0.2s 0.2s;
+  }
   .titleBox h2 :global(.char) {
     opacity: 0;
     display: inline-block;
@@ -194,6 +199,11 @@
   .slideActive .pin_wrapper .scrollout_bg {
     width: 0%;
     transition: 3s 0.2s ease-out;
+  }
+  .slideActive .titleBox h2 {
+    opacity: 1;
+    transform: translateY(0%);
+    transition: 0.8s 0.5s;
   }
   .slideActive .titleBox h2 :global(.char) {
     opacity: 1;

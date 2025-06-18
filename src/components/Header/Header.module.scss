@@ -65,7 +65,7 @@
 
 }
 
-#header.scroll_down nav {transform: translateY(-100%); opacity: 0;}
+#header.scroll_down nav {transform: translateY(-100%); opacity: 0; visibility: hidden;}
 #header.logoBlack #logo {filter: brightness(0); transition: 0.3s 0.1s;}
 
 

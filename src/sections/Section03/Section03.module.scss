@@ -218,6 +218,8 @@
           transform: scale(1.2);
           will-change: transform;
         }
+
+        opacity: 0; transform: translateY(-10%); transition: 0.2s 0.2s;
     }
 
     p {transform: translateY(-10%); opacity: 0; transition: 0.2s 0.2s;}
@@ -274,6 +276,8 @@
             transform-style: preserve-3d;
             will-change: transform, opacity;
           }
+
+          opacity: 1; transform: translateY(0%); transition: 0.8s 0.5s;
       }
 
       p {transform: translateY(0%); opacity: 1; transition: 0.5s 0.3s;}

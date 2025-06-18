@@ -59,7 +59,7 @@ function Section03_2({slideActive}) {
 
         <div className={`${styles.titleBox} ${styles.scAni} titleBox`}>
           <p>다이나믹만의 <span>차별화</span></p>
-          <h2 data-splitting className='HemiHead'>COMPETITIVE</h2>
+          <h2 {...(!isMobile ? { 'data-splitting': '' } : {})} className='HemiHead'>COMPETITIVE</h2>
         </div>
       </section>
 

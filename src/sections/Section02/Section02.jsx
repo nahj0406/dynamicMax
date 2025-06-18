@@ -87,7 +87,7 @@ function Section02({slideActive}) {
   
           <div className={`${styles.titleBox} ${styles.scAni} titleBox`}>
             <p>차별화된 배터리 및 액상 <br className={styles.br}/> <span>잔량 확인 시스템</span></p>
-            <h2 data-splitting className='HemiHead'>VISIBILITY</h2>
+            <h2 {...(!isMobile ? { 'data-splitting': '' } : {})} className='HemiHead'>VISIBILITY</h2>
           </div>
   
           <figure className={`${styles.product} ${styles.scAni}`} ref={productRef}>

@@ -64,6 +64,11 @@
   font-size: 18px;
 }
 
+.titleBox h2 {
+  opacity: 0;
+  transform: translateY(-10%);
+  transition: 0.2s 0.2s;
+}
 .titleBox h2 :global(.char) {
   opacity: 0;
   display: inline-block;
@@ -101,6 +106,11 @@
   transition: 0.5s 0.4s;
 }
 
+.slideActive .titleBox h2 {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: 0.8s 0.5s;
+}
 .slideActive .titleBox h2 :global(.char) {
   opacity: 1;
   transition: 0.5s calc(var(--char-index) * 0.1s);
