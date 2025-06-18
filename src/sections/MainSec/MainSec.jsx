@@ -35,6 +35,7 @@ function MainSec() {
   }, []);
 
   return (
+    
     <section id={styles.main_Section} className={`${banner === 'true' ? styles.bannerStart : ''}`} ref={containerRef}>
       {/* { !isMobile && <StartBanner />} */}
       <StartBanner />

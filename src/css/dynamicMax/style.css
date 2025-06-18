@@ -45,6 +45,14 @@
   font-weight: inherit;
   font-family: "HemiHead" !important;
 }
+#App .titleBox h2 .char {
+  display: inline-block;
+  overflow: visible !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
 
 @media (min-width: 769px) {
   #App .bg_container {

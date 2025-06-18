@@ -28,7 +28,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 
-
 function App({ onSlideChange }) {  
   const isMobile = useIsMobile();
   const swiperRef = useRef(null);
@@ -128,16 +127,17 @@ function App({ onSlideChange }) {
             <Swiper
               direction={'vertical'}
               slidesPerView={1}
+              speed={300}
               spaceBetween={0}
               mousewheel={true}
+              preloadImages={false}
+              lazy={true}
+              lazyPreloadPrevNext={1}
               onSwiper={(swiper) => (swiperRef.current = swiper)}
-              // pagination={{
-              //   clickable: true,
-              // }}
               modules={[Mousewheel]}
-              onSlideChange={(swiper) => {
-                setActiveIndex(swiper.activeIndex)
-                SlideVideoSttart(swiper);
+              onSlideChange={(swiper) => {SlideVideoSttart(swiper);}}
+              onSlideChangeTransitionEnd={(swiper) => {
+                setActiveIndex(swiper.activeIndex);
 
                 if(isMobile) { // 슬라이드 이동할때마다 onslidechange 값 header 보내는 코드
                   const current = swiper.activeIndex;
@@ -150,7 +150,6 @@ function App({ onSlideChange }) {
                   }
                   previousIndex.current = current;
                 }
-                
               }}
               // Pagination
               className="mobSwiper"

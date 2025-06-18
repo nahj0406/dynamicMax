@@ -13,6 +13,7 @@ function Footer({slideActive, swiperRef}) {
 
    useEffect(() => {
       if(isMobile) return;
+      
       const scrollEnd = () => {
          const scrollTop = window.scrollY;
          const windowHeight = window.innerHeight;
@@ -24,7 +25,7 @@ function Footer({slideActive, swiperRef}) {
       }
 
       window.addEventListener('scroll', scrollEnd);
-      return () => window.removeEventListener('scroll', scrollEnd);  
+      return () => window.removeEventListener('scroll', scrollEnd);
    }, []);
 
    const clickTop = () => {
@@ -32,7 +33,7 @@ function Footer({slideActive, swiperRef}) {
          window.scrollTo({top: 0, behavior: 'smooth'});
       } else {
          if(swiperRef.current) {
-            swiperRef.current.slideTo(0);
+            swiperRef.current.slideTo(0, 0);
          }
       }
    }

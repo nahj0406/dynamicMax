@@ -121,7 +121,7 @@ function Dynamic01( {onSlideChange, onLastSlideChange} ) {
           <div className="swiper-slide">
             <section className="section2">
               <h2 className="heading">컴팩트한 사이즈와 10ML 대용량 기기 다이나믹</h2>
-              <video className="conQuality-bg-vape" autoPlay loop muted>
+              <video className="conQuality-bg-vape" autoPlay loop muted playsInline>
                 <source src={vape2_3} type="video/mp4"/>
               </video>
               <div className="conQuality-bg-vape-mobile">
@@ -153,7 +153,7 @@ function Dynamic01( {onSlideChange, onLastSlideChange} ) {
           <div className="swiper-slide">
             <section className="section3">
               <h2 className="heading">C 타입(C-type) 충전방식 지원</h2>
-              <video className="conQuality-bg-vape index1" autoPlay loop muted>
+              <video className="conQuality-bg-vape index1" autoPlay loop muted playsInline>
                 <source src={vape2_3} type="video/mp4"/>
               </video>
               <div className="conQuality-bg-vape-mobile index1">
