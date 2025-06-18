@@ -20,7 +20,7 @@
 }
 .startBanner .banner_piece {
   background: #000;
-  width: 100%;
+  width: 110%;
   height: 100%;
   transform: translateY(0%);
   will-change: transform;

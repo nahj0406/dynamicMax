@@ -33,7 +33,7 @@ function Footer({slideActive, swiperRef}) {
          window.scrollTo({top: 0, behavior: 'smooth'});
       } else {
          if(swiperRef.current) {
-            swiperRef.current.slideTo(0, 0);
+            swiperRef.current.slideTo(0, 300);
          }
       }
    }
