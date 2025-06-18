@@ -46,7 +46,9 @@ function App({ onSlideChange }) {
     let resizeTimeout;
     const onResize = () => {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => ScrollTrigger.update(), 200);
+      resizeTimeout = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 200);
     };
 
     window.addEventListener("resize", onResize);

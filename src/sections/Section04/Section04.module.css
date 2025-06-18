@@ -195,6 +195,8 @@
   }
   .sec04_swiper .slide_unit .img > img {
     width: clamp(100px, min(16.9270833333vw, 130px), 160px);
+    position: relative;
+    z-index: 3;
   }
   .sec04_swiper .slide_unit .textLine > span {
     animation: none;

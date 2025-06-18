@@ -181,7 +181,7 @@
 
   .slideContainer {width: 100%;}
 
-  .sec04_swiper .slide_unit .img > img {width: clamp(100px, min(calc(130 / 768 * 100vw), 130px), 160px);}
+  .sec04_swiper .slide_unit .img > img {width: clamp(100px, min(calc(130 / 768 * 100vw), 130px), 160px); position: relative; z-index: 3;}
   .sec04_swiper .slide_unit .textLine > span {animation: none;}
 
   .buttonBox {
