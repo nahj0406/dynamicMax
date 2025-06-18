@@ -8,7 +8,7 @@ import Header from '@/components/Header/Header';
 import Dynamic03 from './Dynamic03/Dynamic03.jsx';
 
 
-const Dynamic01 = lazy(() => import('./Dynamic01/Dynamic01.jsx'));
+const Dynamic01 = lazy(() => import('./Dynamic/Dynamic01.jsx'));
 
 function MainStation() {
 
