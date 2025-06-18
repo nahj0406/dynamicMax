@@ -1,10 +1,6 @@
 #Section01 {
    position: relative;
-   // background: linear-gradient(#201E1F, #011722 50%);
-   // background: #201E1F;
-   // background: url('../../img/Sec1/sec1_bg1.jpg') no-repeat center top / cover;
    padding: 30rem 0 20rem;
-   overflow: hidden;
 }
 
 
@@ -70,6 +66,13 @@
 
 // 스크롤 애니메이션
 @media (min-width: 769px) {
+   #Section01 {min-height: 350dvh;}
+
+   .canvas_wrapper {
+      position: sticky;
+      top: 3rem;
+   }
+
    .title_container {
       .scAni.titleBox {
 

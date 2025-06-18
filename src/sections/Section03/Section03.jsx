@@ -88,7 +88,6 @@ function Section03({slideActive}) {
                 start: "top+=100 top-=10%",
                 end: `+=${(viewportWidth * 2)}`,
                 scrub: 1,
-                markers: true,
                 invalidateOnRefresh: true,
               },
             });

@@ -1,7 +1,6 @@
 #Section01 {
   position: relative;
   padding: 30rem 0 20rem;
-  overflow: hidden;
 }
 
 .title_bg {
@@ -82,6 +81,13 @@
 }
 
 @media (min-width: 769px) {
+  #Section01 {
+    min-height: 350dvh;
+  }
+  .canvas_wrapper {
+    position: sticky;
+    top: 3rem;
+  }
   .title_container .scAni.titleBox h3 :global(.char) {
     opacity: 0;
     display: inline-block;

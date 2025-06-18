@@ -46,12 +46,12 @@ function Section01({ slideActive }) {
 
     mm.add("(min-width: 769px)", () => {
       const ctx = gsap.context(() => {
-        ScrollTrigger.create({
-          trigger: sectionRef.current,   // 캔버스를 감싼 div
-          start: 'top+=15% 20%',   // 스크롤 시작 지점
-          end: `+=${(viewportHeight * 1.4)}`,     // 고정 유지 거리
-          pin: true,
-        });
+        // ScrollTrigger.create({
+        //   trigger: sectionRef.current,   // 캔버스를 감싼 div
+        //   start: 'top+=15% 20%',   // 스크롤 시작 지점
+        //   end: `+=${(viewportHeight * 1.4)}`,     // 고정 유지 거리
+        //   pin: true,
+        // });
 
         gsap.to(titleBgRef.current, {
           y: -400,

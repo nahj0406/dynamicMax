@@ -1,6 +1,7 @@
 #Section02 {
   position: relative;
   background: #000;
+  overflow: hidden;
 }
 
 .pin_wrapper {
