@@ -8,7 +8,7 @@ import Header from '@/components/Header/Header';
 import Dynamic03 from './Dynamic03/Dynamic03.jsx';
 
 
-const Dynamic01 = lazy(() => import('./Dynamic/Dynamic01.jsx'));
+const Dynamic01 = lazy(() => import('./Dynamic/Dynamic.jsx'));
 
 function MainStation() {
 
@@ -21,7 +21,7 @@ function MainStation() {
       <Header direction={slideDirection} isLastSlide={isLastSlide} />
       <Routes>
         <Route path="/" element={<App onSlideChange={setSlideDirection} />} />
-        <Route path="/Dynamic01" element={
+        <Route path="/Dynamic" element={
             <Dynamic01 onSlideChange={setSlideDirection} onLastSlideChange={setIsLastSlide} />
           }
         />

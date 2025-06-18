@@ -57,7 +57,7 @@ function Header({ direction, isLastSlide }) {
 
    const linkAdd = [ //헤더 링크
       {
-         url: '/Dynamic01',
+         url: '/Dynamic',
          name: 'DYNAMIC I',
       },
       {
