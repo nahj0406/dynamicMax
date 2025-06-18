@@ -25,7 +25,7 @@ function Header({ direction, isLastSlide }) {
    });
 
    useEffect(() => { // route에 따라 로고 변경
-    if(location.pathname == '/Dynamic01') {
+    if(location.pathname == '/Dynamic') {
       setLogo(Logo1);
     } else if(location.pathname == '/Dynamic03') {
       setLogo(LogoMax);
