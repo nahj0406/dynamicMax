@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef } from 'react'
+import React, {useState, useEffect, useRef, Suspense } from 'react'
 import '@/css/dynamicMax/style.css'
 import '@/css/dynamicMax/index.css'
 import useInitialLenis from '@/customHook/useInitialLenis'
@@ -124,6 +124,7 @@ function App({ onSlideChange }) {
           </>
         ) : ( // mobile -------------------------------------------------------------------------
           <>
+            {/* <Suspense fallback={<div>로딩중...</div>} ></Suspense> */}
             <Swiper
               direction={'vertical'}
               slidesPerView={1}

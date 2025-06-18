@@ -167,7 +167,7 @@
           opacity: 0;
           display: inline-block;
           transform: scale(1.2);
-          will-change: transform;
+          will-change: transform, opacity;
         }
     }
 
@@ -196,6 +196,12 @@
             opacity: 1;
             transition: 0.5s calc(var(--char-index) * 0.1s);
             transform: scale(1);
+            display: inline-block;
+            overflow: visible !important;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            transform-style: preserve-3d;
+            will-change: transform, opacity;
           }
       }
 
