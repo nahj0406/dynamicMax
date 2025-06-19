@@ -35,7 +35,7 @@ function Header({ direction, isLastSlide }) {
   }, [location.pathname]);
 
    useEffect(() => { // header에 props로 받은 값으로 슬라이드 풀페이지 data 넘겨받기
-      if(isMobile || location.pathname == '/Dynamic01') {
+      if(isMobile || location.pathname == '/Dynamic') {
          const header = headerRef.current;
          if (!header) return;
 
@@ -45,7 +45,7 @@ function Header({ direction, isLastSlide }) {
          header.classList.remove(styles.scroll_down);
          }
 
-         if(location.pathname == '/Dynamic01') {
+         if(location.pathname == '/Dynamic') {
             if (isLastSlide) {
             header.classList.add(styles.logoBlack);
             } else {
